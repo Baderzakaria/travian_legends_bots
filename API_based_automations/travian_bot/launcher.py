@@ -2,6 +2,8 @@ import time
 import random
 import json
 import os
+import sys
+import subprocess
 import threading
 from identity_handling.login import login
 from core.travian_api import TravianAPI
@@ -15,6 +17,14 @@ from identity_handling.identity_manager import handle_identity_management
 from identity_handling.identity_helper import load_villages_from_identity
 from features.hero.hero_operations import run_hero_operations as run_hero_ops, print_hero_status_summary
 from features.hero.hero_raiding_thread import run_hero_raiding_thread
+from features.building.building_planner import create_or_update_building_plan, run_building_plan_once
+from features.hero.adventure_operations import run_adventure_once
+from features.hero.adventure_browser import run_adventure_browser_once
+from features.strategy.advanced_loop import (
+    ensure_strategy_files,
+    run_advanced_strategy_cycle,
+    run_advanced_strategy_loop,
+)
 
 # === CONFIG ===
 WAIT_BETWEEN_CYCLES_MINUTES = 34
@@ -123,7 +133,8 @@ def handle_identity_management():
     
     if choice == "1":
         print("\nℹ️ Running identity setup...")
-        os.system("python3 setup_identity.py")
+        setup_script = os.path.join(os.path.dirname(__file__), "setup_identity.py")
+        subprocess.run([sys.executable, setup_script], check=False)
     elif choice == "2":
         view_identity()
     elif choice == "3":
@@ -247,6 +258,9 @@ def main():
     print("9) Hero Operations")
     print("10) Identity & Villages")
     print("11) Test Hero Raiding Thread (Standalone)")
+    print("12) Building Plan (setup/run)")
+    print("13) Hero Adventure (run once)")
+    print("14) Advanced Strategy Loop (eco + raid + build)")
     
     print("\n" + "="*40)
 
@@ -284,7 +298,7 @@ def main():
             try:
                 delay_input = input("\nWould you like to delay the start? (y/N): ").strip().lower()
                 if delay_input == 'y':
-                    delay_minutes = int(input("Enter delay in minutes: "))
+                    delay_minutes = float(input("Enter delay in minutes (supports decimals): "))
                     if delay_minutes > 0:
                         print(f"\n⏳ Waiting {delay_minutes} minutes before starting...")
                         time.sleep(delay_minutes * 60)
@@ -296,6 +310,24 @@ def main():
                     break
             except ValueError:
                 print("Please enter a valid number of minutes.")
+
+        # Ask for full-auto cycle settings
+        wait_between_cycles_minutes = WAIT_BETWEEN_CYCLES_MINUTES
+        jitter_minutes = JITTER_MINUTES
+        custom_timing_input = input(
+            f"\nUse custom cycle timing? (default {WAIT_BETWEEN_CYCLES_MINUTES} min ± {JITTER_MINUTES}) (y/N): "
+        ).strip().lower()
+        if custom_timing_input == "y":
+            while True:
+                try:
+                    wait_between_cycles_minutes = float(input("Enter base wait between cycles in minutes: ").strip())
+                    jitter_minutes = float(input("Enter jitter in minutes (0 for none): ").strip())
+                    if wait_between_cycles_minutes <= 0 or jitter_minutes < 0:
+                        print("Values must be: base wait > 0 and jitter >= 0.")
+                        continue
+                    break
+                except ValueError:
+                    print("Please enter valid numbers.")
 
         # Ask if user wants to skip farm lists on first run
         skip_farm_lists_first_run = False
@@ -332,13 +364,15 @@ def main():
                     print("❌ Could not fetch hero status summary.")
                 
                 # Calculate next cycle time with jitter
-                jitter = random.randint(-JITTER_MINUTES, JITTER_MINUTES)
-                total_wait_minutes = WAIT_BETWEEN_CYCLES_MINUTES + jitter
+                jitter = random.uniform(-jitter_minutes, jitter_minutes)
+                total_wait_minutes = wait_between_cycles_minutes + jitter
+                total_wait_minutes = max(0.1, total_wait_minutes)
                 print(f"[Main] Cycle complete. Waiting {total_wait_minutes} minutes...")
                 time.sleep(total_wait_minutes * 60)
             except Exception as e:
                 print(f"[Main] ⚠️ Error during cycle: {e}")
                 print("[Main] 🔁 Attempting re-login and retry...")
+                time.sleep(3)
                 session, server_url = login()
                 api = TravianAPI(session, server_url)
                 print("[Main] ✅ Re-login successful.")
@@ -351,8 +385,74 @@ def main():
     elif choice == "11":
         print("\n🦸 Testing Hero Raiding Thread (Standalone)...")
         run_hero_raiding_thread(api)
+    elif choice == "12":
+        print("\n🏗️ Building Plan")
+        print("[1] Setup / update building plan")
+        print("[2] Run building plan once")
+        sub = input("Select an option: ").strip()
+        if sub == "1":
+            create_or_update_building_plan(api)
+        elif sub == "2":
+            run_building_plan_once(api)
+        else:
+            print("❌ Invalid choice.")
+    elif choice == "13":
+        print("\nHero Adventure")
+        print("[1] API attempt (current method)")
+        print("[2] Browser explore (recommended)")
+        print("[3] Browser watch video then explore")
+        sub = input("Select an option: ").strip()
+        if sub == "1":
+            run_adventure_once(api)
+        elif sub == "2":
+            run_adventure_browser_once(
+                server_url=server_url,
+                watch_video_first=False,
+                headless=False,
+                session_cookies=api.session.cookies.get_dict(),
+            )
+        elif sub == "3":
+            run_adventure_browser_once(
+                server_url=server_url,
+                watch_video_first=True,
+                headless=False,
+                session_cookies=api.session.cookies.get_dict(),
+            )
+        else:
+            print("Invalid choice.")
+    elif choice == "14":
+        print("\nAdvanced Strategy Loop")
+        print("[1] Generate / update strategy files (JSON + CSV + XLSX)")
+        print("[2] Run one advanced strategy cycle")
+        print("[3] Run advanced strategy loop")
+        sub = input("Select an option: ").strip()
+        if sub == "1":
+            cfg, csv_file, xlsx_file = ensure_strategy_files()
+            print("Strategy files ready:")
+            print(f"- {cfg}")
+            print(f"- {csv_file}")
+            print(f"- {xlsx_file}")
+        elif sub == "2":
+            ensure_strategy_files()
+            run_advanced_strategy_cycle(api, server_url)
+        elif sub == "3":
+            ensure_strategy_files()
+            max_cycles_input = input("Max cycles (blank = infinite): ").strip()
+            max_cycles = None
+            if max_cycles_input:
+                try:
+                    max_cycles = int(max_cycles_input)
+                    if max_cycles <= 0:
+                        print("Invalid value: max cycles must be a positive integer.")
+                        return
+                except ValueError:
+                    print("Invalid max cycles value.")
+                    return
+            run_advanced_strategy_loop(api, server_url, max_cycles=max_cycles)
+        else:
+            print("Invalid choice.")
     else:
-        print("❌ Invalid choice.")
+        print("Invalid choice.")
 
 if __name__ == "__main__":
     main()

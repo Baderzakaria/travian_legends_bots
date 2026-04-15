@@ -22,17 +22,17 @@ def ensure_env_exists(interactive=True):
         print(f"✅ .env file created at {env_path}")
 
     if not env_path.exists():
-        print(f"❌ .env file not found at {env_path}")
+        print(f"[ERROR] .env file not found at {env_path}")
         ask_and_create_env()
     else:
         load_dotenv(dotenv_path=env_path)
         email = os.getenv("TRAVIAN_EMAIL")
         password = os.getenv("TRAVIAN_PASSWORD")
         if not email or not password:
-            print(f"❌ .env file exists but is incomplete at {env_path}")
+            print(f"[ERROR] .env file exists but is incomplete at {env_path}")
             ask_and_create_env()
         else:
-            print(f"✅ .env file loaded successfully.")
+            print("[OK] .env file loaded successfully.")
 
     load_dotenv(dotenv_path=env_path)
 
@@ -108,6 +108,17 @@ def get_avatars(session):
         })
     return avatars
 
+def find_avatar_selection_by_world_url(avatars, world_url):
+    if not world_url:
+        return None
+
+    normalized_target = world_url.strip().rstrip("/").lower()
+    for idx, avatar in enumerate(avatars):
+        avatar_url = avatar.get("world_url", "").strip().rstrip("/").lower()
+        if avatar_url == normalized_target:
+            return idx
+    return None
+
 def login_to_server(session, avatars, selection=None, interactive=True):
     if selection is None:
         if not interactive:
@@ -146,6 +157,12 @@ def login(email=None, password=None, server_selection=None, interactive=True):
 
     session = login_to_lobby(email, password)
     avatars = get_avatars(session)
+    if server_selection is None:
+        world_url = os.getenv("TRAVIAN_WORLD_URL")
+        matched_selection = find_avatar_selection_by_world_url(avatars, world_url)
+        if matched_selection is not None:
+            server_selection = matched_selection
+            print(f"[+] Auto-selected world from TRAVIAN_WORLD_URL: {avatars[matched_selection]['world_name']}")
     server_session, server_url = login_to_server(session, avatars, selection=server_selection, interactive=interactive)
     return server_session, server_url
 

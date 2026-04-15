@@ -224,6 +224,10 @@ class TravianAPI:
 
         for troop_id in range(1, 12):
             prepare_data[f"troop[t{troop_id}]"] = troop_setup.get(f"t{troop_id}", 0)
+        # Support tribe-specific or special troop IDs beyond t1..t11 (e.g., t81).
+        for troop_key, troop_value in troop_setup.items():
+            if re.fullmatch(r"t\d+", troop_key):
+                prepare_data[f"troop[{troop_key}]"] = troop_value
 
         prepare_data["troop[scoutTarget]"] = ""
         prepare_data["troop[catapultTarget1]"] = ""
@@ -283,6 +287,10 @@ class TravianAPI:
 
         for troop_id in range(1, 12):
             final_payload[f"troops[0][t{troop_id}]"] = troops.get(f"t{troop_id}", 0)
+        # Support tribe-specific or special troop IDs beyond t1..t11 (e.g., t81).
+        for troop_key, troop_value in troops.items():
+            if re.fullmatch(r"t\d+", troop_key):
+                final_payload[f"troops[0][{troop_key}]"] = troop_value
 
         final_payload["troops[0][scoutTarget]"] = ""
         final_payload["troops[0][catapultTarget1]"] = ""
