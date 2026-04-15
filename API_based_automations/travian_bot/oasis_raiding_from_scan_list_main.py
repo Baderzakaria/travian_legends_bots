@@ -5,7 +5,7 @@ from random import uniform
 import time
 
 from identity_handling.login import login
-from identity_handling.identity_helper import load_villages_from_identity
+from identity_handling.identity_helper import load_villages_from_identity, load_identity_data
 from core.travian_api import TravianAPI
 from analysis.number_to_unit_mapping import get_unit_name
 from core.database_helpers import load_latest_unoccupied_oases
@@ -68,16 +68,11 @@ def run_raid_planner(
 
     # Load faction from identity using the helper function
     try:
-        current_dir = os.path.dirname(__file__)
-        database_dir = os.path.join(current_dir, 'database')
-        identity_path = os.path.join(database_dir, 'identity.json')
-        identity_path = os.path.abspath(identity_path)
-
-        with open(identity_path, "r", encoding="utf-8") as f:
-            identity = json.load(f)
-            tribe_id = identity["travian_identity"]["tribe_id"]
-            faction = get_faction_name(tribe_id)
-            logging.info(f"Detected faction: {faction.title()}")
+        identity = load_identity_data()
+        tribe_id = identity["travian_identity"]["tribe_id"]
+        fallback_faction = identity["travian_identity"].get("faction")
+        faction = get_faction_name(tribe_id, fallback_faction=fallback_faction)
+        logging.info(f"Detected faction: {faction.title()}")
     except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
         logging.error(f"❌ Error loading identity: {e}")
         return
@@ -168,16 +163,11 @@ def setup_raid_plan_interactive(api, server_url, selected_village_index=None):
 
     # Load faction from identity using the helper function
     try:
-        current_dir = os.path.dirname(__file__)
-        database_dir = os.path.join(current_dir, '..', 'database')
-        identity_path = os.path.join(database_dir, 'identity.json')
-        identity_path = os.path.abspath(identity_path)
-
-        with open(identity_path, "r", encoding="utf-8") as f:
-            identity = json.load(f)
-            tribe_id = identity["travian_identity"]["tribe_id"]
-            faction = get_faction_name(tribe_id)
-            logging.info(f"Detected faction: {faction.title()}")
+        identity = load_identity_data()
+        tribe_id = identity["travian_identity"]["tribe_id"]
+        fallback_faction = identity["travian_identity"].get("faction")
+        faction = get_faction_name(tribe_id, fallback_faction=fallback_faction)
+        logging.info(f"Detected faction: {faction.title()}")
     except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
         logging.error(f"❌ Error loading identity: {e}")
         return

@@ -3,7 +3,7 @@ import json
 import os
 from core.travian_api import TravianAPI
 from core.database_raid_config import save_raid_plan
-from identity_handling.identity_helper import load_villages_from_identity
+from identity_handling.identity_helper import load_villages_from_identity, load_identity_data
 from identity_handling.faction_utils import get_faction_name
 from analysis.number_to_unit_mapping import get_unit_name
 
@@ -16,11 +16,11 @@ def setup_interactive_raid_plan(api, server_url):
 
     # Load faction from identity.json
     try:
-        with open("database/identity.json", "r", encoding="utf-8") as f:
-            identity = json.load(f)
-            tribe_id = identity["travian_identity"]["tribe_id"]
-            faction = get_faction_name(tribe_id)
-            logging.info(f"Detected faction: {faction.title()}")
+        identity = load_identity_data()
+        tribe_id = identity["travian_identity"]["tribe_id"]
+        fallback_faction = identity["travian_identity"].get("faction")
+        faction = get_faction_name(tribe_id, fallback_faction=fallback_faction)
+        logging.info(f"Detected faction: {faction.title()}")
     except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
         logging.error(f"❌ Error loading identity: {e}")
         return
@@ -164,11 +164,11 @@ def create_raid_plan_from_saved(api, server_url, village_index, saved_config):
 
     # Load faction from identity.json
     try:
-        with open("database/identity.json", "r", encoding="utf-8") as f:
-            identity = json.load(f)
-            tribe_id = identity["travian_identity"]["tribe_id"]
-            faction = get_faction_name(tribe_id)
-            logging.info(f"Detected faction: {faction.title()}")
+        identity = load_identity_data()
+        tribe_id = identity["travian_identity"]["tribe_id"]
+        fallback_faction = identity["travian_identity"].get("faction")
+        faction = get_faction_name(tribe_id, fallback_faction=fallback_faction)
+        logging.info(f"Detected faction: {faction.title()}")
     except (FileNotFoundError, KeyError, json.JSONDecodeError) as e:
         logging.error(f"❌ Error loading identity: {e}")
         return

@@ -1,0 +1,14 @@
+{
+    "village_id": 31894,
+    "village_name": "baderWarrior`s village",
+    "targets": [
+        {
+            "slot_id": 34,
+            "target_level": 10
+        },
+        {
+            "slot_id": 35,
+            "target_level": 10
+        }
+    ]
+}

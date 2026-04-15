@@ -1,15 +1,18 @@
 import os
 
-def get_faction_name(faction_id: int) -> str:
+def get_faction_name(faction_id: int, fallback_faction: str | None = None) -> str:
     faction_mapping = {
         1: "roman",
         2: "teuton",
         3: "gaul",
         6: "egyptian",
-        7: "hun"
+        7: "hun",
+        9: "vikings",
     }
 
     if faction_id not in faction_mapping:
+        if fallback_faction:
+            return fallback_faction.strip().lower()
         this_file = os.path.abspath(__file__)
         raise ValueError(
             f"Unknown faction ID: {faction_id}. "

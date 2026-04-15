@@ -1,0 +1,21 @@
+{
+    "travian_identity": {
+        "created_at": "2025-04-22T00:00:00Z",
+        "tribe_id": 0,
+        "faction": "vikings",
+        "servers": [
+            {
+                "server_name": "https://rof.x10.international.travian.com/",
+                "server_url": "https://rof.x10.international.travian.com/",
+                "villages": [
+                    {
+                        "village_name": "baderWarrior`s village",
+                        "village_id": 31894,
+                        "x": -32,
+                        "y": -136
+                    }
+                ]
+            }
+        ]
+    }
+}

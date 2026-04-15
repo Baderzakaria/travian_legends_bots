@@ -1,16 +1,38 @@
 import json
 import os
 
+def get_identity_path():
+    """Find identity.json in the most common project locations."""
+    current_dir = os.path.dirname(__file__)
+    module_root = os.path.abspath(os.path.join(current_dir, ".."))
+    workspace_root = os.path.abspath(os.path.join(module_root, "..", ".."))
+
+    candidates = [
+        os.path.join(os.getcwd(), "database", "identity.json"),
+        os.path.join(module_root, "database", "identity.json"),
+        os.path.join(workspace_root, "database", "identity.json"),
+    ]
+
+    for candidate in candidates:
+        if os.path.exists(candidate):
+            return candidate
+
+    return candidates[0]
+
+def load_identity_data():
+    """Load and return raw identity JSON data."""
+    identity_path = get_identity_path()
+    if not os.path.exists(identity_path):
+        raise FileNotFoundError(
+            "❌ identity.json not found. Run launcher option '10) Identity & Villages' "
+            "and choose 'Set up new identity' first."
+        )
+    with open(identity_path, "r", encoding="utf-8") as f:
+        return json.load(f)
+
 def load_villages_from_identity():
     """Load all villages from the identity card located in database/."""
-    current_dir = os.path.dirname(__file__)
-    database_dir = os.path.join(current_dir, '..', 'database')  # Move UP one folder first
-    identity_path = os.path.join(database_dir, 'identity.json')
-
-    identity_path = os.path.abspath(identity_path)  # Make sure it's a full absolute path
-
-    with open(identity_path, 'r') as f:
-        identity = json.load(f)
+    identity = load_identity_data()
 
     servers = identity["travian_identity"]["servers"]
     if not servers:

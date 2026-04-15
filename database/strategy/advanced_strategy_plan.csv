@@ -1,0 +1,16 @@
+village_selector,phase_order,phase_name,rule_order,rule_kind,contains_any_or_scope,target_level,notes
+*,1,phase_1_cranny_safety,1,building_name,"cranny, cachette",10,Secure resources first before beginner protection ends.
+*,2,phase_2_resource_push,1,resource_fields,slots 1-18,8,Push economy and storage for stable growth.
+*,2,phase_2_resource_push,2,building_name,"main building, bâtiment principal",10,Push economy and storage for stable growth.
+*,2,phase_2_resource_push,3,building_name,"warehouse, entrepôt",18,Push economy and storage for stable growth.
+*,2,phase_2_resource_push,4,building_name,"granary, silo",18,Push economy and storage for stable growth.
+*,3,phase_3_bootstrap_military,1,building_name,"rally point, point de rassemblement",15,Get minimum military buildings online.
+*,3,phase_3_bootstrap_military,2,building_name,"barracks, caserne",20,Get minimum military buildings online.
+*,3,phase_3_bootstrap_military,3,building_name,"stable, écurie",15,Get minimum military buildings online.
+*,3,phase_3_bootstrap_military,4,building_name,"academy, académie",5,Get minimum military buildings online.
+*,4,phase_4_raid_defend_balance,1,resource_fields,slots 1-18,10,"Balance attack growth, defense and storage."
+*,4,phase_4_raid_defend_balance,2,building_name,"wall, palisade, earthen wall, city wall, stone wall",20,"Balance attack growth, defense and storage."
+*,4,phase_4_raid_defend_balance,3,building_name,"barracks, caserne",20,"Balance attack growth, defense and storage."
+*,4,phase_4_raid_defend_balance,4,building_name,"stable, écurie",20,"Balance attack growth, defense and storage."
+*,4,phase_4_raid_defend_balance,5,building_name,"warehouse, entrepôt",20,"Balance attack growth, defense and storage."
+*,4,phase_4_raid_defend_balance,6,building_name,"granary, silo",20,"Balance attack growth, defense and storage."

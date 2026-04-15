@@ -7,6 +7,7 @@ import html
 from dataclasses import dataclass
 from typing import Optional, Tuple
 from bs4 import BeautifulSoup
+from identity_handling.identity_helper import load_identity_data
 
 @dataclass
 class HeroStatus:
@@ -29,13 +30,7 @@ class HeroManager:
     def _is_known_village(self, village_id: str) -> bool:
         """Check if village_id exists in identity.json."""
         try:
-            current_dir = os.path.dirname(__file__)
-            database_dir = os.path.join(current_dir, '..', 'database')
-            identity_path = os.path.join(database_dir, 'identity.json')
-            identity_path = os.path.abspath(identity_path)
-
-            with open(identity_path, "r", encoding="utf-8") as f:
-                identity = json.load(f)
+            identity = load_identity_data()
             for server in identity.get("travian_identity", {}).get("servers", []):
                 for village in server.get("villages", []):
                     if str(village.get("village_id")) == str(village_id):

@@ -1,0 +1,162 @@
+{
+    "version": 1,
+    "cycle_minutes": 18,
+    "cycle_jitter_minutes": 3,
+    "run_farm_lists_each_cycle": true,
+    "run_oasis_raid_planner_each_cycle": true,
+    "run_hero_adventure_each_cycle": true,
+    "villages": {
+        "*": {
+            "phases": [
+                {
+                    "name": "phase_1_cranny_safety",
+                    "notes": "Secure resources first before beginner protection ends.",
+                    "rules": [
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "cranny",
+                                "cachette"
+                            ],
+                            "target_level": 10
+                        }
+                    ]
+                },
+                {
+                    "name": "phase_2_resource_push",
+                    "notes": "Push economy and storage for stable growth.",
+                    "rules": [
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 8
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "main building",
+                                "bâtiment principal"
+                            ],
+                            "target_level": 10
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "warehouse",
+                                "entrepôt"
+                            ],
+                            "target_level": 18
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "granary",
+                                "silo"
+                            ],
+                            "target_level": 18
+                        }
+                    ]
+                },
+                {
+                    "name": "phase_3_bootstrap_military",
+                    "notes": "Get minimum military buildings online.",
+                    "rules": [
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "rally point",
+                                "point de rassemblement"
+                            ],
+                            "target_level": 15
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "barracks",
+                                "caserne"
+                            ],
+                            "target_level": 20
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "stable",
+                                "écurie"
+                            ],
+                            "target_level": 15
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "academy",
+                                "académie"
+                            ],
+                            "target_level": 5
+                        }
+                    ]
+                },
+                {
+                    "name": "phase_4_raid_defend_balance",
+                    "notes": "Balance attack growth, defense and storage.",
+                    "rules": [
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 10
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "wall",
+                                "palisade",
+                                "earthen wall",
+                                "city wall",
+                                "stone wall"
+                            ],
+                            "target_level": 20
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "barracks",
+                                "caserne"
+                            ],
+                            "target_level":20
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "stable",
+                                "écurie"
+                            ],
+                            "target_level": 20
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "warehouse",
+                                "entrepôt"
+                            ],
+                            "target_level": 20
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "granary",
+                                "silo"
+                            ],
+                            "target_level": 20
+                        }
+                    ]
+                }
+            ]
+        }
+    },
+    "max_build_queue": 2,
+    "continuous_poll_seconds": 5,
+    "farm_lists_interval_minutes": 20,
+    "oasis_raid_planner_interval_minutes": 20,
+    "hero_check_interval_seconds": 75,
+    "auto_create_smart_oasis_raid_plans": true,
+    "hero_adventure_mode": "browser",
+    "hero_browser_headless": true,
+    "hero_watch_video_first": false
+}

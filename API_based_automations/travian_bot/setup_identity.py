@@ -22,6 +22,7 @@ def verify_faction(tribe_id: int) -> tuple[int, str]:
     print("3. Gaul")
     print("6. Egyptian")
     print("7. Hun")
+    print("9. Vikings")
     print("0. Other (please specify)")
     
     while True:
@@ -30,7 +31,7 @@ def verify_faction(tribe_id: int) -> tuple[int, str]:
             if choice == 'y':
                 return tribe_id, current_faction
             elif choice == 'n':
-                new_choice = input("Enter the correct faction number (1-7) or 0 for other: ").strip()
+                new_choice = input("Enter the correct faction number (1,2,3,6,7,9) or 0 for other: ").strip()
                 if new_choice == '0':
                     custom_faction = input("Enter the custom faction name: ").strip().lower()
                     return 0, custom_faction  # Use 0 as tribe_id for custom factions
