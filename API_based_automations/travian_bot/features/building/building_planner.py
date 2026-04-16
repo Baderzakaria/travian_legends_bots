@@ -62,10 +62,17 @@ def _extract_buildings_from_page(html: str) -> dict:
         class_text = " ".join(anchor.get("class", []))
         aid_match = re.search(r"\baid(\d+)\b", class_text)
         if not aid_match:
+            # Newer worlds often expose dorf1 fields as buildingSlotXX levelYY
+            aid_match = re.search(r"\bbuildingSlot(\d+)\b", class_text)
+        if not aid_match:
             continue
         aid = int(aid_match.group(1))
         if aid not in result:
             result[aid] = 0
+
+        class_level_match = re.search(r"\blevel(\d+)\b", class_text)
+        if class_level_match:
+            result[aid] = int(class_level_match.group(1))
 
         title_raw = anchor.get("title", "")
         if not title_raw:
@@ -104,6 +111,49 @@ def _get_village_building_levels(api, village_id: int) -> dict:
         response.raise_for_status()
         levels.update(_extract_buildings_from_page(response.text))
     return levels
+
+
+def _extract_queued_slot_ids_from_page(html: str) -> list[int]:
+    """Extract queued slot IDs from the construction list block."""
+    soup = BeautifulSoup(html, "html.parser")
+    slot_ids: list[int] = []
+    seen: set[int] = set()
+
+    for item in soup.select(".buildingList ul li"):
+        item_html = str(item)
+        matches = re.findall(r"build\.php\?[^\"'<>]*\bid=(\d+)\b", item_html, flags=re.IGNORECASE)
+        for match in matches:
+            slot_id = int(match)
+            if slot_id in seen:
+                continue
+            seen.add(slot_id)
+            slot_ids.append(slot_id)
+    return slot_ids
+
+
+def _get_village_queued_upgrades(api, village_id: int) -> dict[int, int]:
+    """Return queued upgrade counts by slot ID for this village."""
+    url = f"{api.server_url}/dorf1.php?newdid={village_id}"
+    response = api.session.get(url)
+    response.raise_for_status()
+
+    counts: dict[int, int] = {}
+    for slot_id in _extract_queued_slot_ids_from_page(response.text):
+        counts[slot_id] = counts.get(slot_id, 0) + 1
+    return counts
+
+
+def _get_village_effective_levels(api, village_id: int) -> tuple[dict[int, int], dict[int, int]]:
+    """
+    Return (effective_levels, queued_counts).
+    effective_levels = current visible level + queued upgrades on the same slot.
+    """
+    levels = _get_village_building_levels(api, village_id)
+    queued_counts = _get_village_queued_upgrades(api, village_id)
+    effective = {int(slot_id): int(level) for slot_id, level in levels.items()}
+    for slot_id, queued in queued_counts.items():
+        effective[slot_id] = int(effective.get(slot_id, 0)) + int(queued)
+    return effective, queued_counts
 
 
 def _save_debug_pages(api, village_id: int) -> list[str]:
@@ -402,18 +452,33 @@ def run_building_plan_once(api):
             continue
 
         print(f"\n🏘️ {village['village_name']} (ID: {village_id})")
-        levels = _get_village_building_levels(api, village_id)
+        effective_levels, queued_counts = _get_village_effective_levels(api, village_id)
 
         for target in targets:
             slot_id = int(target["slot_id"])
             desired = int(target["target_level"])
-            current = int(levels.get(slot_id, 0))
+            queued = int(queued_counts.get(slot_id, 0))
+            effective_current = int(effective_levels.get(slot_id, 0))
 
-            if current >= desired:
-                print(f"- slot {slot_id}: current {current}, target {desired} ✅")
+            if effective_current >= desired:
+                if queued > 0:
+                    base_level = effective_current - queued
+                    print(
+                        f"- slot {slot_id}: current {base_level} (+{queued} queued), "
+                        f"target {desired} ✅"
+                    )
+                else:
+                    print(f"- slot {slot_id}: current {effective_current}, target {desired} ✅")
                 continue
 
-            print(f"- slot {slot_id}: current {current}, target {desired} -> trying upgrade...")
+            if queued > 0:
+                base_level = effective_current - queued
+                print(
+                    f"- slot {slot_id}: current {base_level} (+{queued} queued), "
+                    f"target {desired} -> trying upgrade..."
+                )
+            else:
+                print(f"- slot {slot_id}: current {effective_current}, target {desired} -> trying upgrade...")
             upgrade_url = _find_upgrade_url(api, village_id, slot_id)
             if not upgrade_url:
                 print(f"  ❌ No upgrade action found (busy queue, missing resources, or wrong slot).")

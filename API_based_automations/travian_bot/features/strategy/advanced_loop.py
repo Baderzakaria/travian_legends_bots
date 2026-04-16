@@ -4,16 +4,19 @@ import os
 import re
 import time
 import zipfile
+from pathlib import Path
 from datetime import datetime
 from xml.sax.saxutils import escape
+from urllib.parse import urlparse
 
+import requests
 from bs4 import BeautifulSoup
 
 from analysis.number_to_unit_mapping import get_unit_name
 from core.database_raid_config import load_saved_raid_plan, save_raid_plan
 from features.building.building_planner import (
     _find_upgrade_url,
-    _get_village_building_levels,
+    _get_village_effective_levels,
     _get_village_slot_catalog,
 )
 from features.hero.adventure_browser import run_adventure_browser_once
@@ -36,6 +39,10 @@ DEFAULT_STRATEGY = {
     "max_build_queue": 2,
     "continuous_poll_seconds": 10,
     "run_farm_lists_each_cycle": True,
+    "farm_list_mode": "by_name",  # by_name | burst_runner
+    "farm_list_names": ["oasis"],
+    "farm_list_browser_fallback": True,
+    "farm_list_browser_headless": False,
     "farm_lists_interval_minutes": 20,
     "run_oasis_raid_planner_each_cycle": True,
     "oasis_raid_planner_interval_minutes": 20,
@@ -45,6 +52,7 @@ DEFAULT_STRATEGY = {
     "hero_browser_headless": True,
     "hero_watch_video_first": False,
     "auto_create_smart_oasis_raid_plans": True,
+    "use_manual_building_plan_if_exists": True,
     "villages": {
         "*": {
             "phases": [
@@ -383,6 +391,63 @@ def _pick_next_target_excluding(
     return phases[-1].get("name", "done"), None
 
 
+def _load_manual_plan_targets(village_id: int) -> dict[int, int]:
+    filename = f"village_{village_id}.json"
+    this_file = Path(__file__).resolve()
+    travian_bot_root = this_file.parents[2]
+    workspace_root = this_file.parents[4]
+    candidates = [
+        Path.cwd() / "database" / "building_plans" / filename,
+        travian_bot_root / "database" / "building_plans" / filename,
+        workspace_root / "database" / "building_plans" / filename,
+    ]
+    plan_file = None
+    for candidate in candidates:
+        if candidate.exists():
+            plan_file = candidate
+            break
+
+    if plan_file is None:
+        return {}
+    try:
+        with open(plan_file, "r", encoding="utf-8") as f:
+            payload = json.load(f)
+        targets = {}
+        for t in payload.get("targets", []):
+            slot_id = int(t.get("slot_id", 0))
+            target_level = int(t.get("target_level", 0))
+            if slot_id > 0 and target_level > 0:
+                targets[slot_id] = target_level
+        return targets
+    except Exception:
+        return {}
+
+
+def _pick_next_manual_target_excluding(
+    manual_targets: dict[int, int],
+    levels: dict,
+    excluded_slots: set[int],
+) -> tuple[str, dict | None]:
+    candidates = []
+    for slot_id, target_level in sorted(manual_targets.items()):
+        if slot_id in excluded_slots:
+            continue
+        current = int(levels.get(slot_id, 0))
+        if current < int(target_level):
+            candidates.append(
+                {
+                    "slot_id": int(slot_id),
+                    "current": current,
+                    "target": int(target_level),
+                }
+            )
+    if not candidates:
+        return "manual_plan", None
+    # pick lowest current first
+    candidates.sort(key=lambda c: (c["current"], c["slot_id"]))
+    return "manual_plan", candidates[0]
+
+
 def _parse_hms_to_seconds(text: str) -> int | None:
     m = re.search(r"(\d{1,2}):(\d{2})(?::(\d{2}))?", text or "")
     if not m:
@@ -562,6 +627,179 @@ def _run_hero_adventure_action(api, server_url: str, config: dict) -> bool:
     return run_adventure_once(api)
 
 
+def _send_farm_list_by_browser(
+    api,
+    village_id: int,
+    list_name: str,
+    headless: bool = False,
+) -> bool:
+    try:
+        from selenium import webdriver
+        from selenium.webdriver.common.by import By
+        from selenium.webdriver.support import expected_conditions as EC
+        from selenium.webdriver.support.ui import WebDriverWait
+    except Exception as e:
+        print(f"[farm] Selenium not available for browser fallback: {e}")
+        return False
+
+    parsed = urlparse(api.server_url)
+    if not parsed.scheme or not parsed.hostname:
+        print("[farm] Browser fallback skipped: invalid server url.")
+        return False
+
+    driver = None
+    try:
+        options = webdriver.ChromeOptions()
+        if headless:
+            options.add_argument("--headless=new")
+        options.add_argument("--disable-notifications")
+        options.add_argument("--disable-popup-blocking")
+        options.add_argument("--window-size=1365,900")
+        driver = webdriver.Chrome(options=options)
+
+        root_url = f"{parsed.scheme}://{parsed.hostname}/"
+        driver.get(root_url)
+        for name, value in api.session.cookies.get_dict().items():
+            try:
+                driver.add_cookie(
+                    {
+                        "name": str(name),
+                        "value": str(value),
+                        "domain": parsed.hostname,
+                        "path": "/",
+                    }
+                )
+            except Exception:
+                continue
+
+        farm_url = f"{api.server_url.rstrip('/')}/build.php?id=39&gid=16&tt=99&newdid={village_id}"
+        driver.get(farm_url)
+        wait = WebDriverWait(driver, 20)
+        wait.until(EC.presence_of_element_located((By.ID, "content")))
+        time.sleep(1.2)
+
+        # Trim top overlays that can block clicks.
+        driver.execute_script(
+            """
+            const nodes = [...document.querySelectorAll('*')];
+            for (const n of nodes) {
+              const s = window.getComputedStyle(n);
+              if (!s) continue;
+              const z = parseInt(s.zIndex || '0', 10);
+              const isFixed = s.position === 'fixed' || s.position === 'sticky';
+              if (isFixed && z >= 1000) n.style.display = 'none';
+            }
+            """
+        )
+
+        found = driver.execute_script(
+            """
+            const target = (arguments[0] || '').trim().toLowerCase();
+            const buttons = [...document.querySelectorAll('button, a')];
+            const starts = buttons.filter(el => /^\\s*start\\b/i.test((el.innerText || '').trim()));
+            for (const btn of starts) {
+              let cur = btn;
+              for (let i = 0; i < 10 && cur; i += 1) {
+                const txt = (cur.innerText || '').toLowerCase();
+                if (txt.includes(target)) {
+                  btn.scrollIntoView({block: 'center'});
+                  btn.click();
+                  return true;
+                }
+                cur = cur.parentElement;
+              }
+            }
+            return false;
+            """,
+            list_name,
+        )
+        if found:
+            time.sleep(1.5)
+            print(f"[farm] Browser fallback clicked Start for '{list_name}' in village {village_id}.")
+            return True
+
+        print(f"[farm] Browser fallback could not find Start button for '{list_name}'.")
+        return False
+    except Exception as e:
+        print(f"[farm] Browser fallback failed for '{list_name}': {e}")
+        return False
+    finally:
+        if driver is not None:
+            try:
+                driver.quit()
+            except Exception:
+                pass
+
+
+def _send_farm_lists_by_name(api, village_id: int, target_names: list[str], config: dict | None = None) -> int:
+    names_norm = [n.strip().lower() for n in target_names if str(n).strip()]
+    if not names_norm:
+        return 0
+    try:
+        farm_lists = api.get_village_farm_lists(village_id)
+    except Exception as e:
+        print(f"[farm] Could not load farm lists for village {village_id}: {e}")
+        return 0
+
+    sent = 0
+    for fl in farm_lists:
+        list_id = int(fl.get("id"))
+        list_name = str(fl.get("name", "")).strip()
+        if list_name.lower() not in names_norm:
+            continue
+        payload = {"action": "farmList", "lists": [{"id": list_id}]}
+        response = api.session.post(f"{api.server_url}/api/v1/farm-list/send", json=payload)
+        if response.status_code == 200:
+            sent += 1
+            print(f"[farm] Sent '{list_name}' (id={list_id}) for village {village_id}.")
+        else:
+            # Some worlds reject /farm-list/send for specific list states; fallback to GraphQL launcher.
+            fallback_ok = False
+            try:
+                fallback_ok = bool(api.launch_farm_list(list_id))
+            except Exception:
+                fallback_ok = False
+            if fallback_ok:
+                sent += 1
+                print(
+                    f"[farm] Sent '{list_name}' (id={list_id}) using GraphQL fallback "
+                    f"(REST status={response.status_code})."
+                )
+            else:
+                browser_ok = False
+                if bool((config or {}).get("farm_list_browser_fallback", True)):
+                    browser_ok = _send_farm_list_by_browser(
+                        api=api,
+                        village_id=village_id,
+                        list_name=list_name,
+                        headless=bool((config or {}).get("farm_list_browser_headless", False)),
+                    )
+                if browser_ok:
+                    sent += 1
+                    print(
+                        f"[farm] Sent '{list_name}' (id={list_id}) using browser fallback "
+                        f"(REST status={response.status_code})."
+                    )
+                else:
+                    print(f"[farm] Failed '{list_name}' (id={list_id}) status={response.status_code}.")
+    return sent
+
+
+def _run_farm_lists_action(api, config: dict) -> None:
+    mode = str(config.get("farm_list_mode", "by_name")).strip().lower()
+    if mode == "burst_runner":
+        run_one_farm_list_burst(api)
+        return
+
+    names = config.get("farm_list_names", ["oasis"])
+    villages = load_villages_from_identity()
+    total_sent = 0
+    for village in villages:
+        village_id = int(village["village_id"])
+        total_sent += _send_farm_lists_by_name(api, village_id, names, config=config)
+    print(f"[farm] Total matching farm lists sent: {total_sent}")
+
+
 def run_advanced_strategy_cycle(api, server_url: str, config: dict | None = None, run_side_tasks: bool = True) -> dict:
     config = config or _load_or_create_strategy_config()
     villages = load_villages_from_identity()
@@ -584,7 +822,11 @@ def run_advanced_strategy_cycle(api, server_url: str, config: dict | None = None
 
         print(f"\nVillage: {village_name} (ID: {village_id})")
         switch_url = f"{api.server_url}/dorf1.php?newdid={village_id}"
-        switch_resp = api.session.get(switch_url)
+        try:
+            switch_resp = api.session.get(switch_url)
+        except (requests.exceptions.RequestException, ConnectionResetError) as e:
+            print(f"  Network error while switching village: {e}")
+            continue
         if switch_resp.status_code >= 400:
             print(f"  Failed to switch village (status {switch_resp.status_code}).")
             continue
@@ -611,46 +853,134 @@ def run_advanced_strategy_cycle(api, server_url: str, config: dict | None = None
         cycle_plan_lines.append(f"Village {village_id} plan_slots_to_fill={slots_to_fill}")
 
         for _ in range(slots_to_fill):
-            levels = _get_village_building_levels(api, village_id)
-            catalog = _get_village_slot_catalog(api, village_id)
-            phase_name, target = _pick_next_target_excluding(strategy, levels, catalog, excluded_slots)
-            print(f"  Active phase: {phase_name}")
+            slot_filled = False
+            initial_catalog = _get_village_slot_catalog(api, village_id)
+            max_attempts = max(1, len(initial_catalog))
+            attempts = 0
 
-            if not target:
-                print("  No pending building target in configured phases.")
-                cycle_plan_lines.append(f"Village {village_id} action=no_pending_target")
-                break
-
-            slot_id = int(target["slot_id"])
-            current = int(target["current"])
-            desired = int(target["target"])
-            excluded_slots.add(slot_id)
-            print(f"  slot {slot_id}: current {current}, target {desired} -> trying upgrade...")
-            cycle_plan_lines.append(
-                f"Village {village_id} target slot={slot_id} current={current} target={desired} phase={phase_name}"
-            )
-            upgrade_url = _find_upgrade_url(api, village_id, slot_id)
-            if not upgrade_url:
-                print("    No upgrade action found (queue full, missing resources, or blocked action).")
-                cycle_plan_lines.append(
-                    f"Village {village_id} result slot={slot_id} status=no_upgrade_action"
+            while attempts < max_attempts:
+                attempts += 1
+                levels, queued_counts = _get_village_effective_levels(api, village_id)
+                catalog = _get_village_slot_catalog(api, village_id)
+                for item in catalog:
+                    slot_id = int(item.get("slot_id", 0))
+                    if slot_id > 0:
+                        item["level"] = int(levels.get(slot_id, item.get("level", 0)))
+                manual_targets = (
+                    _load_manual_plan_targets(village_id)
+                    if bool(config.get("use_manual_building_plan_if_exists", True))
+                    else {}
                 )
-                break
+                if manual_targets:
+                    cycle_plan_lines.append(
+                        f"Village {village_id} manual_targets_count={len(manual_targets)}"
+                    )
+                    # Helpful sanity trace: what parser sees for current manual target slots.
+                    manual_snapshot = []
+                    for sid in sorted(manual_targets.keys()):
+                        queued_for_sid = int(queued_counts.get(sid, 0))
+                        if queued_for_sid > 0:
+                            effective_level = int(levels.get(sid, 0))
+                            base_level = effective_level - queued_for_sid
+                            manual_snapshot.append(
+                                f"{sid}:{base_level}(+{queued_for_sid})/{int(manual_targets[sid])}"
+                            )
+                        else:
+                            manual_snapshot.append(f"{sid}:{int(levels.get(sid, 0))}/{int(manual_targets[sid])}")
+                    cycle_plan_lines.append(
+                        f"Village {village_id} manual_levels_snapshot={'|'.join(manual_snapshot)}"
+                    )
+                    phase_name, target = _pick_next_manual_target_excluding(
+                        manual_targets,
+                        levels,
+                        excluded_slots,
+                    )
+                    if not target:
+                        # Manual list completed (or temporarily blocked); continue with strategy fallback.
+                        cycle_plan_lines.append(
+                            f"Village {village_id} manual_plan_pending=0 -> fallback_to_strategy"
+                        )
+                        phase_name, target = _pick_next_target_excluding(
+                            strategy,
+                            levels,
+                            catalog,
+                            excluded_slots,
+                        )
+                else:
+                    phase_name, target = _pick_next_target_excluding(strategy, levels, catalog, excluded_slots)
+                print(f"  Active phase: {phase_name}")
 
-            response = api.session.get(upgrade_url, allow_redirects=True)
-            if response.status_code >= 400:
-                print(f"    Upgrade request failed with status {response.status_code}.")
+                if not target:
+                    print("  No pending building target in configured phases.")
+                    cycle_plan_lines.append(f"Village {village_id} action=no_pending_target")
+                    break
+
+                slot_id = int(target["slot_id"])
+                current = int(target["current"])
+                desired = int(target["target"])
+                queued_for_slot = int(queued_counts.get(slot_id, 0))
+                excluded_slots.add(slot_id)
+                if queued_for_slot > 0:
+                    base_level = current - queued_for_slot
+                    print(
+                        f"  slot {slot_id}: current {base_level} (+{queued_for_slot} queued), "
+                        f"target {desired} -> trying upgrade..."
+                    )
+                else:
+                    print(f"  slot {slot_id}: current {current}, target {desired} -> trying upgrade...")
                 cycle_plan_lines.append(
-                    f"Village {village_id} result slot={slot_id} status=http_{response.status_code}"
+                    f"Village {village_id} target slot={slot_id} current={current} target={desired} phase={phase_name}"
                 )
-                break
+                upgrade_url = _find_upgrade_url(api, village_id, slot_id)
+                if not upgrade_url:
+                    print("    No upgrade action found (queue full, missing resources, or blocked action).")
+                    cycle_plan_lines.append(
+                        f"Village {village_id} result slot={slot_id} status=no_upgrade_action"
+                    )
+                    continue
 
-            started_upgrades += 1
-            queue_count += 1
-            print("    Upgrade request sent.")
-            cycle_plan_lines.append(
-                f"Village {village_id} result slot={slot_id} status=upgrade_sent queue_now={queue_count}/{max_build_queue}"
-            )
+                try:
+                    response = api.session.get(upgrade_url, allow_redirects=True)
+                except (requests.exceptions.RequestException, ConnectionResetError) as e:
+                    print(f"    Network error during upgrade request: {e}")
+                    cycle_plan_lines.append(
+                        f"Village {village_id} result slot={slot_id} status=network_error"
+                    )
+                    continue
+                if response.status_code >= 400:
+                    print(f"    Upgrade request failed with status {response.status_code}.")
+                    cycle_plan_lines.append(
+                        f"Village {village_id} result slot={slot_id} status=http_{response.status_code}"
+                    )
+                    continue
+
+                # Verify server really queued the upgrade (some requests return 200 but do nothing).
+                time.sleep(0.35)
+                post_queue_count, post_next_seconds = _get_build_queue_info(api, village_id)
+                if post_queue_count > queue_count:
+                    started_upgrades += 1
+                    queue_count = post_queue_count
+                    slot_filled = True
+                    print(f"    Upgrade request confirmed (queue {post_queue_count}/{max_build_queue}).")
+                    cycle_plan_lines.append(
+                        f"Village {village_id} result slot={slot_id} status=upgrade_confirmed "
+                        f"queue_now={queue_count}/{max_build_queue}"
+                    )
+                    break
+                else:
+                    print(
+                        "    Upgrade was not queued (likely queue-type limitation, missing resources, or blocked action)."
+                    )
+                    cycle_plan_lines.append(
+                        f"Village {village_id} result slot={slot_id} status=not_queued "
+                        f"queue_still={post_queue_count}/{max_build_queue} next_free={post_next_seconds}"
+                    )
+                    continue
+
+            if not slot_filled:
+                cycle_plan_lines.append(
+                    f"Village {village_id} action=no_upgradable_target_found_for_free_slot"
+                )
             if queue_count >= max_build_queue:
                 break
 
@@ -664,7 +994,7 @@ def run_advanced_strategy_cycle(api, server_url: str, config: dict | None = None
     if run_side_tasks and config.get("run_farm_lists_each_cycle", True):
         print("\nRunning farm-list burst...")
         try:
-            run_one_farm_list_burst(api)
+            _run_farm_lists_action(api, config)
         except Exception as e:
             print(f"Farm-list burst error: {e}")
 
@@ -712,7 +1042,7 @@ def run_advanced_strategy_cycle(api, server_url: str, config: dict | None = None
 
 def run_advanced_strategy_loop(api, server_url: str, max_cycles: int | None = None) -> None:
     config = _load_or_create_strategy_config()
-    poll_seconds = 10.0
+    poll_seconds = max(1.0, float(config.get("continuous_poll_seconds", 10)))
     farm_interval = max(1.0, float(config.get("farm_lists_interval_minutes", 20))) * 60
     oasis_interval = max(1.0, float(config.get("oasis_raid_planner_interval_minutes", 20))) * 60
     hero_interval = max(20.0, float(config.get("hero_check_interval_seconds", 75)))
@@ -733,13 +1063,34 @@ def run_advanced_strategy_loop(api, server_url: str, max_cycles: int | None = No
         print(f"\n{'=' * 56}")
         print(f"Continuous Cycle #{cycle_idx} | {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print(f"{'=' * 56}")
-        cycle_result = run_advanced_strategy_cycle(api, server_url, config=config, run_side_tasks=False)
+        try:
+            cycle_result = run_advanced_strategy_cycle(api, server_url, config=config, run_side_tasks=False)
+        except (requests.exceptions.RequestException, ConnectionResetError) as e:
+            print(f"Network error during advanced cycle: {e}")
+            print("Attempting re-login and continuing...")
+            try:
+                from identity_handling.login import login
+                from core.travian_api import TravianAPI
+
+                session, refreshed_server_url = login()
+                api = TravianAPI(session, refreshed_server_url)
+                server_url = refreshed_server_url
+                print("Re-login successful. Waiting briefly before retrying cycle...")
+                time.sleep(3)
+                continue
+            except Exception as relogin_error:
+                print(f"Re-login failed: {relogin_error}")
+                print("Waiting 10 seconds before retry...")
+                time.sleep(10)
+                continue
 
         now_ts = time.time()
         if config.get("run_farm_lists_each_cycle", True) and now_ts - last_farm_ts >= farm_interval:
             print("\nInterval trigger: farm-list burst")
             try:
-                run_one_farm_list_burst(api)
+                _run_farm_lists_action(api, config)
+            except (requests.exceptions.RequestException, ConnectionResetError) as e:
+                print(f"Farm-list burst network error: {e}")
             except Exception as e:
                 print(f"Farm-list burst error: {e}")
             last_farm_ts = time.time()
@@ -755,6 +1106,8 @@ def run_advanced_strategy_loop(api, server_url: str, max_cycles: int | None = No
                     run_farm_lists=False,
                     interactive=False,
                 )
+            except (requests.exceptions.RequestException, ConnectionResetError) as e:
+                print(f"Oasis raid planner network error: {e}")
             except Exception as e:
                 print(f"Oasis raid planner error: {e}")
             last_oasis_ts = time.time()
@@ -763,6 +1116,8 @@ def run_advanced_strategy_loop(api, server_url: str, max_cycles: int | None = No
             print("\nInterval trigger: hero check")
             try:
                 _run_hero_adventure_action(api, server_url, config)
+            except (requests.exceptions.RequestException, ConnectionResetError) as e:
+                print(f"Hero check network error: {e}")
             except Exception as e:
                 print(f"Hero adventure error: {e}")
             last_hero_ts = time.time()
