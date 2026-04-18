@@ -117,29 +117,89 @@ def _extract_queued_slot_ids_from_page(html: str) -> list[int]:
     """Extract queued slot IDs from the construction list block."""
     soup = BeautifulSoup(html, "html.parser")
     slot_ids: list[int] = []
-    seen: set[int] = set()
 
     for item in soup.select(".buildingList ul li"):
         item_html = str(item)
         matches = re.findall(r"build\.php\?[^\"'<>]*\bid=(\d+)\b", item_html, flags=re.IGNORECASE)
         for match in matches:
-            slot_id = int(match)
-            if slot_id in seen:
-                continue
-            seen.add(slot_id)
-            slot_ids.append(slot_id)
+            slot_ids.append(int(match))
     return slot_ids
+
+
+def _extract_under_construction_slots_from_page(html: str) -> dict[int, int | None]:
+    """
+    Extract slot ids currently under construction and their queued target level when available.
+    Returns {slot_id: target_level_or_none}.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    out: dict[int, int | None] = {}
+
+    for elem in soup.select(".underConstruction"):
+        class_text = " ".join(elem.get("class", []))
+        slot_match = re.search(r"\bbuildingSlot(\d+)\b", class_text)
+        if not slot_match:
+            slot_match = re.search(r"\baid(\d+)\b", class_text)
+        if not slot_match:
+            elem_id = elem.get("id", "")
+            slot_match = re.search(r"aid(\d+)", elem_id)
+        if not slot_match:
+            href = elem.get("href", "")
+            slot_match = re.search(r"build\.php\?id=(\d+)", href)
+        if not slot_match:
+            continue
+
+        slot_id = int(slot_match.group(1))
+        target_level: int | None = None
+
+        title_raw = elem.get("title", "")
+        if title_raw:
+            title_text = html_lib.unescape(title_raw)
+            target_match = re.search(
+                r"currently upgrading to level\s*(\d+)",
+                title_text,
+                flags=re.IGNORECASE,
+            )
+            if target_match:
+                target_level = int(target_match.group(1))
+
+        out[slot_id] = target_level
+
+    return out
+
+
+def _get_village_under_construction_targets(api, village_id: int) -> dict[int, int | None]:
+    """
+    Read dorf1 + dorf2 and return under-construction slots + queued target level when detectable.
+    """
+    targets: dict[int, int | None] = {}
+    for page in ("dorf1.php", "dorf2.php"):
+        url = f"{api.server_url}/{page}?newdid={village_id}"
+        response = api.session.get(url)
+        response.raise_for_status()
+        page_targets = _extract_under_construction_slots_from_page(response.text)
+        for slot_id, target_level in page_targets.items():
+            if slot_id not in targets:
+                targets[slot_id] = target_level
+                continue
+            # Prefer known numeric target level over unknown.
+            if targets[slot_id] is None and target_level is not None:
+                targets[slot_id] = target_level
+    return targets
 
 
 def _get_village_queued_upgrades(api, village_id: int) -> dict[int, int]:
     """Return queued upgrade counts by slot ID for this village."""
-    url = f"{api.server_url}/dorf1.php?newdid={village_id}"
-    response = api.session.get(url)
-    response.raise_for_status()
-
     counts: dict[int, int] = {}
-    for slot_id in _extract_queued_slot_ids_from_page(response.text):
-        counts[slot_id] = counts.get(slot_id, 0) + 1
+    for page in ("dorf1.php", "dorf2.php"):
+        url = f"{api.server_url}/{page}?newdid={village_id}"
+        response = api.session.get(url)
+        response.raise_for_status()
+        for slot_id in _extract_queued_slot_ids_from_page(response.text):
+            counts[slot_id] = counts.get(slot_id, 0) + 1
+
+    # Ensure active underConstruction slots are always considered queued (at least 1).
+    for slot_id in _get_village_under_construction_targets(api, village_id).keys():
+        counts[slot_id] = max(1, counts.get(slot_id, 0))
     return counts
 
 
@@ -156,6 +216,23 @@ def _get_village_effective_levels(api, village_id: int) -> tuple[dict[int, int],
     return effective, queued_counts
 
 
+def _get_village_level_state(api, village_id: int) -> tuple[dict[int, int], dict[int, int], dict[int, int]]:
+    """Return raw levels, queued counts, and effective levels for each slot."""
+    raw_levels = _get_village_building_levels(api, village_id)
+    queued_counts = _get_village_queued_upgrades(api, village_id)
+    queued_targets = _get_village_under_construction_targets(api, village_id)
+    effective_levels = {int(slot_id): int(level) for slot_id, level in raw_levels.items()}
+    for slot_id, queued in queued_counts.items():
+        effective_levels[slot_id] = int(effective_levels.get(slot_id, 0)) + int(queued)
+
+    # If UI explicitly says "currently upgrading to level X", trust that as minimum effective level.
+    for slot_id, maybe_target in queued_targets.items():
+        if maybe_target is None:
+            continue
+        effective_levels[slot_id] = max(int(effective_levels.get(slot_id, 0)), int(maybe_target))
+    return raw_levels, queued_counts, effective_levels
+
+
 def _save_debug_pages(api, village_id: int) -> list[str]:
     os.makedirs(BUILDING_DEBUG_DIR, exist_ok=True)
     saved_paths = []
@@ -170,12 +247,89 @@ def _save_debug_pages(api, village_id: int) -> list[str]:
     return saved_paths
 
 
-def _find_upgrade_url(api, village_id: int, slot_id: int) -> str | None:
-    """Try to discover clickable upgrade URL for a slot."""
+def _find_upgrade_url(api, village_id: int, slot_id: int, build_patterns: tuple[str, ...] | None = None) -> str | None:
+    """Try to discover clickable upgrade URL for a slot.
+    If build_patterns is provided, prefer matching build/create actions for those building names.
+    """
     build_url = f"{api.server_url}/build.php?id={slot_id}&newdid={village_id}"
     response = api.session.get(build_url)
     response.raise_for_status()
     soup = BeautifulSoup(response.text, "html.parser")
+
+    def _find_specific_build_link(local_soup: BeautifulSoup, normalized_patterns: list[str]) -> str | None:
+        specific: list[tuple[int, str]] = []
+        for elem in local_soup.find_all(["a", "button"]):
+            text = elem.get_text(" ", strip=True)
+            text_l = text.lower()
+            classes = " ".join(elem.get("class", []))
+            classes_l = classes.lower()
+            parent_txt = ""
+            if elem.parent:
+                parent_txt = elem.parent.get_text(" ", strip=True).lower()
+            blob = " ".join([text_l, classes_l, parent_txt])
+
+            href_candidates = []
+            if elem.get("href"):
+                href_candidates.append(elem.get("href"))
+            if elem.get("data-href"):
+                href_candidates.append(elem.get("data-href"))
+            onclick = elem.get("onclick", "")
+            if onclick:
+                m = re.search(r"(?:location\.href|window\.location(?:\.href)?)\s*=\s*['\"]([^'\"]+)['\"]", onclick)
+                if m:
+                    href_candidates.append(m.group(1))
+
+            if not any(p in blob for p in normalized_patterns):
+                continue
+            for href in href_candidates:
+                href_l = str(href).lower()
+                if "build.php" not in href_l:
+                    continue
+                if f"id={slot_id}" not in href_l:
+                    continue
+                if "gid=" not in href_l and "action=build" not in href_l:
+                    continue
+                score = 0
+                if any(p in text_l for p in normalized_patterns):
+                    score += 50
+                if "gid=" in href_l:
+                    score += 30
+                if "action=build" in href_l:
+                    score += 20
+                specific.append((score, urljoin(api.server_url, href)))
+        if specific:
+            specific.sort(key=lambda x: x[0], reverse=True)
+            return specific[0][1]
+        return None
+
+    if build_patterns:
+        normalized_patterns = [str(p).strip().lower() for p in build_patterns if str(p).strip()]
+        if normalized_patterns:
+            direct = _find_specific_build_link(soup, normalized_patterns)
+            if direct:
+                return direct
+
+            # Some worlds first open category pages (e.g. build.php?id=22&category=1)
+            # and only there expose the final gid build action.
+            category_links = []
+            for a in soup.find_all("a", href=True):
+                href = str(a.get("href", ""))
+                href_l = href.lower()
+                if "build.php" in href_l and f"id={slot_id}" in href_l and "category=" in href_l:
+                    category_links.append(urljoin(api.server_url, href))
+            for cat_url in category_links:
+                try:
+                    cat_resp = api.session.get(cat_url)
+                    cat_resp.raise_for_status()
+                    cat_soup = BeautifulSoup(cat_resp.text, "html.parser")
+                    chosen = _find_specific_build_link(cat_soup, normalized_patterns)
+                    if chosen:
+                        return chosen
+                except Exception:
+                    continue
+            # Do not fallback to generic candidates when a specific building
+            # was requested but could not be resolved.
+            return None
 
     def _contains_any(text: str, words: tuple[str, ...]) -> bool:
         return any(w in text for w in words)
@@ -452,33 +606,33 @@ def run_building_plan_once(api):
             continue
 
         print(f"\n🏘️ {village['village_name']} (ID: {village_id})")
-        effective_levels, queued_counts = _get_village_effective_levels(api, village_id)
+        raw_levels, queued_counts, effective_levels = _get_village_level_state(api, village_id)
 
         for target in targets:
             slot_id = int(target["slot_id"])
             desired = int(target["target_level"])
             queued = int(queued_counts.get(slot_id, 0))
+            raw_current = int(raw_levels.get(slot_id, 0))
             effective_current = int(effective_levels.get(slot_id, 0))
 
             if effective_current >= desired:
-                if queued > 0:
-                    base_level = effective_current - queued
-                    print(
-                        f"- slot {slot_id}: current {base_level} (+{queued} queued), "
-                        f"target {desired} ✅"
-                    )
-                else:
-                    print(f"- slot {slot_id}: current {effective_current}, target {desired} ✅")
+                print(
+                    f"- slot {slot_id}: raw={raw_current}, queued={queued}, "
+                    f"effective={effective_current}, target={desired} -> done"
+                )
                 continue
 
             if queued > 0:
-                base_level = effective_current - queued
                 print(
-                    f"- slot {slot_id}: current {base_level} (+{queued} queued), "
-                    f"target {desired} -> trying upgrade..."
+                    f"- slot {slot_id}: raw={raw_current}, queued={queued}, "
+                    f"effective={effective_current}, target={desired} -> skipped (already queued)"
                 )
-            else:
-                print(f"- slot {slot_id}: current {effective_current}, target {desired} -> trying upgrade...")
+                continue
+
+            print(
+                f"- slot {slot_id}: raw={raw_current}, queued={queued}, "
+                f"effective={effective_current}, target={desired} -> trying upgrade..."
+            )
             upgrade_url = _find_upgrade_url(api, village_id, slot_id)
             if not upgrade_url:
                 print(f"  ❌ No upgrade action found (busy queue, missing resources, or wrong slot).")

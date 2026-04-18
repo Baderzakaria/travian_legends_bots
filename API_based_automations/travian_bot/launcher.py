@@ -24,7 +24,10 @@ from features.strategy.advanced_loop import (
     ensure_strategy_files,
     run_advanced_strategy_cycle,
     run_advanced_strategy_loop,
+    set_single_building_priority,
+    set_pause_development_and_train_mode,
 )
+from features.reports.village_intelligence_report import run_village_intelligence_report
 
 # === CONFIG ===
 WAIT_BETWEEN_CYCLES_MINUTES = 34
@@ -261,6 +264,8 @@ def main():
     print("12) Building Plan (setup/run)")
     print("13) Hero Adventure (run once)")
     print("14) Advanced Strategy Loop (eco + raid + build)")
+    print("15) Village Intelligence Report (for ChatGPT planning)")
+    print("16) Single Priority Override (quick)")
     
     print("\n" + "="*40)
 
@@ -449,6 +454,93 @@ def main():
                     print("Invalid max cycles value.")
                     return
             run_advanced_strategy_loop(api, server_url, max_cycles=max_cycles)
+        else:
+            print("Invalid choice.")
+    elif choice == "15":
+        print("\nVillage Intelligence Report")
+        print("Analyzing all villages for eco, troops, queue, buildings, and strategy context...")
+        try:
+            json_file, md_file, prompt_file = run_village_intelligence_report(api, server_url)
+            print("Report files generated:")
+            print(f"- {json_file}")
+            print(f"- {md_file}")
+            print(f"- {prompt_file}")
+        except Exception as e:
+            print(f"Failed to generate intelligence report: {e}")
+    elif choice == "16":
+        print("\nSingle Priority Override")
+        print("[1] Palace only in village '1' (recommended now)")
+        print("[2] Palace only in a specific village key")
+        print("[3] Custom single building priority")
+        print("[4] Stop development + train settlers/troops now")
+        sub = input("Select an option: ").strip()
+
+        if sub == "1":
+            target_in = input("Target level for palace priority (default 20): ").strip()
+            target_level = int(target_in) if target_in else 20
+            cfg = set_single_building_priority(
+                village_selector="1",
+                contains_any=["palace", "residence"],
+                target_level=target_level,
+                replace_existing_phases=True,
+            )
+            print(f"✅ Applied palace-only priority to village key '1' at target level {target_level}.")
+            print(f"Strategy file updated: {cfg}")
+            print("ℹ️ Manual building plan override has been disabled so this priority is used directly.")
+        elif sub == "2":
+            village_key = input("Village key (example: 1, 2, *, or exact village name): ").strip()
+            if not village_key:
+                print("❌ Village key cannot be empty.")
+                return
+            target_in = input("Target level for palace priority (default 20): ").strip()
+            target_level = int(target_in) if target_in else 20
+            cfg = set_single_building_priority(
+                village_selector=village_key,
+                contains_any=["palace", "residence"],
+                target_level=target_level,
+                replace_existing_phases=True,
+            )
+            print(f"✅ Applied palace-only priority to village key '{village_key}' at target level {target_level}.")
+            print(f"Strategy file updated: {cfg}")
+            print("ℹ️ Manual building plan override has been disabled so this priority is used directly.")
+        elif sub == "3":
+            village_key = input("Village key (example: 1, 2, *, or exact village name): ").strip()
+            if not village_key:
+                print("❌ Village key cannot be empty.")
+                return
+            contains_raw = input("Building keywords (comma-separated, e.g. warehouse,entrepot): ").strip()
+            keywords = [x.strip() for x in contains_raw.split(",") if x.strip()]
+            if not keywords:
+                print("❌ At least one keyword is required.")
+                return
+            target_in = input("Target level (default 10): ").strip()
+            target_level = int(target_in) if target_in else 10
+            cfg = set_single_building_priority(
+                village_selector=village_key,
+                contains_any=keywords,
+                target_level=target_level,
+                replace_existing_phases=True,
+            )
+            print(f"✅ Applied single-priority override for '{keywords}' on village key '{village_key}'.")
+            print(f"Strategy file updated: {cfg}")
+            print("ℹ️ Manual building plan override has been disabled so this priority is used directly.")
+        elif sub == "4":
+            attempts_in = input("Training actions per village each cycle (default 1): ").strip()
+            attempts = int(attempts_in) if attempts_in else 1
+            interval_in = input("Training interval minutes (default 10): ").strip()
+            interval_minutes = float(interval_in) if interval_in else 10.0
+            cfg = set_pause_development_and_train_mode(
+                enabled=True,
+                settlers_first=True,
+                troop_training=True,
+                attempts_per_village=attempts,
+                training_interval_minutes=interval_minutes,
+                settler_amount=1,
+                troop_amount="max",
+            )
+            print("✅ Development paused. Training mode enabled (settlers first, then troops at MAX possible each attempt).")
+            print(f"Strategy file updated: {cfg}")
+            print("ℹ️ Run option 14 to execute this mode in cycles.")
         else:
             print("Invalid choice.")
     else:

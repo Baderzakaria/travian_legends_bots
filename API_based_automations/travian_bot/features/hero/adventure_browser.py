@@ -200,16 +200,158 @@ def _click_inside_visible_iframe(driver) -> bool:
     return False
 
 
-def _wait_for_video_reward_or_timeout(driver, timeout_s: int = 120) -> bool:
+def _close_extra_tabs(driver, keep_handles: set[str]) -> None:
+    """Close any unexpected extra tabs/windows and switch back to a kept handle."""
+    try:
+        handles = list(driver.window_handles)
+    except Exception:
+        return
+    for h in handles:
+        if h in keep_handles:
+            continue
+        try:
+            driver.switch_to.window(h)
+            driver.close()
+        except Exception:
+            pass
+    for h in keep_handles:
+        try:
+            driver.switch_to.window(h)
+            return
+        except Exception:
+            continue
+
+
+def _click_video_start_button_and_wait(driver, wait_seconds: int = 40) -> bool:
+    """
+    Click the in-popup video start/play button (usually centered), then wait.
+    """
+    start_xpaths = [
+        "//button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'start')]",
+        "//button[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'play')]",
+        "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'start')]",
+        "//a[contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'play')]",
+        "//*[@role='button' and contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'start')]",
+        "//*[@role='button' and contains(translate(., 'ABCDEFGHIJKLMNOPQRSTUVWXYZ', 'abcdefghijklmnopqrstuvwxyz'), 'play')]",
+    ]
+
+    for xpath in start_xpaths:
+        try:
+            elem = WebDriverWait(driver, 3).until(
+                EC.element_to_be_clickable((By.XPATH, xpath))
+            )
+            driver.execute_script("arguments[0].scrollIntoView({block:'center'});", elem)
+            elem.click()
+            print(f"[video] Clicked popup start/play button. Waiting {wait_seconds}s...")
+            time.sleep(wait_seconds)
+            return True
+        except Exception:
+            continue
+
+    # Fallback: click center-most large visible button-like element.
+    try:
+        clicked = driver.execute_script(
+            """
+            const vw = window.innerWidth || document.documentElement.clientWidth;
+            const vh = window.innerHeight || document.documentElement.clientHeight;
+            const cx = vw / 2;
+            const cy = vh / 2;
+            const nodes = [...document.querySelectorAll('button, [role="button"], a, div')];
+            let best = null;
+            let bestScore = Infinity;
+            for (const n of nodes) {
+              const r = n.getBoundingClientRect();
+              if (!r || r.width < 40 || r.height < 30) continue;
+              const style = window.getComputedStyle(n);
+              if (!style || style.display === 'none' || style.visibility === 'hidden') continue;
+              const txt = (n.innerText || '').toLowerCase();
+              const cls = (n.className || '').toString().toLowerCase();
+              if (!(txt.includes('start') || txt.includes('play') || cls.includes('play') || cls.includes('start'))) continue;
+              const nx = r.left + r.width / 2;
+              const ny = r.top + r.height / 2;
+              const dist = Math.hypot(nx - cx, ny - cy);
+              if (dist < bestScore) {
+                bestScore = dist;
+                best = n;
+              }
+            }
+            if (best) {
+              best.click();
+              return true;
+            }
+            return false;
+            """
+        )
+        if clicked:
+            print(f"[video] Clicked centered popup start/play control. Waiting {wait_seconds}s...")
+            time.sleep(wait_seconds)
+            return True
+    except Exception:
+        pass
+
+    # Aggressive fallback for play overlays without text/classes (triangle icon only).
+    try:
+        clicked_any = False
+        for _ in range(4):
+            if _click_inside_visible_iframe(driver):
+                clicked_any = True
+            if _center_click_video_surface(driver):
+                clicked_any = True
+            try:
+                center_clicked = driver.execute_script(
+                    """
+                    const vw = window.innerWidth || document.documentElement.clientWidth;
+                    const vh = window.innerHeight || document.documentElement.clientHeight;
+                    const x = Math.floor(vw * 0.5);
+                    const y = Math.floor(vh * 0.5);
+                    const el = document.elementFromPoint(x, y);
+                    if (!el) return false;
+                    el.dispatchEvent(new MouseEvent('mousedown', {bubbles:true, cancelable:true, clientX:x, clientY:y}));
+                    el.dispatchEvent(new MouseEvent('mouseup', {bubbles:true, cancelable:true, clientX:x, clientY:y}));
+                    el.dispatchEvent(new MouseEvent('click', {bubbles:true, cancelable:true, clientX:x, clientY:y}));
+                    return true;
+                    """
+                )
+                if center_clicked:
+                    clicked_any = True
+            except Exception:
+                pass
+            time.sleep(0.7)
+
+        if clicked_any:
+            print(f"[video] Clicked fallback video center. Waiting {wait_seconds}s...")
+            time.sleep(wait_seconds)
+            return True
+    except Exception:
+        pass
+
+    return False
+
+
+def _wait_for_video_reward_or_timeout(
+    driver,
+    timeout_s: int = 120,
+    before_watch_count: int | None = None,
+    keep_handles: set[str] | None = None,
+) -> bool:
     deadline = time.time() + timeout_s
     while time.time() < deadline:
+        if keep_handles:
+            _close_extra_tabs(driver, keep_handles)
+
         if _is_adblock_detected(driver):
             print("[video] Adblock-like blocking detected. Disable adblock for reward videos.")
             return False
 
-        watch_nodes = driver.find_elements(By.XPATH, "//button[contains(., 'Watch video')]")
-        visible_watch_nodes = [n for n in watch_nodes if n.is_displayed()]
-        if len(visible_watch_nodes) == 0:
+        visible_watch_nodes = _get_visible_watch_video_buttons(driver)
+        visible_count = len(visible_watch_nodes)
+        if before_watch_count is not None and visible_count < before_watch_count:
+            print(
+                "[video] Reward appears completed "
+                f"(Watch video count dropped {before_watch_count} -> {visible_count})."
+            )
+            return True
+        if before_watch_count is None and visible_count == 0:
             print("[video] Reward appears completed (Watch video no longer visible).")
             return True
 
@@ -221,7 +363,12 @@ def _wait_for_video_reward_or_timeout(driver, timeout_s: int = 120) -> bool:
     return False
 
 
-def _handle_video_popup_window(driver, parent_handle: str, timeout_s: int = 150) -> None:
+def _handle_video_popup_window(
+    driver,
+    parent_handle: str,
+    timeout_s: int = 150,
+    before_watch_count: int | None = None,
+) -> None:
     popup_handle = None
     start = time.time()
     while time.time() - start < 12:
@@ -236,14 +383,22 @@ def _handle_video_popup_window(driver, parent_handle: str, timeout_s: int = 150)
 
     if not popup_handle:
         print("[video] No separate popup window detected. Using same-page flow.")
-        _wait_for_video_reward_or_timeout(driver, timeout_s=timeout_s)
+        _click_video_start_button_and_wait(driver, wait_seconds=40)
+        _wait_for_video_reward_or_timeout(
+            driver,
+            timeout_s=timeout_s,
+            before_watch_count=before_watch_count,
+            keep_handles={parent_handle},
+        )
         return
 
     print("[video] Popup window detected. Switching to popup.")
     try:
         driver.switch_to.window(popup_handle)
+        _click_video_start_button_and_wait(driver, wait_seconds=40)
         popup_deadline = time.time() + timeout_s
         while time.time() < popup_deadline:
+            _close_extra_tabs(driver, {parent_handle, popup_handle})
             if _is_adblock_detected(driver):
                 print("[video] Adblock-like message detected inside popup.")
                 break
@@ -268,6 +423,12 @@ def _handle_video_popup_window(driver, parent_handle: str, timeout_s: int = 150)
             driver.switch_to.window(parent_handle)
         except Exception:
             pass
+        _wait_for_video_reward_or_timeout(
+            driver,
+            timeout_s=20,
+            before_watch_count=before_watch_count,
+            keep_handles={parent_handle},
+        )
 
 
 def _click_watch_video_button(driver) -> bool:
@@ -286,6 +447,108 @@ def _click_watch_video_button(driver) -> bool:
         except Exception:
             continue
     return _click_if_present(driver, "//button[contains(., 'Watch video')]", timeout=4)
+
+
+def _get_visible_watch_video_buttons(driver):
+    try:
+        buttons = driver.find_elements(By.XPATH, "//button[contains(., 'Watch video')]")
+    except Exception:
+        return []
+    return [b for b in buttons if b.is_displayed()]
+
+
+def _close_video_modal_if_any(driver) -> None:
+    xpaths = [
+        "//button[contains(@class,'close')]",
+        "//a[contains(@class,'close')]",
+        "//button[@aria-label='Close']",
+        "//button[@title='Close']",
+        "//button[contains(., 'Close')]",
+        "//button[normalize-space()='x']",
+        "//button[normalize-space()='X']",
+    ]
+    for xpath in xpaths:
+        if _click_if_present(driver, xpath, timeout=1):
+            time.sleep(0.4)
+            return
+
+
+def _is_watch_video_bonus_already_active(driver) -> bool:
+    """
+    Detect when reward-video bonuses are already active so we don't keep watching videos.
+    """
+    try:
+        page = (driver.page_source or "").lower()
+    except Exception:
+        return False
+
+    markers = (
+        "active for next adventure",
+        "active for next normal adventure",
+    )
+    return any(marker in page for marker in markers)
+
+
+def _watch_video_rewards_in_order(driver, adventures_url: str, max_videos: int = 2) -> int:
+    watched = 0
+    for idx in range(max_videos):
+        if _is_watch_video_bonus_already_active(driver):
+            print("[video] Bonus already active for next adventure; skipping further watch-video actions.")
+            break
+
+        visible_before = _get_visible_watch_video_buttons(driver)
+        if not visible_before:
+            break
+
+        before_count = len(visible_before)
+        print(f"[video] Found {before_count} Watch video button(s) before step {idx + 1}.")
+
+        clicked = False
+        for btn in visible_before:
+            try:
+                driver.execute_script("arguments[0].scrollIntoView({block:'center'});", btn)
+                time.sleep(0.2)
+                btn.click()
+                clicked = True
+                break
+            except Exception:
+                continue
+        if not clicked:
+            print("[video] Could not click Watch video button.")
+            break
+
+        print("Clicked 'Watch video'. Waiting for ad to complete...")
+        parent_handle = driver.current_window_handle
+        _handle_video_popup_window(
+            driver,
+            parent_handle=parent_handle,
+            timeout_s=150,
+            before_watch_count=before_count,
+        )
+
+        # Reward popups are sometimes modal overlays in the same page.
+        _close_video_modal_if_any(driver)
+        time.sleep(1)
+
+        # Reload adventures page so UI state updates, then continue with next reward button.
+        driver.get(adventures_url)
+        _dismiss_cookie_popup_if_any(driver)
+        _dismiss_adventure_top_blocks(driver, preserve_video_cta=True)
+        time.sleep(1.5)
+
+        if _is_watch_video_bonus_already_active(driver):
+            watched += 1
+            print("[video] Bonus status is active after video; stopping additional watch-video actions.")
+            break
+
+        visible_after = _get_visible_watch_video_buttons(driver)
+        if len(visible_after) < before_count:
+            watched += 1
+        else:
+            # Keep progress optimistic if the button changed state but count did not.
+            watched += 1
+            print("[video] Watch video count did not drop; continuing with next check.")
+    return watched
 
 
 def run_adventure_browser_once(
@@ -340,13 +603,19 @@ def run_adventure_browser_once(
         if watch_video_first:
             if _is_adblock_detected(driver):
                 print("[video] Adblock-like blocking detected before playback. Disable adblock and retry.")
-            parent_handle = driver.current_window_handle
-            clicked_video = _click_watch_video_button(driver)
-            if clicked_video:
-                print("Clicked 'Watch video'. Waiting for ad to complete...")
-                _handle_video_popup_window(driver, parent_handle=parent_handle, timeout_s=150)
+
+            if _is_watch_video_bonus_already_active(driver):
+                print("[video] Bonus already active on page; skipping watch-video step.")
             else:
-                print("Watch video button not directly clickable, continuing to Explore.")
+                watched_count = _watch_video_rewards_in_order(
+                    driver=driver,
+                    adventures_url=adventures_url,
+                    max_videos=2,
+                )
+                if watched_count > 0:
+                    print(f"[video] Completed {watched_count} watch-video step(s) before Explore.")
+                else:
+                    print("Watch video button not directly clickable, continuing to Explore.")
 
             # Refresh adventure page after ad flow to ensure Explore list/buttons are rendered again.
             driver.get(adventures_url)

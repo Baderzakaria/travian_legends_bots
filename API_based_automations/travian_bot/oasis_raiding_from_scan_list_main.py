@@ -3,6 +3,7 @@ import json
 import logging
 from random import uniform
 import time
+from pathlib import Path
 
 from identity_handling.login import login
 from identity_handling.identity_helper import load_villages_from_identity, load_identity_data
@@ -22,6 +23,91 @@ class NoTimestampFormatter(logging.Formatter):
 console_handler = logging.StreamHandler()
 console_handler.setFormatter(NoTimestampFormatter())
 logging.basicConfig(level=logging.INFO, handlers=[console_handler])
+
+
+def _load_villages_for_oasis(api) -> list[dict]:
+    """
+    Merge identity villages (for coordinates) with live API villages (for completeness).
+    Keeps API order and includes identity-only villages as fallback.
+    """
+    identity_villages = []
+    try:
+        identity_villages = load_villages_from_identity()
+    except Exception:
+        identity_villages = []
+
+    by_id = {}
+    for v in identity_villages:
+        try:
+            village_id = int(v.get("village_id"))
+        except Exception:
+            continue
+        by_id[village_id] = dict(v)
+
+    ordered_ids = []
+    try:
+        info = api.get_player_info()
+        api_villages = info.get("villages", []) if isinstance(info, dict) else []
+        for v in api_villages:
+            village_id = int(v.get("id"))
+            ordered_ids.append(village_id)
+            merged = by_id.get(village_id, {})
+            merged["village_id"] = village_id
+            api_name = str(v.get("name", "")).strip()
+            if api_name:
+                merged["village_name"] = api_name
+            else:
+                merged.setdefault("village_name", f"village_{village_id}")
+            by_id[village_id] = merged
+    except Exception:
+        pass
+
+    if not ordered_ids:
+        ordered_ids = sorted(by_id.keys())
+    else:
+        seen = set(ordered_ids)
+        for village_id in sorted(by_id.keys()):
+            if village_id not in seen:
+                ordered_ids.append(village_id)
+
+    out = []
+    for village_id in ordered_ids:
+        row = dict(by_id[village_id])
+        row.setdefault("village_id", village_id)
+        row.setdefault("village_name", f"village_{village_id}")
+        out.append(row)
+    return out
+
+def _load_oasis_loop_timing_from_strategy() -> tuple[float, float]:
+    """
+    Load standalone oasis loop timings from strategy JSON if available.
+    Returns (cycle_sleep_seconds, error_retry_seconds).
+    """
+    default_cycle = 50 * 60.0
+    default_retry = 5 * 60.0
+    bot_root = Path(__file__).resolve().parent
+    workspace_root = Path(__file__).resolve().parents[1]
+    candidates = [
+        (Path.cwd() / "database" / "strategy" / "advanced_strategy.json").resolve(),
+        (bot_root / "database" / "strategy" / "advanced_strategy.json").resolve(),
+        (workspace_root / "database" / "strategy" / "advanced_strategy.json").resolve(),
+    ]
+    dedup = []
+    for p in candidates:
+        if p not in dedup:
+            dedup.append(p)
+    existing = [p for p in dedup if p.exists()]
+    if not existing:
+        return default_cycle, default_retry
+    strategy_path = str(max(existing, key=lambda p: p.stat().st_mtime))
+    try:
+        with open(strategy_path, "r", encoding="utf-8") as f:
+            cfg = json.load(f)
+        cycle_mins = float(cfg.get("oasis_standalone_cycle_minutes", 50))
+        retry_mins = float(cfg.get("oasis_standalone_retry_minutes", 5))
+        return max(1.0, cycle_mins * 60.0), max(5.0, retry_mins * 60.0)
+    except Exception:
+        return default_cycle, default_retry
 
 def save_raid_plan(raid_plan, server_url, village_index):
     """Save the raid plan to a JSON file."""
@@ -61,9 +147,9 @@ def run_raid_planner(
     multi_village=False,  # New parameter to control multi-village mode
     run_farm_lists=False  # New parameter to control whether to run farm lists
 ):
-    villages = load_villages_from_identity()
+    villages = _load_villages_for_oasis(api)
     if not villages:
-        logging.error("No villages found in identity. Exiting.")
+        logging.error("No villages found from API/identity merge. Exiting.")
         return
 
     # Load faction from identity using the helper function
@@ -80,16 +166,26 @@ def run_raid_planner(
     # Determine which villages to process
     if multi_village:
         villages_to_process = list(enumerate(villages))
-        logging.info(f"Running in multi-village mode. Will process {len(villages)} villages.")
+        logging.info(f"Running in multi-village mode. Will process {len(villages_to_process)} villages.")
     else:
         village_index = 0
         villages_to_process = [(village_index, villages[village_index])]
         logging.info("Running in single-village mode.")
 
     # Process selected villages
+    processable_villages = []
     for village_index, selected_village in villages_to_process:
+        if "x" not in selected_village or "y" not in selected_village:
+            logging.warning(
+                f"Skipping village {selected_village.get('village_name', selected_village.get('village_id'))}: "
+                "missing coordinates in identity. Run option 10 to add coordinates."
+            )
+            continue
+        processable_villages.append((village_index, selected_village))
+
+    for display_idx, (village_index, selected_village) in enumerate(processable_villages, start=1):
         logging.info(f"\n{'='*50}")
-        logging.info(f"Processing village {village_index + 1}/{len(villages)}: {selected_village['village_name']}")
+        logging.info(f"Processing village {display_idx}/{len(processable_villages)}: {selected_village['village_name']}")
         logging.info(f"{'='*50}")
 
         village_id = selected_village["village_id"]
@@ -316,6 +412,7 @@ def main():
     print("\n🎯 Starting multi-village raid planner (full automation)...")
     
     while True:
+        cycle_sleep_s, retry_sleep_s = _load_oasis_loop_timing_from_strategy()
         try:
             # Get all villages
             villages = api.get_villages()
@@ -354,16 +451,16 @@ def main():
                 # Then run oasis raids
                 run_raid_planner(api, village_id)
             
-            print("\n⏳ Waiting 50 minutes before next raid cycle...")
-            time.sleep(50 * 60)  # 50 minutes in seconds
+            print(f"\n⏳ Waiting {cycle_sleep_s / 60:.1f} minutes before next raid cycle...")
+            time.sleep(cycle_sleep_s)
             
         except KeyboardInterrupt:
             print("\n\n⚠️ Raid planner stopped by user")
             break
         except Exception as e:
             print(f"\n❌ Error during raid cycle: {str(e)}")
-            print("⏳ Waiting 5 minutes before retrying...")
-            time.sleep(5 * 60)  # 5 minutes in seconds
+            print(f"⏳ Waiting {retry_sleep_s / 60:.1f} minutes before retrying...")
+            time.sleep(retry_sleep_s)
             continue
 
 if __name__ == "__main__":
