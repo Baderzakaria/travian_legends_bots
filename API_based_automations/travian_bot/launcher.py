@@ -28,6 +28,7 @@ from features.strategy.advanced_loop import (
     set_pause_development_and_train_mode,
 )
 from features.reports.village_intelligence_report import run_village_intelligence_report
+from features.defense.defense_timing_planner import run_defense_timing_planner
 
 # === CONFIG ===
 WAIT_BETWEEN_CYCLES_MINUTES = 34
@@ -266,6 +267,7 @@ def main():
     print("14) Advanced Strategy Loop (eco + raid + build)")
     print("15) Village Intelligence Report (for ChatGPT planning)")
     print("16) Single Priority Override (quick)")
+    print("17) Defense Timing Planner (between incoming waves)")
     
     print("\n" + "="*40)
 
@@ -529,6 +531,10 @@ def main():
             attempts = int(attempts_in) if attempts_in else 1
             interval_in = input("Training interval minutes (default 10): ").strip()
             interval_minutes = float(interval_in) if interval_in else 10.0
+            pause_targets_in = input(
+                "Pause building for which villages? (comma-separated keys/ids, e.g. 1 or 1,2; blank = all): "
+            ).strip()
+            pause_targets = [x.strip() for x in pause_targets_in.split(",") if x.strip()] if pause_targets_in else []
             cfg = set_pause_development_and_train_mode(
                 enabled=True,
                 settlers_first=True,
@@ -537,12 +543,24 @@ def main():
                 training_interval_minutes=interval_minutes,
                 settler_amount=1,
                 troop_amount="max",
+                pause_village_selectors=pause_targets,
             )
-            print("✅ Development paused. Training mode enabled (settlers first, then troops at MAX possible each attempt).")
+            if pause_targets:
+                print(
+                    "✅ Selective building pause enabled for villages "
+                    f"{pause_targets}. Training mode enabled (settlers first, then troops at MAX possible each attempt)."
+                )
+            else:
+                print(
+                    "✅ Development paused for all villages. Training mode enabled "
+                    "(settlers first, then troops at MAX possible each attempt)."
+                )
             print(f"Strategy file updated: {cfg}")
             print("ℹ️ Run option 14 to execute this mode in cycles.")
         else:
             print("Invalid choice.")
+    elif choice == "17":
+        run_defense_timing_planner()
     else:
         print("Invalid choice.")
 

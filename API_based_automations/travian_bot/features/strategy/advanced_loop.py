@@ -69,6 +69,8 @@ DEFAULT_STRATEGY = {
     "version": 2,
     "max_build_queue": 2,
     "pause_building_development": False,
+    "pause_building_for_villages": [],
+    "training_for_villages": ["*"],
     "enable_troop_training_when_possible": False,
     "enable_settler_training_when_possible": False,
     "training_attempts_per_village": 1,
@@ -200,6 +202,49 @@ DEFAULT_STRATEGY = {
 }
 
 
+def _is_building_paused_for_village(config: dict, village_id: int, village_name: str | None = None) -> bool:
+    """
+    Pause policy:
+    - if pause_building_development=true => pause all villages.
+    - else pause only villages listed in pause_building_for_villages.
+      List can contain ids (e.g. 31894), names/keys (e.g. "1", "2"), or "*".
+    """
+    if bool(config.get("pause_building_development", False)):
+        return True
+
+    selectors = config.get("pause_building_for_villages", []) or []
+    wanted = {str(x).strip() for x in selectors if str(x).strip()}
+    if not wanted:
+        return False
+    if "*" in wanted:
+        return True
+    if str(village_id) in wanted:
+        return True
+    if village_name and str(village_name) in wanted:
+        return True
+    return False
+
+
+def _is_training_enabled_for_village(config: dict, village_id: int, village_name: str | None = None) -> bool:
+    """
+    Training targeting policy:
+    - training_for_villages missing/empty => allow all villages.
+    - else allow only villages listed in training_for_villages.
+      List can contain ids (e.g. 31894), names/keys (e.g. "1", "2"), or "*".
+    """
+    selectors = config.get("training_for_villages", ["*"]) or []
+    wanted = {str(x).strip() for x in selectors if str(x).strip()}
+    if not wanted:
+        return True
+    if "*" in wanted:
+        return True
+    if str(village_id) in wanted:
+        return True
+    if village_name and str(village_name) in wanted:
+        return True
+    return False
+
+
 def _write_simple_xlsx(path: str, sheet_name: str, rows: list[list[str]]) -> None:
     def col_name(idx: int) -> str:
         name = ""
@@ -297,7 +342,8 @@ def _load_or_create_strategy_config() -> dict:
             json.dump(DEFAULT_STRATEGY, f, indent=4, ensure_ascii=False)
         return DEFAULT_STRATEGY
 
-    with open(STRATEGY_CONFIG_FILE, "r", encoding="utf-8") as f:
+    # Use utf-8-sig to tolerate BOM-prefixed JSON files (common from PowerShell saves).
+    with open(STRATEGY_CONFIG_FILE, "r", encoding="utf-8-sig") as f:
         config = json.load(f)
 
     changed = False
@@ -483,13 +529,17 @@ def set_pause_development_and_train_mode(
     training_interval_minutes: float = 10,
     settler_amount: int = 1,
     troop_amount="max",
+    pause_village_selectors: list[str] | None = None,
 ) -> str:
     """
     Toggle mode: pause building development and focus on training settlers/troops.
     Returns strategy config path.
     """
     config = _load_or_create_strategy_config()
-    config["pause_building_development"] = bool(enabled)
+    selectors = [str(x).strip() for x in (pause_village_selectors or []) if str(x).strip()]
+    # Keep global pause only when no specific selectors provided.
+    config["pause_building_development"] = bool(enabled) and not bool(selectors)
+    config["pause_building_for_villages"] = selectors
     config["enable_settler_training_when_possible"] = bool(settlers_first) and bool(enabled)
     config["enable_troop_training_when_possible"] = bool(troop_training) and bool(enabled)
     config["training_attempts_per_village"] = max(1, int(attempts_per_village))
@@ -1360,7 +1410,6 @@ def run_advanced_strategy_cycle(
     queue_full_villages = 0
     next_queue_seconds_candidates = []
     max_build_queue = int(config.get("max_build_queue", 2))
-    pause_building = bool(config.get("pause_building_development", False))
     training_enabled = allow_training and (bool(config.get("enable_troop_training_when_possible", False)) or bool(
         config.get("enable_settler_training_when_possible", False)
     ))
@@ -1382,12 +1431,15 @@ def run_advanced_strategy_cycle(
             print(f"  Failed to switch village (status {switch_resp.status_code}).")
             continue
 
-        if training_enabled:
+        if training_enabled and _is_training_enabled_for_village(config, village_id, village_name=village_name):
             started = _attempt_troop_and_settler_training(api, village_id, config)
             training_actions_started += int(started)
             cycle_plan_lines.append(f"Village {village_id} training_actions_started={started}")
+        elif training_enabled:
+            cycle_plan_lines.append(f"Village {village_id} training_skipped_by_selector=true")
 
-        if pause_building:
+        pause_building_here = _is_building_paused_for_village(config, village_id, village_name=village_name)
+        if pause_building_here:
             print("  Building development paused by config.")
             cycle_plan_lines.append(f"Village {village_id} action=building_paused")
             continue

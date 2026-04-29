@@ -6,591 +6,542 @@
     "run_oasis_raid_planner_each_cycle": false,
     "run_hero_adventure_each_cycle": false,
     "villages": {
-      "*": {
-        "phases": [
-          {
-            "name": "phase_1_basic_safety",
-            "notes": "Fallback safety for villages without a dedicated role yet.",
-            "rules": [
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "cranny",
-                  "cachette"
-                ],
-                "target_level": 5
-              }
+        "1": {
+            "phases": [
+                {
+                    "name": "phase_1_raiding_bootstrap",
+                    "notes": "Village 1 is a small raiding village. Build just enough eco and barracks power for continuous farm-list pressure.",
+                    "rules": [
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "Cranny"
+
+                            ],
+                            "target_level": 10
+                        },
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 9
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "barracks",
+                                "caserne"
+                            ],
+                            "target_level": 15
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "rally point",
+                                "point de rassemblement"
+                            ],
+                            "target_level": 10
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "main building",
+                                "batiment principal",
+                                "b?timent principal"
+                            ],
+                            "target_level": 15
+                        }
+                    ]
+                },
+                {
+                    "name": "phase_2_raiding_throughput",
+                    "notes": "Increase raiding throughput while keeping village compact. Practical target is about 3000 light raiding troops, not a full army village.",
+                    "rules": [
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "barracks",
+                                "caserne"
+                            ],
+                            "target_level": 20
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "smithy",
+                                "forge"
+                            ],
+                            "target_level": 10
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "marketplace",
+                                "marche",
+                                "march?"
+                            ],
+                            "target_level": 12
+                        },
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 10
+                        }
+                    ]
+                },
+                {
+                    "name": "phase_3_export_support",
+                    "notes": "Logistics phase: use Village 1 marketplace as exporter. Send wood/clay/iron/crop to Village 2 capital continuously via trade routes.",
+                    "rules": [
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "marketplace",
+                                "marche",
+                                "march?"
+                            ],
+                            "target_level": 15
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "warehouse",
+                                "entrepot",
+                                "entrep?t"
+                            ],
+                            "target_level": 16
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "granary",
+                                "silo"
+                            ],
+                            "target_level": 16
+                        },
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 10
+                        }
+                    ]
+                }
             ]
-          },
-          {
-            "name": "phase_2_basic_bootstrap",
-            "notes": "Fallback economy bootstrap.",
-            "rules": [
-              {
-                "kind": "resource_fields",
-                "target_level": 6
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "main building",
-                  "bâtiment principal"
-                ],
-                "target_level": 10
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "warehouse",
-                  "entrepôt"
-                ],
-                "target_level": 10
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "granary",
-                  "silo"
-                ],
-                "target_level": 10
-              }
+        },
+        "2": {
+            "phases": [
+                {
+                    "name": "phase_1_capital_stabilize",
+                    "notes": "Village 2 becomes the capital defensive hub. Stabilize eco and storage immediately.",
+                    "rules": [
+
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "warehouse",
+                                "entrepot",
+                                "entrep?t"
+                            ],
+                            "target_level": 15
+                        },    
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "granary",
+                                "silo"
+                            ],
+                            "target_level": 15
+                        },                    
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 5
+                        },                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "barracks",
+                                "silo"
+                            ],
+                            "target_level": 15
+                        }
+                    ]
+                },
+
+                {
+                    "name": "phase_3_capital_storage_logistics",
+                    "notes": "Max storage and logistics so capital can absorb imported resources from Village 1 and keep defense queues running.",
+                    "rules": [
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "warehouse",
+                                "entrepot",
+                                "entrep?t"
+                            ],
+                            "target_level": 20
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "granary",
+                                "silo"
+                            ],
+                            "target_level": 20
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "marketplace",
+                                "marche",
+                                "march?"
+                            ],
+                            "target_level": 15
+                        },
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 12
+                        }
+                    ]
+                }
             ]
-          }
-        ]
-      },
-      "1": {
-        "phases": [
-          {
-            "name": "phase_1_off_economy_stabilize",
-            "notes": "Main off village. Keep economy strong enough to sustain constant troop pressure.",
-            "rules": [
-              {
-                "kind": "resource_fields",
-                "target_level": 10
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "warehouse",
-                  "entrepôt"
-                ],
-                "target_level": 20
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "granary",
-                  "silo"
-                ],
-                "target_level": 20
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "marketplace",
-                  "marché"
-                ],
-                "target_level": 10
-              }
+        },
+        "3": {
+            "phases": [
+                {
+                    "name": "phase_1_15c_support_bootstrap",
+                    "notes": "Egyptian 15c support village. Build autonomy and storage first.",
+                    "rules": [
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 6
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "main building",
+                                "bÃ¢timent principal"
+                            ],
+                            "target_level": 10
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "warehouse",
+                                "entrepÃ´t"
+                            ],
+                            "target_level": 12
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "granary",
+                                "silo"
+                            ],
+                            "target_level": 14
+                        }
+                    ]
+                },
+                {
+                    "name": "phase_2_15c_support_online",
+                    "notes": "Bring logistics and feeding capacity online for villages 1 and 2.",
+                    "rules": [
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 6
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "marketplace",
+                                "marchÃ©"
+                            ],
+                            "target_level": 8
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "warehouse",
+                                "entrepÃ´t"
+                            ],
+                            "target_level": 16
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "granary",
+                                "silo"
+                            ],
+                            "target_level": 18
+                        }
+                    ]
+                },
+                {
+                    "name": "phase_3_15c_crop_multiplier",
+                    "notes": "Multiply crop output and transport value.",
+                    "rules": [
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "grain mill",
+                                "moulin"
+                            ],
+                            "target_level": 5
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "bakery",
+                                "boulangerie"
+                            ],
+                            "target_level": 5
+                        },
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 10
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "marketplace",
+                                "marchÃ©"
+                            ],
+                            "target_level": 12
+                        }
+                    ]
+                },
+                {
+                    "name": "phase_4_15c_support_finish",
+                    "notes": "Long-term crop battery and logistics backbone.",
+                    "rules": [
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "warehouse",
+                                "entrepÃ´t"
+                            ],
+                            "target_level": 20
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "granary",
+                                "silo"
+                            ],
+                            "target_level": 20
+                        },
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 12
+                        }
+                    ]
+                }
             ]
-          },
-          {
-            "name": "phase_2_off_projection",
-            "notes": "Improve off projection, training throughput and map reach.",
-            "rules": [
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "tournament square",
-                  "place du tournoi"
-                ],
-                "target_level": 10
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "smithy",
-                  "forge"
-                ],
-                "target_level": 15
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "academy",
-                  "académie"
-                ],
-                "target_level": 15
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "main building",
-                  "bâtiment principal"
-                ],
-                "target_level": 20
-              }
+        },
+        "4": {
+            "phases": [
+                {
+                    "name": "phase_1_roman_support_bootstrap",
+                    "notes": "Roman support village focused on clean eco and infrastructure.",
+                    "rules": [
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 7
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "main building",
+                                "bÃ¢timent principal"
+                            ],
+                            "target_level": 10
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "warehouse",
+                                "entrepÃ´t"
+                            ],
+                            "target_level": 14
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "granary",
+                                "silo"
+                            ],
+                            "target_level": 14
+                        }
+                    ]
+                },
+                {
+                    "name": "phase_2_roman_support_online",
+                    "notes": "Make it a flexible shipment and support node.",
+                    "rules": [
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 9
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "marketplace",
+                                "marchÃ©"
+                            ],
+                            "target_level": 10
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "warehouse",
+                                "entrepÃ´t"
+                            ],
+                            "target_level": 18
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "granary",
+                                "silo"
+                            ],
+                            "target_level": 18
+                        }
+                    ]
+                },
+                {
+                    "name": "phase_3_roman_flex_finish",
+                    "notes": "Keep flexible for future settlers, infra or secondary support role.",
+                    "rules": [
+                        {
+                            "kind": "resource_fields",
+                            "target_level": 10
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "main building",
+                                "bÃ¢timent principal"
+                            ],
+                            "target_level": 15
+                        },
+                        {
+                            "kind": "building_name",
+                            "contains_any": [
+                                "marketplace",
+                                "marchÃ©"
+                            ],
+                            "target_level": 15
+                        }
+                    ]
+                }
             ]
-          },
-          {
-            "name": "phase_3_off_finish",
-            "notes": "Finish mature off infrastructure.",
-            "rules": [
-              {
-                "kind": "resource_fields",
-                "target_level": 12
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "barracks",
-                  "caserne"
-                ],
-                "target_level": 20
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "stable",
-                  "écurie"
-                ],
-                "target_level": 20
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "smithy",
-                  "forge"
-                ],
-                "target_level": 20
-              }
-            ]
-          }
-        ]
-      },
-      "2": {
-        "phases": [
-          {
-            "name": "phase_1_deff_stabilize",
-            "notes": "Gaul deff village. Stabilize eco and storage first.",
-            "rules": [
-              {
-                "kind": "resource_fields",
-                "target_level": 8
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "main building",
-                  "bâtiment principal"
-                ],
-                "target_level": 15
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "warehouse",
-                  "entrepôt"
-                ],
-                "target_level": 16
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "granary",
-                  "silo"
-                ],
-                "target_level": 16
-              }
-            ]
-          },
-          {
-            "name": "phase_2_deff_shell",
-            "notes": "Get the infantry deff shell online before expansion logic.",
-            "rules": [
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "rally point",
-                  "point de rassemblement"
-                ],
-                "target_level": 10
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "barracks",
-                  "caserne"
-                ],
-                "target_level": 15
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "palisade",
-                  "wall",
-                  "earthen wall",
-                  "city wall",
-                  "stone wall"
-                ],
-                "target_level": 15
-              }
-            ]
-          },
-          {
-            "name": "phase_3_infantry_deff_scale",
-            "notes": "Scale Phalanx-first deff and keep village efficient.",
-            "rules": [
-              {
-                "kind": "resource_fields",
-                "target_level": 10
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "warehouse",
-                  "entrepôt"
-                ],
-                "target_level": 18
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "granary",
-                  "silo"
-                ],
-                "target_level": 18
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "palisade",
-                  "wall",
-                  "earthen wall",
-                  "city wall",
-                  "stone wall"
-                ],
-                "target_level": 20
-              }
-            ]
-          },
-          {
-            "name": "phase_4_cavalry_deff_unlock",
-            "notes": "Unlock mobile deff only after infantry and eco are stable.",
-            "rules": [
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "academy",
-                  "académie"
-                ],
-                "target_level": 5
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "stable",
-                  "écurie"
-                ],
-                "target_level": 10
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "barracks",
-                  "caserne"
-                ],
-                "target_level": 20
-              }
-            ]
-          },
-          {
-            "name": "phase_5_full_deff_support",
-            "notes": "Mature deff support village for long-term account stability.",
-            "rules": [
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "stable",
-                  "écurie"
-                ],
-                "target_level": 15
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "warehouse",
-                  "entrepôt"
-                ],
-                "target_level": 20
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "granary",
-                  "silo"
-                ],
-                "target_level": 20
-              },
-              {
-                "kind": "resource_fields",
-                "target_level": 12
-              }
-            ]
-          }
-        ]
-      },
-      "3": {
-        "phases": [
-          {
-            "name": "phase_1_15c_support_bootstrap",
-            "notes": "Egyptian 15c support village. Build autonomy and storage first.",
-            "rules": [
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "cranny",
-                  "cachette"
-                ],
-                "target_level": 5
-              },
-              {
-                "kind": "resource_fields",
-                "target_level": 6
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "main building",
-                  "bâtiment principal"
-                ],
-                "target_level": 10
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "warehouse",
-                  "entrepôt"
-                ],
-                "target_level": 12
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "granary",
-                  "silo"
-                ],
-                "target_level": 14
-              }
-            ]
-          },
-          {
-            "name": "phase_2_15c_support_online",
-            "notes": "Bring logistics and feeding capacity online for villages 1 and 2.",
-            "rules": [
-              {
-                "kind": "resource_fields",
-                "target_level": 8
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "marketplace",
-                  "marché"
-                ],
-                "target_level": 8
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "warehouse",
-                  "entrepôt"
-                ],
-                "target_level": 16
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "granary",
-                  "silo"
-                ],
-                "target_level": 18
-              }
-            ]
-          },
-          {
-            "name": "phase_3_15c_crop_multiplier",
-            "notes": "Multiply crop output and transport value.",
-            "rules": [
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "grain mill",
-                  "moulin"
-                ],
-                "target_level": 5
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "bakery",
-                  "boulangerie"
-                ],
-                "target_level": 5
-              },
-              {
-                "kind": "resource_fields",
-                "target_level": 10
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "marketplace",
-                  "marché"
-                ],
-                "target_level": 12
-              }
-            ]
-          },
-          {
-            "name": "phase_4_15c_support_finish",
-            "notes": "Long-term crop battery and logistics backbone.",
-            "rules": [
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "warehouse",
-                  "entrepôt"
-                ],
-                "target_level": 20
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "granary",
-                  "silo"
-                ],
-                "target_level": 20
-              },
-              {
-                "kind": "resource_fields",
-                "target_level": 12
-              }
-            ]
-          }
-        ]
-      },
-      "4": {
-        "phases": [
-          {
-            "name": "phase_1_roman_support_bootstrap",
-            "notes": "Roman support village focused on clean eco and infrastructure.",
-            "rules": [
-              {
-                "kind": "resource_fields",
-                "target_level": 7
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "main building",
-                  "bâtiment principal"
-                ],
-                "target_level": 10
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "warehouse",
-                  "entrepôt"
-                ],
-                "target_level": 14
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "granary",
-                  "silo"
-                ],
-                "target_level": 14
-              }
-            ]
-          },
-          {
-            "name": "phase_2_roman_support_online",
-            "notes": "Make it a flexible shipment and support node.",
-            "rules": [
-              {
-                "kind": "resource_fields",
-                "target_level": 9
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "marketplace",
-                  "marché"
-                ],
-                "target_level": 10
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "warehouse",
-                  "entrepôt"
-                ],
-                "target_level": 18
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "granary",
-                  "silo"
-                ],
-                "target_level": 18
-              }
-            ]
-          },
-          {
-            "name": "phase_3_roman_flex_finish",
-            "notes": "Keep flexible for future settlers, infra or secondary support role.",
-            "rules": [
-              {
-                "kind": "resource_fields",
-                "target_level": 10
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "main building",
-                  "bâtiment principal"
-                ],
-                "target_level": 15
-              },
-              {
-                "kind": "building_name",
-                "contains_any": [
-                  "marketplace",
-                  "marché"
-                ],
-                "target_level": 15
-              }
-            ]
-          }
-        ]
-      }
+        }
     },
-    "max_build_queue": 2,
+    "5": {
+        "phases": [
+            {
+                "name": "phase_1_roman_support_bootstrap",
+                "notes": "Roman support village focused on clean eco and infrastructure.",
+                "rules": [
+                    {
+                        "kind": "resource_fields",
+                        "target_level": 7
+                    },
+                    {
+                        "kind": "building_name",
+                        "contains_any": [
+                            "main building",
+                            "bÃ¢timent principal"
+                        ],
+                        "target_level": 10
+                    },
+                    {
+                        "kind": "building_name",
+                        "contains_any": [
+                            "warehouse",
+                            "entrepÃ´t"
+                        ],
+                        "target_level": 14
+                    },
+                    {
+                        "kind": "building_name",
+                        "contains_any": [
+                            "granary",
+                            "silo"
+                        ],
+                        "target_level": 14
+                    }
+                ]
+            },
+            {
+                "name": "phase_2_roman_support_online",
+                "notes": "Make it a flexible shipment and support node.",
+                "rules": [
+                    {
+                        "kind": "resource_fields",
+                        "target_level": 9
+                    },
+                    {
+                        "kind": "building_name",
+                        "contains_any": [
+                            "marketplace",
+                            "marchÃ©"
+                        ],
+                        "target_level": 10
+                    },
+                    {
+                        "kind": "building_name",
+                        "contains_any": [
+                            "warehouse",
+                            "entrepÃ´t"
+                        ],
+                        "target_level": 18
+                    },
+                    {
+                        "kind": "building_name",
+                        "contains_any": [
+                            "granary",
+                            "silo"
+                        ],
+                        "target_level": 18
+                    }
+                ]
+            },
+            {
+                "name": "phase_3_roman_flex_finish",
+                "notes": "Keep flexible for future settlers, infra or secondary support role.",
+                "rules": [
+                    {
+                        "kind": "resource_fields",
+                        "target_level": 10
+                    },
+                    {
+                        "kind": "building_name",
+                        "contains_any": [
+                            "main building",
+                            "bÃ¢timent principal"
+                        ],
+                        "target_level": 15
+                    },
+                    {
+                        "kind": "building_name",
+                        "contains_any": [
+                            "marketplace",
+                            "marchÃ©"
+                        ],
+                        "target_level": 15
+                    }
+                ]
+            }
+        ]
+    },
+    "max_build_queue": 1,
     "continuous_poll_seconds": 10,
-    "farm_lists_interval_minutes": 15,
+    "farm_lists_interval_minutes": 5,
     "oasis_raid_planner_interval_minutes": 20,
     "hero_check_interval_seconds": 300,
-    "auto_create_smart_oasis_raid_plans": false,
+    "auto_create_smart_oasis_raid_plans": true,
     "hero_adventure_mode": "browser",
-    "hero_browser_headless": false,
+    "hero_browser_headless": true,
     "hero_watch_video_first": false,
     "farm_list_mode": "by_name",
     "farm_list_names": [
-      "SCOUT"
+        "SCOUT",
+        "2O"
     ],
     "use_manual_building_plan_if_exists": false,
     "farm_list_browser_fallback": true,
@@ -604,11 +555,18 @@
     "oasis_standalone_retry_minutes": 5,
     "pause_building_development": false,
     "enable_troop_training_when_possible": true,
-    "enable_settler_training_when_possible": true,
+    "enable_settler_training_when_possible": false,
     "training_attempts_per_village": 1,
     "settler_training_amount": 1,
-    "troop_training_amount": 1,
+    "troop_training_amount": "max",
     "troop_training_priority": [
-      "t1"
+        "t5",        "t1"
+    ],
+    "training_interval_minutes": 20,
+    "training_building_types": [
+        "barracks"
+    ],
+    "pause_building_for_villages": [],
+    "training_for_villages": [1
     ]
-  }
+}

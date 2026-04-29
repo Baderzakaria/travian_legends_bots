@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html
+    id="mainLayout"
+    lang="en-US"
+    style="--readingDirection: ltr; --readingDirectionFrom: left; --readingDirectionTo: right; --scaleXFactor: 1;"
+>
+	<head>
+		<title>International - x10 Reign of Fire</title>
+<meta charset="" />
+<meta name="viewport" content="width=device-width"/>
+<meta name="theme-color" content="#F4EFE4" />
+<link rel="manifest" href="/manifest.webmanifest" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png"/>
+<link href="https://cdn.legends.travian.com/gpack/417.4/css_ltr/imports_compressed.css" rel="stylesheet" type="text/css" />
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/jquery-3.5.1.min.js"></script>
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/jquery.md5.min.js"></script>
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/d3/d3.min.js"></script>
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/d3/d3pie.min.js"></script>
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/ChartJs/Chart.min.js"></script>
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/gsap/TweenMax.min.js"></script>
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/gsap/plugins/MorphSVGPlugin.min.js"></script>
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/simplebar.min.js"></script>
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/popper.min.js"></script>
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/tippy.min.js"></script>
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/PixiJS/pixi.min.js"></script>
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/deepmerge.js"></script>
+<script type="application/javascript">window.Travian = {};</script>
+<script type="application/javascript" src="/js/Constants.js"></script>
+<script type="application/javascript" src="/js/Variables.js?417.4"></script>
+<script type="application/javascript" src="/js/en-US/Strings.js?417.4"></script>
+<script defer type='application/javascript' src='https://cdn.legends.travian.com/gpack/417.4/js/bundle/vendor.js'></script>
+<script defer type='application/javascript' src='https://cdn.legends.travian.com/gpack/417.4/js/bundle/runtime.js'></script>
+<script defer type='application/javascript' src='https://cdn.legends.travian.com/gpack/417.4/js/bundle/main.js'></script>
+<script type="application/javascript" src="https://cdn.legends.travian.com/gpack/417.4/js/bundle/crypt.js"></script>
+<script type="application/javascript">
+    Travian.Game.language = "en-US";
+    Travian.Game.timestamp = 1776267690;
+    Travian.Game.timeZone = "Europe/London";
+    Travian.Game.timezoneOffsetToUTC = -3600;
+    Travian.Game.timeFormat = 0;
+</script>
+<script type="application/javascript">
+    Travian.Game.Preferences.initialize({"auctionsOverviewBids_showMore":"true","flagAttributesBoxOpen":"1","hideContextualHelp":"","lastUsedPaymentMethod":"ADYEN_SCA_CC","videoFeatureVideoInfoScreen":"{\"adventureDuration\":false,\"adventureDifficulty\":false}"});
+    Travian.Game.PaymentWizardEventListener.defaultOptions = {"shopUIVersion":4,"cssClass":"paymentShopV4","data":{"activeTab":"buyGold"}};
+</script>
+	</head>
+	<body class="build ltr mobileOptimized"
+        data-browser="" data-browser-engine="" data-theme="default" data-language="en-US" data-village-perspective="perspectiveResources"     >
+        <script>window.cmp_minimaltracking=true;window.cmp_disable_spa=true;window.cmp_noscreen=true;</script><script>window.gdprAppliesGlobally=true;if(!("cmp_id" in window)||window.cmp_id<1){window.cmp_id=0}if(!("cmp_cdid" in window)){window.cmp_cdid="40dcf06677fd"}if(!("cmp_params" in window)){window.cmp_params=""}if(!("cmp_host" in window)){window.cmp_host="d.delivery.consentmanager.net"}if(!("cmp_cdn" in window)){window.cmp_cdn="cdn.consentmanager.net"}if(!("cmp_proto" in window)){window.cmp_proto="https:"}if(!("cmp_codesrc" in window)){window.cmp_codesrc="1"}window.cmp_getsupportedLangs=function(){var b=["DE","EN","FR","IT","NO","DA","FI","ES","PT","RO","BG","ET","EL","GA","HR","LV","LT","MT","NL","PL","SV","SK","SL","CS","HU","RU","SR","ZH","TR","UK","AR","BS"];if("cmp_customlanguages" in window){for(var a=0;a<window.cmp_customlanguages.length;a++){b.push(window.cmp_customlanguages[a].l.toUpperCase())}}return b};window.cmp_getRTLLangs=function(){var a=["AR"];if("cmp_customlanguages" in window){for(var b=0;b<window.cmp_customlanguages.length;b++){if("r" in window.cmp_customlanguages[b]&&window.cmp_customlanguages[b].r){a.push(window.cmp_customlanguages[b].l)}}}return a};window.cmp_getlang=function(j){if(typeof(j)!="boolean"){j=true}if(j&&typeof(cmp_getlang.usedlang)=="string"&&cmp_getlang.usedlang!==""){return cmp_getlang.usedlang}var g=window.cmp_getsupportedLangs();var c=[];var f=location.hash;var e=location.search;var a="languages" in navigator?navigator.languages:[];if(f.indexOf("cmplang=")!=-1){c.push(f.substr(f.indexOf("cmplang=")+8,2).toUpperCase())}else{if(e.indexOf("cmplang=")!=-1){c.push(e.substr(e.indexOf("cmplang=")+8,2).toUpperCase())}else{if("cmp_setlang" in window&&window.cmp_setlang!=""){c.push(window.cmp_setlang.toUpperCase())}else{if(a.length>0){for(var d=0;d<a.length;d++){c.push(a[d])}}}}}if("language" in navigator){c.push(navigator.language)}if("userLanguage" in navigator){c.push(navigator.userLanguage)}var h="";for(var d=0;d<c.length;d++){var b=c[d].toUpperCase();if(g.indexOf(b)!=-1){h=b;break}if(b.indexOf("-")!=-1){b=b.substr(0,2)}if(g.indexOf(b)!=-1){h=b;break}}if(h==""&&typeof(cmp_getlang.defaultlang)=="string"&&cmp_getlang.defaultlang!==""){return cmp_getlang.defaultlang}else{if(h==""){h="EN"}}h=h.toUpperCase();return h};(function(){var i=document;var b=window;var a="";var g="_en";if("cmp_getlang" in b){a=b.cmp_getlang().toLowerCase();g="_"+a}var f=("cmp_proto" in b)?b.cmp_proto:"https:";if(f!="http:"&&f!="https:"){f="https:"}var c=i.createElement("script");c.setAttribute("data-cmp-ab","1");c.src=f+"//"+b.cmp_cdn+"/delivery/autocdn/cmp-web."+("cmp_id" in b&&b.cmp_id>0?b.cmp_id:"")+("cmp_cdid" in b?"x"+b.cmp_cdid:"")+"."+a.replace("_","").toLowerCase()+".js";c.type="text/javascript";c.async=true;if(i.body){i.body.appendChild(c)}else{if(i.currentScript&&i.currentScript.parentElement){i.currentScript.parentElement.appendChild(c)}else{var h=i.getElementsByTagName("body");if(h.length==0){h=i.getElementsByTagName("div")}if(h.length==0){h=i.getElementsByTagName("span")}if(h.length==0){h=i.getElementsByTagName("ins")}if(h.length==0){h=i.getElementsByTagName("script")}if(h.length==0){h=i.getElementsByTagName("head")}if(h.length>0){h[0].appendChild(c)}}}var c=i.createElement("script");c.src=f+"//"+b.cmp_cdn+"/delivery/js/cmp"+g+".min.js";c.type="text/javascript";c.setAttribute("data-cmp-ab","1");c.async=true;if(i.body){i.body.appendChild(c)}else{if(i.currentScript&&i.currentScript.parentElement){i.currentScript.parentElement.appendChild(c)}else{var h=i.getElementsByTagName("body");if(h.length==0){h=i.getElementsByTagName("div")}if(h.length==0){h=i.getElementsByTagName("span")}if(h.length==0){h=i.getElementsByTagName("ins")}if(h.length==0){h=i.getElementsByTagName("script")}if(h.length==0){h=i.getElementsByTagName("head")}if(h.length>0){h[0].appendChild(c)}}}})();window.cmp_addFrame=function(b){if(!window.frames[b]){if(document.body){var a=document.createElement("iframe");a.style.cssText="display:none";if("cmp_cdn" in window&&"cmp_ultrablocking" in window&&window.cmp_ultrablocking>0){a.src="//"+window.cmp_cdn+"/delivery/empty.html"}a.name=b;document.body.appendChild(a)}else{window.setTimeout(window.cmp_addFrame,10,b)}}};window.cmp_rc=function(h){var b=document.cookie;var f="";var d=0;while(b!=""&&d<100){d++;while(b.substr(0,1)==" "){b=b.substr(1,b.length)}var g=b.substring(0,b.indexOf("="));if(b.indexOf(";")!=-1){var c=b.substring(b.indexOf("=")+1,b.indexOf(";"))}else{var c=b.substr(b.indexOf("=")+1,b.length)}if(h==g){f=c}var e=b.indexOf(";")+1;if(e==0){e=b.length}b=b.substring(e,b.length)}return(f)};window.cmp_stub=function(){var a=arguments;__cmp.a=__cmp.a||[];if(!a.length){return __cmp.a}else{if(a[0]==="ping"){if(a[1]===2){a[2]({gdprApplies:gdprAppliesGlobally,cmpLoaded:false,cmpStatus:"stub",displayStatus:"hidden",apiVersion:"2.0",cmpId:31},true)}else{a[2](false,true)}}else{if(a[0]==="getUSPData"){a[2]({version:1,uspString:window.cmp_rc("")},true)}else{if(a[0]==="getTCData"){__cmp.a.push([].slice.apply(a))}else{if(a[0]==="addEventListener"||a[0]==="removeEventListener"){__cmp.a.push([].slice.apply(a))}else{if(a.length==4&&a[3]===false){a[2]({},false)}else{__cmp.a.push([].slice.apply(a))}}}}}}};window.cmp_gpp_ping=function(){return{gppVersion:"1.0",cmpStatus:"stub",cmpDisplayStatus:"hidden",supportedAPIs:["tcfca","usnat","usca","usva","usco","usut","usct"],cmpId:31}};window.cmp_gppstub=function(){var a=arguments;__gpp.q=__gpp.q||[];if(!a.length){return __gpp.q}var g=a[0];var f=a.length>1?a[1]:null;var e=a.length>2?a[2]:null;if(g==="ping"){return window.cmp_gpp_ping()}else{if(g==="addEventListener"){__gpp.e=__gpp.e||[];if(!("lastId" in __gpp)){__gpp.lastId=0}__gpp.lastId++;var c=__gpp.lastId;__gpp.e.push({id:c,callback:f});return{eventName:"listenerRegistered",listenerId:c,data:true,pingData:window.cmp_gpp_ping()}}else{if(g==="removeEventListener"){var h=false;__gpp.e=__gpp.e||[];for(var d=0;d<__gpp.e.length;d++){if(__gpp.e[d].id==e){__gpp.e[d].splice(d,1);h=true;break}}return{eventName:"listenerRemoved",listenerId:e,data:h,pingData:window.cmp_gpp_ping()}}else{if(g==="getGPPData"){return{sectionId:3,gppVersion:1,sectionList:[],applicableSections:[0],gppString:"",pingData:window.cmp_gpp_ping()}}else{if(g==="hasSection"||g==="getSection"||g==="getField"){return null}else{__gpp.q.push([].slice.apply(a))}}}}}};window.cmp_msghandler=function(d){var a=typeof d.data==="string";try{var c=a?JSON.parse(d.data):d.data}catch(f){var c=null}if(typeof(c)==="object"&&c!==null&&"__cmpCall" in c){var b=c.__cmpCall;window.__cmp(b.command,b.parameter,function(h,g){var e={__cmpReturn:{returnValue:h,success:g,callId:b.callId}};d.source.postMessage(a?JSON.stringify(e):e,"*")})}if(typeof(c)==="object"&&c!==null&&"__uspapiCall" in c){var b=c.__uspapiCall;window.__uspapi(b.command,b.version,function(h,g){var e={__uspapiReturn:{returnValue:h,success:g,callId:b.callId}};d.source.postMessage(a?JSON.stringify(e):e,"*")})}if(typeof(c)==="object"&&c!==null&&"__tcfapiCall" in c){var b=c.__tcfapiCall;window.__tcfapi(b.command,b.version,function(h,g){var e={__tcfapiReturn:{returnValue:h,success:g,callId:b.callId}};d.source.postMessage(a?JSON.stringify(e):e,"*")},b.parameter)}if(typeof(c)==="object"&&c!==null&&"__gppCall" in c){var b=c.__gppCall;window.__gpp(b.command,function(h,g){var e={__gppReturn:{returnValue:h,success:g,callId:b.callId}};d.source.postMessage(a?JSON.stringify(e):e,"*")},"parameter" in b?b.parameter:null,"version" in b?b.version:1)}};window.cmp_setStub=function(a){if(!(a in window)||(typeof(window[a])!=="function"&&typeof(window[a])!=="object"&&(typeof(window[a])==="undefined"||window[a]!==null))){window[a]=window.cmp_stub;window[a].msgHandler=window.cmp_msghandler;window.addEventListener("message",window.cmp_msghandler,false)}};window.cmp_setGppStub=function(a){if(!(a in window)||(typeof(window[a])!=="function"&&typeof(window[a])!=="object"&&(typeof(window[a])==="undefined"||window[a]!==null))){window[a]=window.cmp_gppstub;window[a].msgHandler=window.cmp_msghandler;window.addEventListener("message",window.cmp_msghandler,false)}};window.cmp_addFrame("__cmpLocator");if(!("cmp_disableusp" in window)||!window.cmp_disableusp){window.cmp_addFrame("__uspapiLocator")}if(!("cmp_disabletcf" in window)||!window.cmp_disabletcf){window.cmp_addFrame("__tcfapiLocator")}if(!("cmp_disablegpp" in window)||!window.cmp_disablegpp){window.cmp_addFrame("__gppLocator")}window.cmp_setStub("__cmp");if(!("cmp_disabletcf" in window)||!window.cmp_disabletcf){window.cmp_setStub("__tcfapi")}if(!("cmp_disableusp" in window)||!window.cmp_disableusp){window.cmp_setStub("__uspapi")}if(!("cmp_disablegpp" in window)||!window.cmp_disablegpp){window.cmp_setGppStub("__gpp")};</script>        <div id="reactPortalRoot"></div>
+        <div id="reactDialogWrapper"></div>
+
+		<div id="background" class=" ">
+			<div id="topBar">
+    <a id="logo" href="https://www.travian.com/international" target="_blank" title="Travian">
+		<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 172.7 60">
+  <path d="M52.9 34.4c-.2-.3-.3-.7-.3-1.3 0-.8-.1-1.2-.1-1.3l-.1-3.9.1-6.6c0-1.1.1-2.2.1-3.3.1-1.5.2-2.4.3-2.8.1 0 .3 0 .6-.1h.4c2.6 0 4.1.3 4.4.8.1.1.1.4.3.8.1.4.2.5.2.5s.1 0 .2-.1V17c0-.4.1-.9.2-1.4.2-.5.3-1 .5-1.6l-.4-.1c-.9.2-1.9.4-3.1.4h-5l-6.5-.3c-.3 0-.5.4-.8 1.2-.1.5-.3 1-.4 1.4-.2.5-.3.8-.3.8v.2h.2c.1-.4.3-.7.6-1 .3-.3.6-.5.9-.6.3-.1.9-.2 2.1-.4 1.3-.2 2.1-.3 2.5-.3.3 0 .4 1.5.4 4.5l-.1 8.6c-.1 2.2-.3 3.7-.3 4.6-.1.9-.2 1.5-.4 1.8-.1.1-.2.2-.4.2-.2.1-.3.2-.3.3l.5.1c.2-.1.4-.1.5-.1 1.1-.1 1.8-.2 1.9-.2l2.8.2c.2 0 .3-.1.4-.2 0 0-.3-.1-.8-.2-.4-.2-.7-.3-.8-.5zm19.7-.1c.6.7 1.4 1 2.3 1h.9c1.2-.1 1.8-.2 1.9-.3-.1 0-.4-.1-.8-.3-.2-.1-.5-.2-.6-.4-.5-.4-1.1-1.2-1.7-2.2-.5-.9-1-1.8-1.4-2.7-.3-.5-.7-1.3-1.4-2.4-.4-.8-.7-1.2-.7-1.2 0-.1.4-.5 1-1.1.7-.7 1.3-1.4 1.6-2.1.6-1 .9-2.2.9-3.4 0-1.8-.7-3.1-2.1-3.9-1-.6-2.3-1-3.7-1l-2.8.1c-.9 0-1.6.1-2.1.1l-1.5.1c-.1 0-.3.1-.6.2l.3.1c.2.1.2.1.3.2.4 1 .6 2 .6 3l.1 3.9v2s0 .3-.1.8c0 .5-.1.7-.1.8v2l-.2 4.2c0 1.9-.1 3-.2 3.3-.3.4-.5.6-.6.7 1.2-.2 2-.3 2.3-.3h2.2s.3-.1.9-.2c-.1-.1-.2-.1-.4-.1-.9 0-1.4-1-1.4-3v-5.4c0-.2.1-.4.3-.4 1.2 0 2 .2 2.4.6.5.5 1 1.3 1.5 2.1.4.7.8 1.5 1.2 2.2.8 1.7 1.4 2.7 1.7 3zm-5.2-8.2h-1.8l.1-11.3h.9c1.4 0 2.6.8 3.6 2.5.9 1.5 1.4 2.9 1.4 4.3 0 1.9-.3 3.1-.9 3.6-.4.7-1.5.9-3.3.9zm33.6 8.6c-.4-.2-.7-.5-.9-.9-1.2-2-2.5-4.9-3.8-8.6-.9-2.6-1.7-5.1-2.6-7.7-.2-.7-.5-1.3-.7-2-.4-1-.9-1.5-1.3-1.5h-3.2c-.2 0-.4.1-.6.1-.2 0-.3.1-.3.2.1.1.2.1.2.1h.5c.3 0 .5.1.8.3.2.2.3.5.3.8 0 .5-.9 3-2.6 7.5-1.6 4.1-2.7 6.9-3.4 8.5-.7 1.6-1.5 2.8-2.5 3.6.3 0 .8 0 1.4.1.7.1 1.1.1 1.4.1l3.6-.5c-.7-.2-1.4-.5-2.1-.8-.6-.3-.9-.8-.9-1.7 0-.8.4-2.2 1.1-4.1l.6-1.8c.4-1 .8-1.6 1-1.6h5.4c.8 1.8 1.4 3.2 1.8 4.2.4 1.1.9 2.3 1.3 3.5.8 1.7 1.7 2.6 2.7 2.6l3-.2c.3.1.1 0-.2-.2zm-8.5-10.3h-5.4l2.8-7.4c.4.7.6 1.3.8 1.7l1.8 5.4v.3zm20.7-10.2c.3-.1.6.2.8.7.2.4.2.8.2 1.3 0 1.3-.8 4.2-2.3 8.5-1 2.8-1.8 4.9-2.5 6.4-1.6-3.7-2.8-6.9-3.8-9.4-.8-2.3-1.5-4-1.8-5.1-.5-1.4-.8-2.1-.8-2.1-.3-.1-.8-.2-1.6-.2h-2.6c-.3 0-.5.1-.6.3.2.1.4.1.6.2.2.1.3.2.5.3 1.1 1.5 2.3 3.7 3.5 6.7.7 1.5 1.6 3.9 2.8 7.1 1.1 3 1.7 4.6 1.8 4.9.6 1.2.9 1.8 1 1.9 2.8-7.3 5.8-14.6 9-21.8h-4.2v.3zm7.8 3.6c0 .3.1.6.1.8v6.8l-.1 4.9-.5 5.1h4.2c.1-.1.1-.2.1-.2-.5-.2-.7-.3-.7-.3-.2-.2-.3-.5-.3-.9 0-.3-.1-.6-.1-1l.1-9.6c.1-3.6.2-6.7.5-9.4h-.3c.1 0-.1 0-.6.1s-1 .1-1.7.1h-1.5c.5.5.7 1.1.8 1.8-.1.5-.1 1.2 0 1.8zm27 16.9c-.4-.2-.7-.5-.9-.9-1.2-2-2.5-4.9-3.8-8.6-.9-2.6-1.7-5.1-2.6-7.7-.2-.7-.5-1.3-.7-2-.4-1-.9-1.5-1.3-1.5l-3.1.1c-.2 0-.4.1-.6.1-.2 0-.3.1-.3.2.1.1.2.1.2.1h.5c.3 0 .5.1.8.3.2.2.3.5.3.8 0 .5-.9 3-2.6 7.5-1.6 4.1-2.7 6.9-3.4 8.5-.7 1.6-1.5 2.8-2.5 3.6.3 0 .8 0 1.4.1.7.1 1.1.1 1.4.1l3.6-.5c-.7-.2-1.4-.5-2.1-.8-.6-.3-.9-.8-.9-1.7 0-.8.4-2.2 1.1-4.1l.6-1.8c.4-1 .8-1.6 1-1.6h5.4c.8 1.8 1.4 3.2 1.8 4.2.4 1.1.9 2.3 1.3 3.5.8 1.7 1.7 2.6 2.7 2.6l3-.2c.2 0 .1-.1-.3-.3zm-8.4-10.3h-5.4L137 17c.4.7.6 1.3.8 1.7l1.8 5.4v.3zm29.7-10.2c-.4 0-1 .2-2 .5-.8.3-1.3.5-1.4.6.2 0 .8 0 1.7-.1.2 0 .3.1.3.2.1 1.4.2 2.5.2 3.2.1 2.1.2 4.4.3 6.6l.1 4.6c0 .2 0 .3-.1.4-3.4-3.8-5.7-6.3-6.8-7.6-2.8-3.3-4.8-6.1-6.2-8.6-2.1.2-3.8.3-4.9.5 1.3.6 2.1 1.4 2.5 2.4.3.6.4 1.6.4 3l-.2 3.7v1.7c0 3.8-.2 6.4-.6 7.9-.1.4-.3.7-.7 1-.5.4-.8.7-.9.7.5.1 1.1.2 2 .2.7 0 1.5-.1 2.5-.3 1.3-.3 2-.5 2-.5-.6-.1-1.1-.2-1.4-.2-.5 0-.9-.1-1.4-.4-.1-.1-.2-.3-.3-.5 0-.1-.1-.3-.1-.7-.2-1.9-.3-3.2-.3-4-.1-3.9-.1-7.1 0-9.7 1.1 1.3 3.1 3.5 5.8 6.7 1.8 2.1 4.3 4.9 7.5 8.4.9.9 1.3 1.4 1.4 1.4.1 0 .1 0 .2-.1.1-1.8.2-3.7.3-5.5.2-3.6.3-5.6.3-6.1v-1.4c0-.3.2-2.6.6-6.9.2-.1.7-.3 1.3-.5.6-.2.9-.3 1.1-.5l-3.2-.1zm-112 27.6H56v9.5h6v-1.2h-4.7m14.5-3.2h5.3v-1.1h-5.3v-2.9h5.7v-1.1h-7v9.5h7.2v-1.2h-5.9m19.1-2.6h2.8v1.8c-.3.2-.7.5-1.2.7s-1.1.3-1.6.3c-.6 0-1.2-.1-1.8-.4-.6-.3-1-.7-1.3-1.3-.3-.6-.4-1.3-.4-2.1 0-.7.1-1.3.4-1.9.1-.3.3-.7.6-.9.3-.3.6-.5 1-.7.4-.2.9-.3 1.5-.3.5 0 .9.1 1.3.2s.7.4.9.7c.2.3.4.7.5 1.1l1.2-.3c-.2-.6-.4-1.2-.7-1.6s-.8-.7-1.3-.9c-.6-.2-1.2-.3-1.9-.3-1 0-1.8.2-2.5.6s-1.3 1-1.7 1.8c-.4.8-.6 1.7-.6 2.6 0 .9.2 1.8.6 2.5s1 1.3 1.8 1.7 1.6.6 2.6.6c.7 0 1.4-.1 2.1-.4.7-.2 1.3-.6 1.9-1.1v-3.5H91v1.1zm14.2-.6h5.4v-1.1h-5.4v-2.9h5.7v-1.1h-7v9.5h7.3v-1.2h-6m21-.9l-5.1-7.4h-1.3v9.5h1.3v-7.5l5 7.5h1.3v-9.5h-1.2m16.8.8c-.4-.3-.9-.6-1.4-.7-.4-.1-1-.1-1.7-.1h-3.3v9.5h3.5c.6 0 1.1-.1 1.6-.2s.8-.3 1.2-.5c.3-.2.6-.5.9-.9.3-.4.5-.8.7-1.4.2-.6.3-1.2.3-1.9 0-.8-.1-1.6-.4-2.3-.5-.5-.9-1.1-1.4-1.5zm-.1 5.7c-.2.5-.4.9-.7 1.2-.2.2-.5.4-.9.5s-.9.2-1.5.2h-2.1V43h2c.8 0 1.3.1 1.7.2.5.2.9.5 1.2 1.1.3.5.5 1.3.5 2.3.1.6 0 1.2-.2 1.7zm15.9-2c-.4-.2-1.1-.4-2.1-.6-1-.2-1.7-.5-1.9-.7-.2-.2-.4-.5-.4-.8 0-.4.2-.7.5-1 .4-.3.9-.4 1.7-.4.7 0 1.3.2 1.7.5.4.3.6.8.7 1.4l1.2-.1c0-.6-.2-1.1-.5-1.5-.3-.4-.7-.8-1.3-1-.5-.2-1.2-.3-1.9-.3-.6 0-1.2.1-1.8.3-.5.2-.9.5-1.2.9-.3.4-.4.9-.4 1.3s.1.8.3 1.2c.2.4.6.6 1 .9.4.2 1 .4 1.9.6.9.2 1.5.4 1.7.5.4.2.7.3.9.6.2.2.3.5.3.8 0 .3-.1.6-.3.8-.2.2-.5.4-.8.6-.4.1-.8.2-1.3.2s-1-.1-1.5-.3-.8-.4-1-.7c-.2-.3-.3-.7-.4-1.2l-1.2.1c0 .6.2 1.2.5 1.7s.8.9 1.4 1.1 1.3.4 2.2.4c.7 0 1.3-.1 1.9-.4.6-.2 1-.6 1.3-1 .3-.4.4-.9.4-1.4 0-.5-.1-1-.4-1.3-.2-.7-.6-1-1.2-1.2z"></path>
+  <image width="156" height="250" transform="matrix(.24 0 0 .24 .22 .14)" xlink:href="https://cdn.legends.travian.com/gpack/417.4/logo.png"></image>
+</svg>
+	</a>
+			<div id="header" class="referAFriend">
+            <input type="checkbox" id="mobileMenuState" />
+    
+			<div id="navigation">
+			<a class="village resourceView " href="/dorf1.php" accesskey="1" title="Resources||"></a>
+			<a class="village buildingView " href="/dorf2.php" accesskey="2" title="Buildings||"></a>
+
+			<a class="map" href="/karte.php" accesskey="3" title="Map||"></a>
+			<a class="statistics" href="/statistics" accesskey="4" title="Statistics||"></a>
+			<a class="reports" href="/report" accesskey="5" title="Reports||New reports: 1">
+									<div class="indicator">1</div>
+							</a>
+			<a class="messages" href="/messages" accesskey="6" title="Messages||New messages: 0">
+							</a>
+
+			<a class="dailyQuests" href="#" accesskey="7" title="Daily quests||Collect daily rewards" onclick="Travian.React.openDailyQuestsDialog(); return false;">
+							</a>
+
+								<label class="mobileMenuButton" for="mobileMenuState">
+											</label>
+					<a class="mobileShopButton" href="#" accesskey="8" title="" onclick="jQuery(window).trigger('startPaymentWizard', {}); this.blur(); return false;"></a>
+					</div>
+
+		<div class="currency">
+            <svg viewBox="0 0 50 50" class="goldCoin" onClick="jQuery(window).trigger('startPaymentWizard', {data:{activeTab: Travian.Constants.SHOP_TABS.advantages}}); return false;">
+    <defs>
+        <linearGradient id="gold-coin-linear-gradient" x1="25" x2="25" y1="2" y2="48" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#ffdc79"></stop>
+            <stop offset=".47" stop-color="#fcbf60"></stop>
+            <stop offset=".8" stop-color="#af7029"></stop>
+            <stop offset="1" stop-color="#c09957"></stop>
+        </linearGradient>
+        <linearGradient id="gold-coin-linear-gradient-2" x1="25" x2="25" y1="7.9" y2="42.19" gradientUnits="userSpaceOnUse">
+            <stop offset=".06" stop-color="#81481b"></stop>
+            <stop offset="1" stop-color="#fef6a9"></stop>
+        </linearGradient>
+    </defs>
+    <circle cx="25" cy="25" r="25" fill="#522d1c"><title>Gold</title></circle>
+    <circle cx="25" cy="25" r="23" fill="url(#gold-coin-linear-gradient)"><title>Gold</title></circle>
+    <circle cx="25" cy="25" r="17" fill="url(#gold-coin-linear-gradient-2)"><title>Gold</title></circle>
+    <path fill="#b4772a" d="M41 25C40.62 3.67 9.38 3.67 9 25c.38 21.33 31.62 21.33 32 0Z"><title>Gold</title></path>
+    <path fill="#a06327" d="M14.84 12.41c.63-.49 1.29-.94 1.99-1.32l6.58 7.14v2.01l-8.57-7.83Zm20.9 10.4c.22-.05.91-.05.91-.05s2.01-1.26 3.66-2.53c-.11-.38-.22-.76-.35-1.12-.03-.06-.06-.13-.09-.2-1.69 1.71-3.63 3.58-4.12 3.89Zm-24.72-5.9c2.85 2.36 8.53 5.55 13.36 5.45-.49.1 1.95.1 1.36 0 4.87 0 10.42-3.05 13.24-5.42-.39-.69-.88-1.38-1.36-2.07-12.05 9.83-13.24 9.75-25.24-.03-.5.64-.96 1.32-1.37 2.07Zm14.14-1.24-3.38-6.36c-.42.08-.84.17-1.25.28 1.18 1.77 4.07 5.33 4.63 6.08Zm-1.25-6.62 1.25 1.6 1.24-1.59c-.83-.07-1.66-.06-2.49-.01Zm1.34 6.62s.69-1.18 1.96-2.66c.71-.81 1.75-2.27 2.51-3.35-.37-.11-.75-.19-1.13-.27l-3.35 6.28ZM9.07 23.94c-.02.35-.06.69-.07 1.06.01.67.05 1.31.12 1.94l2.5-3H9.06Zm17.75-3.84 8.47-7.59c-.62-.5-1.28-.95-1.96-1.35l-6.51 7.06v1.87Zm-12.37 2.66c-.38-.19-2.46-2.2-4.29-3.95-.16.42-.31.85-.43 1.29 2.51 1.71 3.48 2.85 4.72 2.66Zm24.21 10.89c-5.93-6.46-11.45-8.13-11.45-8.13 4.43 3.21 8.18 7.47 10.15 9.95.47-.56.91-1.16 1.31-1.82Zm-3.76-9.81h-4.48v.1c3.94 1.36 7.68 4.15 9.84 6.02.11-.38.23-.77.31-1.17-2.24-2.25-5.67-4.95-5.67-4.95Zm-8.37 6.8-.19 1.58c2.17 1.34 4.6 4.69 6.17 7.05.96-.47 1.86-1.05 2.71-1.71-4.64-4.57-8.68-6.91-8.68-6.91Zm-6.82-6.8h-4.38v.1s-3.51 2.78-5.85 5.03c.09.37.19.74.29 1.09 2.16-1.87 5.9-4.77 9.94-6.22Zm21.22.1H38.5l2.38 2.8c.06-.56.1-1.14.11-1.74 0-.36-.04-.71-.07-1.06Zm-17.91 1.58c-.68-.1-5.16 1.38-11.59 8.27.4.65.84 1.25 1.32 1.81 1.96-2.38 5.73-6.76 10.27-10.08Zm-5.33 13.84c1.57-2.44 3.97-5.74 6.21-7.15l-.19-1.48s-4.01 2.32-8.73 6.96c.85.65 1.76 1.21 2.71 1.67Zm12.93-.15-4.09-4.33H24l-4.09 4.33c1.56.59 2.92-1.97 5.36-3.64 2.34 1.67 3.7 4.24 5.36 3.64Z"><title>Gold</title></path>
+    <path fill="#703e19" d="M34.65 15.43h-1.8l-.4.6h-14.9l-.4-.6h-1.8l-1 5.8.9 1 2.1-3.1h4.8v14.6c0 1.7-2.6 2.1-2.6 2.1v2.3h11v-2.3s-2.6-.4-2.6-2.1v-14.6h4.8l2.1 3.1.7-1.1-.9-5.7Z"><title>Gold</title></path>
+    <path fill="#f7ce7c" d="m34.95 21.25.7-1.1-1-5.8h-1.8l-.4.6h-14.9l-.4-.6h-1.8l-1 5.8.9 1.1 2.1-3.1h5.3v14.6c0 1.7-3.1 2.1-3.1 2.1v1.4l.8.8h9.5l.7-.8v-1.5s-3.1-.4-3.1-2.1v-14.6h5.4l2.1 3.2Z"><title>Gold</title></path>
+    <path fill="#faf28a" d="m14.45 20.25-.1-.1 1-5.8h1.8l.4.6h14.9l.4-.6h1.8l1 5.8-.1.1-.9-5.3h-1.8l-.4.6h-14.9l-.4-.6h-1.8l-.9 5.3Zm5.1 15.17c.2.1 3.7-.8 3.1-2.7 0 1.7-3.1 2.1-3.1 2.1v.6Zm7.9-2.76c-.6 2 2.8 2.8 3.1 2.7v-.6s-3.1-.5-3.1-2.1Z"><title>Gold</title></path>
+    <path fill="#a87134" d="M25.05 4c1.48 0 1.48 2.26 0 2.26S23.57 4 25.05 4ZM21.7 6.56c1.48-.2 1.08-2.46-.39-2.16-1.38.2-.98 2.46.39 2.16Zm-3.14.78c1.38-.49.59-2.66-.79-2.07-1.28.49-.49 2.66.79 2.07Zm-2.95 1.38c1.28-.69.1-2.66-1.08-1.97-1.28.79-.1 2.75 1.08 1.97Zm-2.66 1.87c1.08-.89-.3-2.66-1.48-1.67-1.08.89.39 2.66 1.48 1.67Zm-2.26 2.36c.98-1.08-.79-2.56-1.67-1.48-.98 1.08.69 2.56 1.67 1.48Zm-1.97 2.66c.79-1.28-1.18-2.36-1.97-1.08-.69 1.18 1.28 2.36 1.97 1.08Zm-1.38 2.95c.59-1.38-1.57-2.07-2.07-.79-.49 1.38 1.67 2.16 2.07.79Zm-.78 3.14c.3-1.38-1.97-1.77-2.16-.39-.3 1.48 1.87 1.87 2.16.39Zm-.3 3.25c0-1.48-2.26-1.48-2.26 0s2.26 1.48 2.26 0Zm.3 3.35c-.2-1.48-2.46-1.08-2.16.39.2 1.38 2.36.98 2.16-.39Zm.78 3.14c-.49-1.38-2.66-.59-2.07.79.49 1.28 2.66.49 2.07-.79Zm1.38 2.95c-.69-1.28-2.66-.1-1.97 1.08.79 1.28 2.75.1 1.97-1.08Zm1.87 2.66c-.89-1.08-2.66.39-1.67 1.48.89 1.08 2.66-.39 1.67-1.48Zm2.36 2.36c-1.08-.98-2.56.79-1.48 1.67 1.08.98 2.56-.79 1.48-1.67Zm2.66 1.87c-1.28-.79-2.36 1.18-1.08 1.97 1.18.69 2.36-1.28 1.08-1.97Zm2.95 1.38c-1.38-.49-2.16 1.67-.79 2.07 1.38.49 2.16-1.57.79-2.07Zm3.14.78c-1.38-.3-1.77 1.97-.39 2.16 1.48.39 1.87-1.87.39-2.16Zm3.25.3c-1.48 0-1.48 2.26 0 2.26s1.48-2.26 0-2.26Zm3.25-.3c-1.48.2-1.08 2.46.39 2.16 1.48-.2 1.08-2.36-.39-2.16Zm3.14-.78c-1.38.49-.59 2.66.79 2.07 1.38-.49.59-2.56-.79-2.07Zm3.05-1.38c-1.28.69-.1 2.66 1.08 1.97 1.28-.79.1-2.75-1.08-1.97Zm2.66-1.87c-1.08.89.3 2.66 1.48 1.67 1.08-.89-.39-2.66-1.48-1.67Zm2.26-2.36c-.98 1.08.79 2.56 1.67 1.48.98-1.08-.69-2.56-1.67-1.48Zm1.87-2.66c-.79 1.28 1.18 2.36 1.97 1.08.79-1.18-1.18-2.36-1.97-1.08Zm1.38-2.95c-.49 1.38 1.57 2.16 2.07.79.59-1.38-1.57-2.16-2.07-.79Zm.88-3.14c-.3 1.38 1.97 1.77 2.16.39.3-1.48-1.97-1.87-2.16-.39Zm.3-3.25c0 1.48 2.26 1.48 2.26 0s-2.26-1.48-2.26 0Zm-.3-3.25c.2 1.48 2.46 1.08 2.16-.39-.2-1.48-2.46-1.08-2.16.39Zm-.78-3.14c.49 1.38 2.66.59 2.07-.79-.49-1.38-2.66-.59-2.07.79Zm-1.38-3.05c.69 1.28 2.66.1 1.97-1.08-.79-1.28-2.75-.1-1.97 1.08Zm-1.97-2.66c.89 1.08 2.66-.3 1.67-1.48-.79-1.08-2.56.39-1.67 1.48Zm-2.26-2.26c1.08.98 2.56-.79 1.48-1.67-1.18-.98-2.56.69-1.48 1.67Zm-2.66-1.87c1.28.79 2.36-1.18 1.08-1.97-1.18-.79-2.36 1.18-1.08 1.97Zm-2.95-1.38c1.38.49 2.16-1.67.79-2.07-1.38-.59-2.16 1.57-.79 2.07Zm-3.14-.88c1.38.3 1.77-1.97.39-2.16-1.48-.3-1.87 1.97-.39 2.16Z"><title>Gold</title></path>
+</svg>
+            <div class="value ajaxReplaceableGoldAmount">
+                &#x202d;0&#x202c;            </div>
+            <svg viewBox="0 0 50 50" class="silverCoin" onClick="jQuery(window).trigger('startPaymentWizard', {data:{activeTab: Travian.Constants.SHOP_TABS.advantages}}); return false;">
+    <defs>
+        <linearGradient id="linear-gradient" x1="25" x2="25" y1="2" y2="48" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#c4e0f5"></stop>
+            <stop offset=".48" stop-color="#b7ceeb"></stop>
+            <stop offset=".77" stop-color="#6383a8"></stop>
+            <stop offset="1" stop-color="#98b7db"></stop>
+        </linearGradient>
+        <linearGradient id="linear-gradient-2" x1="25" x2="25" y1="7.9" y2="42.19" gradientUnits="userSpaceOnUse">
+            <stop offset=".06" stop-color="#4b6f7d"></stop>
+            <stop offset="1" stop-color="#fafbfb"></stop>
+        </linearGradient>
+    </defs>
+    <circle cx="25" cy="25" r="25" fill="#303a4c"><title>Silver</title></circle>
+    <circle cx="25" cy="25" r="23" fill="url(#linear-gradient)"><title>Silver</title></circle>
+    <circle cx="25" cy="25" r="17" fill="url(#linear-gradient-2)"><title>Silver</title></circle>
+    <path fill="#7991bc" d="M41 25C40.62 3.67 9.38 3.67 9 25c.38 21.33 31.62 21.33 32 0Z"><title>Silver</title></path>
+    <path fill="#5a7493" d="M14.84 12.41c.63-.49 1.29-.94 1.99-1.32l6.58 7.14v2.01l-8.57-7.83Zm20.9 10.4c.22-.05.91-.05.91-.05s2.01-1.26 3.66-2.53c-.11-.38-.22-.76-.35-1.12-.03-.06-.06-.13-.09-.2-1.69 1.71-3.63 3.58-4.12 3.89Zm-24.72-5.9c2.85 2.36 8.53 5.55 13.36 5.45-.49.1 1.95.1 1.36 0 4.87 0 10.42-3.05 13.24-5.42-.39-.69-.88-1.38-1.36-2.07-12.05 9.83-13.24 9.75-25.24-.03-.5.64-.96 1.32-1.37 2.07Zm14.14-1.24-3.38-6.36c-.42.08-.84.17-1.25.28 1.18 1.77 4.07 5.33 4.63 6.08Zm-1.25-6.62 1.25 1.6 1.24-1.59c-.83-.07-1.66-.06-2.49-.01Zm1.34 6.62s.69-1.18 1.96-2.66c.71-.81 1.75-2.27 2.51-3.35-.37-.11-.75-.19-1.13-.27l-3.35 6.28ZM9.07 23.94c-.02.35-.06.69-.07 1.06.01.67.05 1.31.12 1.94l2.5-3H9.06Zm17.75-3.84 8.47-7.59c-.62-.5-1.28-.95-1.96-1.35l-6.51 7.06v1.87Zm-12.37 2.66c-.38-.19-2.46-2.2-4.29-3.95-.16.42-.31.85-.43 1.29 2.51 1.71 3.48 2.85 4.72 2.66Zm24.21 10.89c-5.93-6.46-11.45-8.13-11.45-8.13 4.43 3.21 8.18 7.47 10.15 9.95.47-.56.91-1.16 1.31-1.82Zm-3.76-9.81h-4.48v.1c3.94 1.36 7.68 4.15 9.84 6.02.11-.38.23-.77.31-1.17-2.24-2.25-5.67-4.95-5.67-4.95Zm-8.37 6.8-.19 1.58c2.17 1.34 4.6 4.69 6.17 7.05.96-.47 1.86-1.05 2.71-1.71-4.64-4.57-8.68-6.91-8.68-6.91Zm-6.82-6.8h-4.38v.1s-3.51 2.78-5.85 5.03c.09.37.19.74.29 1.09 2.16-1.87 5.9-4.77 9.94-6.22Zm21.22.1H38.5l2.38 2.8c.06-.56.1-1.14.11-1.74 0-.36-.04-.71-.07-1.06Zm-17.91 1.58c-.68-.1-5.16 1.38-11.59 8.27.4.65.84 1.25 1.32 1.81 1.96-2.38 5.73-6.76 10.27-10.08Zm-5.33 13.84c1.57-2.44 3.97-5.74 6.21-7.15l-.19-1.48s-4.01 2.32-8.73 6.96c.85.65 1.76 1.21 2.71 1.67Zm12.93-.15-4.09-4.33H24l-4.09 4.33c1.56.59 2.92-1.97 5.36-3.64 2.34 1.67 3.7 4.24 5.36 3.64Z"><title>Silver</title></path>
+    <path fill="#445c6b" d="M34.65 15.43h-1.8l-.4.6h-14.9l-.4-.6h-1.8l-1 5.8.9 1 2.1-3.1h4.8v14.6c0 1.7-2.6 2.1-2.6 2.1v2.3h11v-2.3s-2.6-.4-2.6-2.1v-14.6h4.8l2.1 3.1.7-1.1-.9-5.7Z"><title>Silver</title></path>
+    <path fill="#c4e0f5" d="m34.95 21.25.7-1.1-1-5.8h-1.8l-.4.6h-14.9l-.4-.6h-1.8l-1 5.8.9 1.1 2.1-3.1h5.3v14.6c0 1.7-3.1 2.1-3.1 2.1v1.4l.8.8h9.5l.7-.8v-1.5s-3.1-.4-3.1-2.1v-14.6h5.4l2.1 3.2Z"><title>Silver</title></path>
+    <path fill="#eff7fd" d="m14.45 20.25-.1-.1 1-5.8h1.8l.4.6h14.9l.4-.6h1.8l1 5.8-.1.1-.9-5.3h-1.8l-.4.6h-14.9l-.4-.6h-1.8l-.9 5.3Zm5.1 15.17c.2.1 3.7-.8 3.1-2.7 0 1.7-3.1 2.1-3.1 2.1v.6Zm7.9-2.76c-.6 2 2.8 2.8 3.1 2.7v-.6s-3.1-.5-3.1-2.1Z"><title>Silver</title></path>
+    <path fill="#6f89a4" d="M25.05 4c1.48 0 1.48 2.26 0 2.26S23.57 4 25.05 4ZM21.7 6.56c1.48-.2 1.08-2.46-.39-2.16-1.38.2-.98 2.46.39 2.16Zm-3.14.78c1.38-.49.59-2.66-.79-2.07-1.28.49-.49 2.66.79 2.07Zm-2.95 1.38c1.28-.69.1-2.66-1.08-1.97-1.28.79-.1 2.75 1.08 1.97Zm-2.66 1.87c1.08-.89-.3-2.66-1.48-1.67-1.08.89.39 2.66 1.48 1.67Zm-2.26 2.36c.98-1.08-.79-2.56-1.67-1.48-.98 1.08.69 2.56 1.67 1.48Zm-1.97 2.66c.79-1.28-1.18-2.36-1.97-1.08-.69 1.18 1.28 2.36 1.97 1.08Zm-1.38 2.95c.59-1.38-1.57-2.07-2.07-.79-.49 1.38 1.67 2.16 2.07.79Zm-.78 3.14c.3-1.38-1.97-1.77-2.16-.39-.3 1.48 1.87 1.87 2.16.39Zm-.3 3.25c0-1.48-2.26-1.48-2.26 0s2.26 1.48 2.26 0Zm.3 3.35c-.2-1.48-2.46-1.08-2.16.39.2 1.38 2.36.98 2.16-.39Zm.78 3.14c-.49-1.38-2.66-.59-2.07.79.49 1.28 2.66.49 2.07-.79Zm1.38 2.95c-.69-1.28-2.66-.1-1.97 1.08.79 1.28 2.75.1 1.97-1.08Zm1.87 2.66c-.89-1.08-2.66.39-1.67 1.48.89 1.08 2.66-.39 1.67-1.48Zm2.36 2.36c-1.08-.98-2.56.79-1.48 1.67 1.08.98 2.56-.79 1.48-1.67Zm2.66 1.87c-1.28-.79-2.36 1.18-1.08 1.97 1.18.69 2.36-1.28 1.08-1.97Zm2.95 1.38c-1.38-.49-2.16 1.67-.79 2.07 1.38.49 2.16-1.57.79-2.07Zm3.14.78c-1.38-.3-1.77 1.97-.39 2.16 1.48.39 1.87-1.87.39-2.16Zm3.25.3c-1.48 0-1.48 2.26 0 2.26s1.48-2.26 0-2.26Zm3.25-.3c-1.48.2-1.08 2.46.39 2.16 1.48-.2 1.08-2.36-.39-2.16Zm3.14-.78c-1.38.49-.59 2.66.79 2.07 1.38-.49.59-2.56-.79-2.07Zm3.05-1.38c-1.28.69-.1 2.66 1.08 1.97 1.28-.79.1-2.75-1.08-1.97Zm2.66-1.87c-1.08.89.3 2.66 1.48 1.67 1.08-.89-.39-2.66-1.48-1.67Zm2.26-2.36c-.98 1.08.79 2.56 1.67 1.48.98-1.08-.69-2.56-1.67-1.48Zm1.87-2.66c-.79 1.28 1.18 2.36 1.97 1.08.79-1.18-1.18-2.36-1.97-1.08Zm1.38-2.95c-.49 1.38 1.57 2.16 2.07.79.59-1.38-1.57-2.16-2.07-.79Zm.88-3.14c-.3 1.38 1.97 1.77 2.16.39.3-1.48-1.97-1.87-2.16-.39Zm.3-3.25c0 1.48 2.26 1.48 2.26 0s-2.26-1.48-2.26 0Zm-.3-3.25c.2 1.48 2.46 1.08 2.16-.39-.2-1.48-2.46-1.08-2.16.39Zm-.78-3.14c.49 1.38 2.66.59 2.07-.79-.49-1.38-2.66-.59-2.07.79Zm-1.38-3.05c.69 1.28 2.66.1 1.97-1.08-.79-1.28-2.75-.1-1.97 1.08Zm-1.97-2.66c.89 1.08 2.66-.3 1.67-1.48-.79-1.08-2.56.39-1.67 1.48Zm-2.26-2.26c1.08.98 2.56-.79 1.48-1.67-1.18-.98-2.56.69-1.48 1.67Zm-2.66-1.87c1.28.79 2.36-1.18 1.08-1.97-1.18-.79-2.36 1.18-1.08 1.97Zm-2.95-1.38c1.38.49 2.16-1.67.79-2.07-1.38-.59-2.16 1.57-.79 2.07Zm-3.14-.88c1.38.3 1.77-1.97.39-2.16-1.48-.3-1.87 1.97-.39 2.16Z"><title>Silver</title></path>
+</svg>
+            <div class="value ajaxReplaceableSilverAmount" title="Silver" data-load-tooltip="free-silver">
+                &#x202d;4,041&#x202c;            </div>
+		</div>
+
+		<a class="shop" href="#" accesskey="8" title="Buy Gold" onclick="jQuery(window).trigger('startPaymentWizard', {}); this.blur(); return false;"></a>
+
+		
+		
+					<a id="button69dfb1aa9d3da"
+   	class="layoutButton buttonFramed withIcon round referAFriend green    "
+	title="Refer a friend"
+        			href="/referAFriend"
+	        	>
+					<svg viewBox="0 0 18.08 20" class="referAFriend"><g class="outline">
+  <path class="human" d="M5.86 9a1.26 1.26 0 01-1.14-1.31V6.36a.72.72 0 01.55-.75.67.67 0 000-.42 4.87 4.87 0 01.2-2.51 1.63 1.63 0 01.28-.52c.29-.38.63-.73.94-1.09A3.84 3.84 0 0111.4.58a4.16 4.16 0 011.86 4.2 5.2 5.2 0 000 1c.63.3.41.88.39 1.38 0 .2-.05.41 0 .63a1.76 1.76 0 01-.09.75c-.15.43-.17.45-.59.6a3.31 3.31 0 01-.71 1.6c-.24.28-.16.65-.24 1s-.13.61-.21.91a1.56 1.56 0 00.83 2 6.14 6.14 0 011.63 1.14 4.54 4.54 0 01.91 1.38c.19.42.06.61-.4.61H.5c-.46 0-.51 0-.5-.52a4.13 4.13 0 012-3.48A6.1 6.1 0 013.57 13a4.77 4.77 0 002.07-1.21 1.2 1.2 0 00.36-1c-.06-.56-.1-1.16-.14-1.79z"></path>
+  <path class="plus" d="M8.38 16.43v-2.56a.71.71 0 01.77-.57h2.27v-2.32c0-.53.17-.68.69-.68h2.09c.7 0 .88.15.89.9v2.1h2.17c.62 0 .81.19.82.81v2c0 .71-.17.88-.87.88h-2.12v2.21c0 .72-.19.8-.81.81h-2c-.69 0-.85-.17-.85-.85v-2.17H9.25c-.42.01-.75-.1-.87-.56z"></path>
+</g><g class="icon">
+  <path class="human" d="M5.86 9a1.26 1.26 0 01-1.14-1.31V6.36a.72.72 0 01.55-.75.67.67 0 000-.42 4.87 4.87 0 01.2-2.51 1.63 1.63 0 01.28-.52c.29-.38.63-.73.94-1.09A3.84 3.84 0 0111.4.58a4.16 4.16 0 011.86 4.2 5.2 5.2 0 000 1c.63.3.41.88.39 1.38 0 .2-.05.41 0 .63a1.76 1.76 0 01-.09.75c-.15.43-.17.45-.59.6a3.31 3.31 0 01-.71 1.6c-.24.28-.16.65-.24 1s-.13.61-.21.91a1.56 1.56 0 00.83 2 6.14 6.14 0 011.63 1.14 4.54 4.54 0 01.91 1.38c.19.42.06.61-.4.61H.5c-.46 0-.51 0-.5-.52a4.13 4.13 0 012-3.48A6.1 6.1 0 013.57 13a4.77 4.77 0 002.07-1.21 1.2 1.2 0 00.36-1c-.06-.56-.1-1.16-.14-1.79z"></path>
+  <path class="plus" d="M8.38 16.43v-2.56a.71.71 0 01.77-.57h2.27v-2.32c0-.53.17-.68.69-.68h2.09c.7 0 .88.15.89.9v2.1h2.17c.62 0 .81.19.82.81v2c0 .71-.17.88-.87.88h-2.12v2.21c0 .72-.19.8-.81.81h-2c-.69 0-.85-.17-.85-.85v-2.17H9.25c-.42.01-.75-.1-.87-.56z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aa9d3da').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"","id":"button69dfb1aa9d3da","redirectUrl":"\/referAFriend","redirectUrlExternal":"","svg":"topBar\/referAFriend.svg","content":""}]);
+	});
+</script>
+		
+					<div id="stockBar">
+
+    <div class="warehouse">
+
+        <div class="capacity" title="Warehouse">
+            <i class="warehouse_medium"></i>
+            <div class="value">&#x202d;17,600&#x202c;</div>
+        </div>
+		                    <a class="stockBarButton resource1" href="/production.php?t=lumber" title="Lumber||Production: 4375&lt;br /&gt;Full in: 2:04:32&lt;br /&gt;Click for more information">
+                <i class="lumber_small"></i>
+                <svg viewBox="0 0 160 180" class="quest advantageBonusArrow productionBoost">
+    <path class="border" d="M158.78 106.45 85.17 2.72C84.06 1.01 82.14 0 80.03 0S76 1.01 74.79 2.72L1.17 106.45c-1.41 1.91-1.51 4.53-.5 6.64 1.11 2.11 3.23 3.42 5.65 3.42h31.76v57.15c0 3.52 2.82 6.34 6.35 6.34h70.89c3.53 0 6.35-2.82 6.35-6.34v-57.15h31.97c2.42 0 4.54-1.31 5.65-3.42 1.11-2.11.91-4.63-.5-6.64Z"></path>
+    <path class="sideShadow" d="m20.6 103.48-14.07 6.78c.17.3.48.51.87.51h35.86c.55 0 1 .45 1 1v61.81c0 .55.45 1 1 1h69.48c.55 0 1-.45 1-1V111.8c0-.55.45-1 1-1l35.34.29c.41 0 .74-.23.9-.55l-14.1-7-118.28-.06Z"></path>
+    <path class="bottomShadow" d="m51.45 167.41-6.88 6.88c.18.18.42.28.69.28h69.48c.26 0 .49-.11.67-.27l-6.96-6.9H51.44Z"></path>
+    <path class="topShadow" d="m6.54 110.26 13.98-6.74 59.44-85.03 59.02 85.1 14.01 6.95c.15-.3.15-.68-.07-1.01L80.83 5.35c-.39-.57-1.24-.57-1.64 0L6.59 109.21c-.35.5-.16 1.14.3 1.42-.15-.09-.26-.22-.35-.37Z"></path>
+    <path class="inner" d="M108.45 167.41h-57v-63.89H20.52l59.44-85.03 59.02 85.1-30.53-.05v63.87z"></path>
+</svg>
+
+                <div id="l1" class="value">&#x202d;8,520&#x202c;</div>
+				<div class="barBox">
+					<div id="lbar1"
+						 class="bar"
+						 style="width:48%;"></div>
+				</div>
+            </a>
+                    <a class="stockBarButton resource2" href="/production.php?t=clay" title="Clay||Production: 9614&lt;br /&gt;Full in: 1:20:38&lt;br /&gt;Click for more information">
+                <i class="clay_small"></i>
+                <svg viewBox="0 0 160 180" class="videoFeature advantageBonusArrow productionBoost">
+    <path class="border" d="M158.78 106.45 85.17 2.72C84.06 1.01 82.14 0 80.03 0S76 1.01 74.79 2.72L1.17 106.45c-1.41 1.91-1.51 4.53-.5 6.64 1.11 2.11 3.23 3.42 5.65 3.42h31.76v57.15c0 3.52 2.82 6.34 6.35 6.34h70.89c3.53 0 6.35-2.82 6.35-6.34v-57.15h31.97c2.42 0 4.54-1.31 5.65-3.42 1.11-2.11.91-4.63-.5-6.64Z"></path>
+    <path class="sideShadow" d="m20.6 103.48-14.07 6.78c.17.3.48.51.87.51h35.86c.55 0 1 .45 1 1v61.81c0 .55.45 1 1 1h69.48c.55 0 1-.45 1-1V111.8c0-.55.45-1 1-1l35.34.29c.41 0 .74-.23.9-.55l-14.1-7-118.28-.06Z"></path>
+    <path class="bottomShadow" d="m51.45 167.41-6.88 6.88c.18.18.42.28.69.28h69.48c.26 0 .49-.11.67-.27l-6.96-6.9H51.44Z"></path>
+    <path class="topShadow" d="m6.54 110.26 13.98-6.74 59.44-85.03 59.02 85.1 14.01 6.95c.15-.3.15-.68-.07-1.01L80.83 5.35c-.39-.57-1.24-.57-1.64 0L6.59 109.21c-.35.5-.16 1.14.3 1.42-.15-.09-.26-.22-.35-.37Z"></path>
+    <path class="inner" d="M108.45 167.41h-57v-63.89H20.52l59.44-85.03 59.02 85.1-30.53-.05v63.87z"></path>
+</svg>
+
+                <div id="l2" class="value">&#x202d;4,679&#x202c;</div>
+				<div class="barBox">
+					<div id="lbar2"
+						 class="bar"
+						 style="width:27%;"></div>
+				</div>
+            </a>
+                    <a class="stockBarButton resource3" href="/production.php?t=iron" title="Iron||Production: 2369&lt;br /&gt;Full in: 1:56:30&lt;br /&gt;Click for more information">
+                <i class="iron_small"></i>
+                <svg viewBox="0 0 160 180" class="videoFeature advantageBonusArrow productionBoost">
+    <path class="border" d="M158.78 106.45 85.17 2.72C84.06 1.01 82.14 0 80.03 0S76 1.01 74.79 2.72L1.17 106.45c-1.41 1.91-1.51 4.53-.5 6.64 1.11 2.11 3.23 3.42 5.65 3.42h31.76v57.15c0 3.52 2.82 6.34 6.35 6.34h70.89c3.53 0 6.35-2.82 6.35-6.34v-57.15h31.97c2.42 0 4.54-1.31 5.65-3.42 1.11-2.11.91-4.63-.5-6.64Z"></path>
+    <path class="sideShadow" d="m20.6 103.48-14.07 6.78c.17.3.48.51.87.51h35.86c.55 0 1 .45 1 1v61.81c0 .55.45 1 1 1h69.48c.55 0 1-.45 1-1V111.8c0-.55.45-1 1-1l35.34.29c.41 0 .74-.23.9-.55l-14.1-7-118.28-.06Z"></path>
+    <path class="bottomShadow" d="m51.45 167.41-6.88 6.88c.18.18.42.28.69.28h69.48c.26 0 .49-.11.67-.27l-6.96-6.9H51.44Z"></path>
+    <path class="topShadow" d="m6.54 110.26 13.98-6.74 59.44-85.03 59.02 85.1 14.01 6.95c.15-.3.15-.68-.07-1.01L80.83 5.35c-.39-.57-1.24-.57-1.64 0L6.59 109.21c-.35.5-.16 1.14.3 1.42-.15-.09-.26-.22-.35-.37Z"></path>
+    <path class="inner" d="M108.45 167.41h-57v-63.89H20.52l59.44-85.03 59.02 85.1-30.53-.05v63.87z"></path>
+</svg>
+
+                <div id="l3" class="value">&#x202d;13,000&#x202c;</div>
+				<div class="barBox">
+					<div id="lbar3"
+						 class="bar"
+						 style="width:74%;"></div>
+				</div>
+            </a>
+        
+    </div>
+
+    <div class="granary">
+        <div class="capacity" title="Granary">
+            <i class="granary_medium"></i>
+            <div class="value">&#x202d;9,600&#x202c;</div>
+        </div>
+
+        <a class="stockBarButton resource4" href="/production.php?t=crop" title="Crop||Production less building upkeep: 3894&lt;br /&gt;Full in: 0:59:33&lt;br /&gt;Click for more information">
+            <i class="crop_small"></i>
+            <svg viewBox="0 0 160 180" class="videoFeature advantageBonusArrow productionBoost">
+    <path class="border" d="M158.78 106.45 85.17 2.72C84.06 1.01 82.14 0 80.03 0S76 1.01 74.79 2.72L1.17 106.45c-1.41 1.91-1.51 4.53-.5 6.64 1.11 2.11 3.23 3.42 5.65 3.42h31.76v57.15c0 3.52 2.82 6.34 6.35 6.34h70.89c3.53 0 6.35-2.82 6.35-6.34v-57.15h31.97c2.42 0 4.54-1.31 5.65-3.42 1.11-2.11.91-4.63-.5-6.64Z"></path>
+    <path class="sideShadow" d="m20.6 103.48-14.07 6.78c.17.3.48.51.87.51h35.86c.55 0 1 .45 1 1v61.81c0 .55.45 1 1 1h69.48c.55 0 1-.45 1-1V111.8c0-.55.45-1 1-1l35.34.29c.41 0 .74-.23.9-.55l-14.1-7-118.28-.06Z"></path>
+    <path class="bottomShadow" d="m51.45 167.41-6.88 6.88c.18.18.42.28.69.28h69.48c.26 0 .49-.11.67-.27l-6.96-6.9H51.44Z"></path>
+    <path class="topShadow" d="m6.54 110.26 13.98-6.74 59.44-85.03 59.02 85.1 14.01 6.95c.15-.3.15-.68-.07-1.01L80.83 5.35c-.39-.57-1.24-.57-1.64 0L6.59 109.21c-.35.5-.16 1.14.3 1.42-.15-.09-.26-.22-.35-.37Z"></path>
+    <path class="inner" d="M108.45 167.41h-57v-63.89H20.52l59.44-85.03 59.02 85.1-30.53-.05v63.87z"></path>
+</svg>
+
+            <div id="l4" class="value">&#x202d;6,559&#x202c;</div>
+			<div class="barBox">
+				<div id="lbar4"
+					 class="bar"
+					 style="width:68%;"></div>
+			</div>
+        </a>
+
+        <a class="stockBarButton" href="/production.php?t=balance" title="Free crop for further buildings||Crop balance: &amp;#x202d;3064&amp;#x202c;&lt;br /&gt;Click for more information">
+            <i class="freeCrop_small"></i>
+			<div id="stockBarFreeCrop" class="value">&#x202d;3,350&#x202c;</div>
+        </a>
+
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    var resources = {
+        production: {"l1": 4375,"l2": 9614,"l3": 2369,"l4": 3064,"l5": 3350},
+        storage: {"l1": 8520,"l2": 4679,"l3": 13000,"l4": 6559},
+        maxStorage: {"l1": 17600,"l2": 17600,"l3": 17600,"l4": 9600}
+    };
+</script>
+		            <nav id="mobileMenu">
+        <ul>
+                            <li>
+                    <a class="dailyQuests" href="#" accesskey="7" title="Daily quests||Collect daily rewards" onclick="Travian.React.openDailyQuestsDialog(); return false;">
+                        <div class="inlineIcon " title=""><svg viewBox="0 0 40 130.22" class="dailyQuests ">
+    <rect width="40" height="89.11" rx="10.33"></rect>
+    <ellipse cx="19.67" cy="115.67" rx="17.22" ry="14.56"></ellipse>
+</svg>
+<span class="value ">Daily quests</span></div>                    </a>
+                </li>
+                <li>
+                    <a class="statistics" href="/statistics" title="Statistics||">
+                        <div class="inlineIcon " title=""><svg viewBox="0 0 120.56 137.33" class="statistics">
+    <path d="M1.67 70.67h32.67V130H1.67zM43.56 35.56h32.67V130H43.56zM86.46 0h32.67v130H86.46zM0 133.56h120.56v3.78H0z"></path>
+</svg>
+<span class="value ">Statistics</span></div>                    </a>
+                </li>
+									<li>
+						<a class="referAFriend" href="/referAFriend" title="Refer a friend">
+							<div class="inlineIcon " title=""><svg viewBox="0 0 18.08 20" class="referAFriend">
+  <path class="human" d="M5.86 9a1.26 1.26 0 01-1.14-1.31V6.36a.72.72 0 01.55-.75.67.67 0 000-.42 4.87 4.87 0 01.2-2.51 1.63 1.63 0 01.28-.52c.29-.38.63-.73.94-1.09A3.84 3.84 0 0111.4.58a4.16 4.16 0 011.86 4.2 5.2 5.2 0 000 1c.63.3.41.88.39 1.38 0 .2-.05.41 0 .63a1.76 1.76 0 01-.09.75c-.15.43-.17.45-.59.6a3.31 3.31 0 01-.71 1.6c-.24.28-.16.65-.24 1s-.13.61-.21.91a1.56 1.56 0 00.83 2 6.14 6.14 0 011.63 1.14 4.54 4.54 0 01.91 1.38c.19.42.06.61-.4.61H.5c-.46 0-.51 0-.5-.52a4.13 4.13 0 012-3.48A6.1 6.1 0 013.57 13a4.77 4.77 0 002.07-1.21 1.2 1.2 0 00.36-1c-.06-.56-.1-1.16-.14-1.79z"></path>
+  <path class="plus" d="M8.38 16.43v-2.56a.71.71 0 01.77-.57h2.27v-2.32c0-.53.17-.68.69-.68h2.09c.7 0 .88.15.89.9v2.1h2.17c.62 0 .81.19.82.81v2c0 .71-.17.88-.87.88h-2.12v2.21c0 .72-.19.8-.81.81h-2c-.69 0-.85-.17-.85-.85v-2.17H9.25c-.42.01-.75-.1-.87-.56z"></path>
+</svg>
+<span class="value ">Refer a friend</span></div>						</a>
+					</li>
+				                <li>
+                    <a class="profile" href="/profile" title="Profile||Edit profile description.">
+                        <div class="inlineIcon " title=""><svg viewBox="0 0 15.76 21" class="profile">
+  <path d="M7.88 1.77c2.1 0 3.8 2.09 3.8 4.65s-1.7 4.65-3.8 4.65S4.08 9 4.08 6.42s1.71-4.65 3.8-4.65m0-1.77c-3 0-5.49 2.88-5.49 6.42s2.46 6.42 5.49 6.42 5.49-2.84 5.49-6.42S10.92 0 7.88 0zm7.88 21a11.81 11.81 0 0 0-2.51-7 7.17 7.17 0 0 1-5.37 2.46A7.17 7.17 0 0 1 2.52 14 11.82 11.82 0 0 0 0 21z"></path>
+</svg>
+<span class="value ">Profile</span></div>                    </a>
+                </li>
+                <li>
+                                            <a class="options" href="/options" title="Options||Edit avatar settings.">
+                            <div class="inlineIcon " title=""><svg viewBox="0 0 20 20" class="settings">
+  <path d="M9 20l-.24-3.26-.57-.16A7.21 7.21 0 0 1 6.66 16l-.52-.29-2.47 2.1-1.48-1.48 2.14-2.47-.33-.52a7.21 7.21 0 0 1-.62-1.49l-.16-.57L0 11V9l3.26-.24.16-.57A7.21 7.21 0 0 1 4 6.66l.29-.52-2.1-2.47 1.48-1.48 2.47 2.14.52-.33a7.21 7.21 0 0 1 1.49-.62l.57-.16L9 0h2l.24 3.26.57.16a7.21 7.21 0 0 1 1.53.58l.52.29 2.47-2.14 1.48 1.48-2.14 2.51.29.52a7.21 7.21 0 0 1 .62 1.49l.16.57L20 9v2l-3.26.24-.16.57a7.21 7.21 0 0 1-.58 1.53l-.29.52 2.14 2.47-1.48 1.48-2.47-2.14-.52.29a7.21 7.21 0 0 1-1.49.62l-.57.16L11 20zm1-15a5 5 0 1 0 5 5 5 5 0 0 0-5-5z"></path>
+</svg>
+<span class="value ">Options</span></div>                        </a>
+                                    </li>
+                <li>
+                    <a class="help" onclick="Travian.React.openHelpDialog()" title="Help||Manuals, Answers and Support">
+                        <div class="inlineIcon " title=""><svg viewBox="0 0 12.24 20" class="answers">
+  <path d="M3.73 13.1v-.52c0-2.8 1.47-3.8 2.89-4.76 1-.72 2.14-1.46 2.14-2.9s-1.13-2.55-3-2.55A5.39 5.39 0 0 0 2 4.12L0 2.61A8.15 8.15 0 0 1 6.24 0c3 0 6 1.4 6 4.52 0 2.42-1.4 3.38-2.88 4.4-1.33.91-2.7 1.85-2.7 3.82v.36zm3.61 4.8a2.09 2.09 0 0 0-2.1-2.07 2.09 2.09 0 0 0 0 4.17 2.1 2.1 0 0 0 2.1-2.1z"></path>
+</svg>
+<span class="value ">Help</span></div>                    </a>
+                </li>
+                <li>
+                    <a class="discord" target="_blank" href="https://discord.gg/travianlegends" title="Discord||Meet other players on our official Discord server">
+                        <div class="inlineIcon " title=""><svg viewBox="0 0 20 18.71" class="discord">
+  <path d="M0 2.91v10.18A2.92 2.92 0 002.91 16h12.71a.93.93 0 01.65.27l2.17 2.17a.91.91 0 001.56-.65V2.91A2.92 2.92 0 0017.09 0H2.91A2.92 2.92 0 000 2.91zm15.72 9.59H4.28a.78.78 0 01-.78-.78V4.28a.78.78 0 01.78-.78h11.44a.78.78 0 01.78.78v7.44a.78.78 0 01-.78.78z"></path>
+</svg>
+<span class="value ">Discord</span></div>                    </a>
+                </li>
+                                <li>
+                                        <a class="logout" href="/logout" onclick="Travian.api('auth/logout'); return false;" title="Logout||Back to the lobby">
+                        <div class="inlineIcon " title=""><svg viewBox="0 0 20 20" class="logout">
+  <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
+</svg>
+<span class="value ">Logout</span></div>                    </a>
+                </li>
+                                                </ul>
+
+        
+        <svg viewBox="0 0 200 10" class="divider">
+    <path d="m200 5-78.7-2.5c.2.75.54 1.57.67 2.35h-2.49c-.08-1.31-1.16-2.35-2.48-2.35s-2.41 1.04-2.48 2.35h-9.67L100 0l-4.85 4.85h-9.67C85.4 3.54 84.32 2.5 83 2.5s-2.41 1.04-2.48 2.35h-2.49c.13-.78.47-1.6.67-2.35L0 5l78.7 2.5c-.22-.74-.55-1.58-.67-2.35h2.49C80.6 6.46 81.68 7.5 83 7.5s2.41-1.04 2.48-2.35h9.67L100 10l4.85-4.85h9.67c.08 1.31 1.16 2.35 2.48 2.35s2.41-1.04 2.48-2.35h2.49c-.12.77-.46 1.61-.67 2.35L200 5Z"></path>
+</svg>
+
+        <ul>
+            <li>
+                <a class="mainpage" href="https://www.travian.com/international" target="_blank" title="">Homepage</a>
+            </li>
+            <li>
+                <a class="terms" href="https://agb.traviangames.com/terms-en.pdf" target="_blank" title="">Terms</a>
+            </li>
+            <li>
+                <a class="imprint" href="https://www.travian.com/international/imprint" target="_blank" title="">Imprint</a>
+            </li>
+                            <li>
+                    <a class="imprint" href="#" onclick="__cmapi('showScreenAdvanced',null,null); return false" target="_blank" title="">Privacy settings</a>
+                </li>
+                    </ul>
+
+        <p class="copyright">© 2004 - 2026 Travian Games GmbH</p>
+    </nav>
+    
+    
+    </div>
+	            <nav id="outOfGame">
+            
+        <a id="button69dfb1aa9eb1a"
+   	class="layoutButton buttonFramed withIcon round profile grey    "
+	title="Profile||Edit profile description."
+        			href="/profile"
+	        	>
+					<svg viewBox="0 0 15.76 21" class="profile"><g class="outline">
+  <path d="M7.88 1.77c2.1 0 3.8 2.09 3.8 4.65s-1.7 4.65-3.8 4.65S4.08 9 4.08 6.42s1.71-4.65 3.8-4.65m0-1.77c-3 0-5.49 2.88-5.49 6.42s2.46 6.42 5.49 6.42 5.49-2.84 5.49-6.42S10.92 0 7.88 0zm7.88 21a11.81 11.81 0 0 0-2.51-7 7.17 7.17 0 0 1-5.37 2.46A7.17 7.17 0 0 1 2.52 14 11.82 11.82 0 0 0 0 21z"></path>
+</g><g class="icon">
+  <path d="M7.88 1.77c2.1 0 3.8 2.09 3.8 4.65s-1.7 4.65-3.8 4.65S4.08 9 4.08 6.42s1.71-4.65 3.8-4.65m0-1.77c-3 0-5.49 2.88-5.49 6.42s2.46 6.42 5.49 6.42 5.49-2.84 5.49-6.42S10.92 0 7.88 0zm7.88 21a11.81 11.81 0 0 0-2.51-7 7.17 7.17 0 0 1-5.37 2.46A7.17 7.17 0 0 1 2.52 14 11.82 11.82 0 0 0 0 21z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aa9eb1a').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"grey","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"","id":"button69dfb1aa9eb1a","redirectUrl":"\/profile","redirectUrlExternal":"","svg":"outOfGame\/profile.svg","content":""}]);
+	});
+</script>
+
+        <a id="button69dfb1aa9ec47"
+   	class="layoutButton buttonFramed withIcon round options grey    "
+	title="Options||Edit avatar settings."
+        			href="/options"
+	        	>
+					<svg viewBox="0 0 20 20" class="options"><g class="outline">
+  <path d="M9 20l-.24-3.26-.57-.16A7.21 7.21 0 0 1 6.66 16l-.52-.29-2.47 2.1-1.48-1.48 2.14-2.47-.33-.52a7.21 7.21 0 0 1-.62-1.49l-.16-.57L0 11V9l3.26-.24.16-.57A7.21 7.21 0 0 1 4 6.66l.29-.52-2.1-2.47 1.48-1.48 2.47 2.14.52-.33a7.21 7.21 0 0 1 1.49-.62l.57-.16L9 0h2l.24 3.26.57.16a7.21 7.21 0 0 1 1.53.58l.52.29 2.47-2.14 1.48 1.48-2.14 2.51.29.52a7.21 7.21 0 0 1 .62 1.49l.16.57L20 9v2l-3.26.24-.16.57a7.21 7.21 0 0 1-.58 1.53l-.29.52 2.14 2.47-1.48 1.48-2.47-2.14-.52.29a7.21 7.21 0 0 1-1.49.62l-.57.16L11 20zm1-15a5 5 0 1 0 5 5 5 5 0 0 0-5-5z"></path>
+</g><g class="icon">
+  <path d="M9 20l-.24-3.26-.57-.16A7.21 7.21 0 0 1 6.66 16l-.52-.29-2.47 2.1-1.48-1.48 2.14-2.47-.33-.52a7.21 7.21 0 0 1-.62-1.49l-.16-.57L0 11V9l3.26-.24.16-.57A7.21 7.21 0 0 1 4 6.66l.29-.52-2.1-2.47 1.48-1.48 2.47 2.14.52-.33a7.21 7.21 0 0 1 1.49-.62l.57-.16L9 0h2l.24 3.26.57.16a7.21 7.21 0 0 1 1.53.58l.52.29 2.47-2.14 1.48 1.48-2.14 2.51.29.52a7.21 7.21 0 0 1 .62 1.49l.16.57L20 9v2l-3.26.24-.16.57a7.21 7.21 0 0 1-.58 1.53l-.29.52 2.14 2.47-1.48 1.48-2.47-2.14-.52.29a7.21 7.21 0 0 1-1.49.62l-.57.16L11 20zm1-15a5 5 0 1 0 5 5 5 5 0 0 0-5-5z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aa9ec47').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"grey","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"","id":"button69dfb1aa9ec47","redirectUrl":"\/options","redirectUrlExternal":"","svg":"outOfGame\/settings.svg","content":""}]);
+	});
+</script>
+
+        <a id="button69dfb1aa9ece8"
+   	class="layoutButton buttonFramed withIcon round help grey    "
+	title="Help||Manuals, Answers and Support"
+        	            onclick="Travian.React.openHelpDialog()"
+        	>
+					<svg viewBox="0 0 12.24 20" class="help"><g class="outline">
+  <path d="M3.73 13.1v-.52c0-2.8 1.47-3.8 2.89-4.76 1-.72 2.14-1.46 2.14-2.9s-1.13-2.55-3-2.55A5.39 5.39 0 0 0 2 4.12L0 2.61A8.15 8.15 0 0 1 6.24 0c3 0 6 1.4 6 4.52 0 2.42-1.4 3.38-2.88 4.4-1.33.91-2.7 1.85-2.7 3.82v.36zm3.61 4.8a2.09 2.09 0 0 0-2.1-2.07 2.09 2.09 0 0 0 0 4.17 2.1 2.1 0 0 0 2.1-2.1z"></path>
+</g><g class="icon">
+  <path d="M3.73 13.1v-.52c0-2.8 1.47-3.8 2.89-4.76 1-.72 2.14-1.46 2.14-2.9s-1.13-2.55-3-2.55A5.39 5.39 0 0 0 2 4.12L0 2.61A8.15 8.15 0 0 1 6.24 0c3 0 6 1.4 6 4.52 0 2.42-1.4 3.38-2.88 4.4-1.33.91-2.7 1.85-2.7 3.82v.36zm3.61 4.8a2.09 2.09 0 0 0-2.1-2.07 2.09 2.09 0 0 0 0 4.17 2.1 2.1 0 0 0 2.1-2.1z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aa9ece8').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"grey","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"","id":"button69dfb1aa9ece8","redirectUrl":"","redirectUrlExternal":"","svg":"outOfGame\/answers.svg","content":"","onclick":"Travian.React.openHelpDialog()"}]);
+	});
+</script>
+            <a id="button69dfb1aa9ed5d"
+   	class="layoutButton buttonFramed withIcon round logout grey    "
+	title="Logout||Back to the lobby"
+        	            onclick="Travian.api('auth/logout'); return false;"
+        	>
+					<svg viewBox="0 0 20 20" class="logout"><g class="outline">
+  <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
+</g><g class="icon">
+  <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aa9ed5d').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"grey","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"","id":"button69dfb1aa9ed5d","redirectUrl":"","redirectUrlExternal":"","svg":"misc\/cross.svg","content":"","onclick":"Travian.api('auth\/logout'); return false;"}]);
+	});
+</script>
+</nav>
+<script type="text/javascript">
+    jQuery('#outOfGame li.logout a').click(function() {
+        var windows = Travian.WindowManager.getWindows();
+        for (var i = 0; i < windows.length; i++) {
+            Travian.WindowManager.unregister(windows[i]);
+        }
+    });
+</script>
+    </div>
+    <div id="topBarHeroWrapper">
+        <div id="topBarHero" class="heroV2">
+			<svg class="health" viewBox="0 0 110 110">
+			<defs>
+				<clipPath id="healthMask" maskContentUnits="objectBoundingBox">
+					<path d="M55 55L47.35 109.46A 55 55 0 0 0 108.52 67.69" fill="white" />
+				</clipPath>
+			</defs>
+
+			<image xlink:href="https://cdn.legends.travian.com/gpack/417.4/img_ltr/hud/topBar/hero/frame/health.png" x="0" y="0" width="110" height="110" style="clip-path: url(#healthMask);" />
+
+			<path class="title" d="M55 55L47.35 109.46A 55 55 0 0 0 109.87 51.16" fill="transparent">
+				<title>Health: &#x202d;&#x202d;83&#x202c;&#37;&#x202c;</title>
+			</path>
+		</svg>
+			<svg class="experience" viewBox="0 0 110 110">
+			<defs>
+				<clipPath id="experienceMask" maskContentUnits="objectBoundingBox">
+					<path d="M55 55L32.63 105.25A 55 55 0 0 1 2.01 69.74" fill="white" />
+				</clipPath>
+			</defs>
+
+			<image xlink:href="https://cdn.legends.travian.com/gpack/417.4/img_ltr/hud/topBar/hero/frame/experience.png" x="0" y="0" width="110" height="110" style="clip-path: url(#experienceMask);" />
+
+			<path class="title" d="M55 55L32.63 105.25A 55 55 0 0 1 4 34.4" fill="transparent">
+				<title>Experience &amp;#x202d;&amp;#x202d;57&amp;#x202c;&amp;#37;&amp;#x202c;||Your hero needs 192 experience to achieve level 9.</title>
+			</path>
+		</svg>
+	
+	<a id="heroImageButton" href="/hero" class="heroImageButton" type="button" title="Hero overview||Hero is currently in village &lt;a href=&quot;/karte.php?d=134905&quot;&gt;baderWarrior`s village&lt;/a&gt;.">
+        <div class="heroImageHover">
+            <img class="heroImage heroImageMale" src="/heroV2/head/d14baaa2f1a7230ed812302b6a6c71cac625320a.8248.1.png"  title="Hero" alt="Hero" />
+        </div>
+	</a>
+
+	<div class="heroStatus" title="Hero overview||Hero is currently in village &lt;a href=&quot;/karte.php?d=134905&quot;&gt;baderWarrior`s village&lt;/a&gt;.">
+        <a href="/build.php?newdid=31894&id=39&&tt=2" title="" class=""><i class="heroHome" ></i></a>
+        <span class="hide"><i class="heroHome" ></i></span>
+	</div>
+
+    <i class="levelUp " title="Available attribute points.|| Click on your hero and distribute the attribute points."></i>
+
+	<a id="button69dfb1aa9f8c1"
+   	class="layoutButton buttonFramed withIcon round auction green    "
+	title="Auctions||Tooltip loading..."
+    data-load-tooltip="hero"    data-load-tooltip-data="{&quot;boxId&quot;:&quot;hero&quot;,&quot;buttonId&quot;:&quot;auction&quot;}"			href="/auctions"
+	        	>
+					<svg viewBox="0 0 20.18 19.44" class="auction"><g class="outline">
+  <path d="M20 9.44l-6.14 6.16a.54.54 0 0 1-.78 0L11 13.5a.56.56 0 0 1 0-.78l1.64-1.64-.64-.64h-1.24l-7.38 8.7L0 15.76l8.67-7.41V7.13l-.57-.57-.74.75a.49.49 0 0 1-.69 0L4.19 4.83a.49.49 0 0 1 0-.69l4-4a.49.49 0 0 1 .69 0l2.45 2.45a.52.52 0 0 1 0 .74l-.45.46.65.65h3.14v3.14l.73.73 1.75-1.75a.54.54 0 0 1 .78 0L20 8.66a.54.54 0 0 1 0 .78zm-9.35 7v3h9v-3z"></path>
+</g><g class="icon">
+  <path d="M20 9.44l-6.14 6.16a.54.54 0 0 1-.78 0L11 13.5a.56.56 0 0 1 0-.78l1.64-1.64-.64-.64h-1.24l-7.38 8.7L0 15.76l8.67-7.41V7.13l-.57-.57-.74.75a.49.49 0 0 1-.69 0L4.19 4.83a.49.49 0 0 1 0-.69l4-4a.49.49 0 0 1 .69 0l2.45 2.45a.52.52 0 0 1 0 .74l-.45.46.65.65h3.14v3.14l.73.73 1.75-1.75a.54.54 0 0 1 .78 0L20 8.66a.54.54 0 0 1 0 .78zm-9.35 7v3h9v-3z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aa9f8c1').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":"hero","boxId":"hero","disabled":false,"attention":false,"colorBlind":false,"class":"","id":"button69dfb1aa9f8c1","redirectUrl":"\/auctions","redirectUrlExternal":"","svg":"topBar\/auction.svg","content":"","title":"Auctions||Tooltip loading..."}]);
+	});
+</script>
+<a id="button69dfb1aa9f965"
+   	class="layoutButton buttonFramed withIcon round adventure green    attention"
+	title="Adventure||Tooltip loading..."
+    data-load-tooltip="hero"    data-load-tooltip-data="{&quot;boxId&quot;:&quot;hero&quot;,&quot;buttonId&quot;:&quot;adventure&quot;}"			href="/hero/adventures"
+	        	>
+					<div class="content">31</div>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aa9f965').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":"hero","boxId":"hero","disabled":false,"attention":true,"colorBlind":false,"class":"","id":"button69dfb1aa9f965","redirectUrl":"\/hero\/adventures","redirectUrlExternal":"","svg":false,"content":31,"title":"Adventure||Tooltip loading..."}]);
+	});
+</script>
+</div>
+    </div>
+
+			<div id="center">
+                                    <div class="behindContent">
+                                                    <div class="wall viking   "></div>
+                                                                    </div>
+                
+                <div id="sidebarBeforeContent" class="sidebar beforeContent">
+                    <div class="sidebarBoxWrapper">
+                    <div id="servertime">
+    <span>Server time:</span>
+    <span><span  format="24h" class="timer" counting="up" value="1776267690">16:41:30</span>&nbsp;(UTC&nbsp;+01:00)</span>
+</div>
+                    <div id="sidebarBoxAlliance" class="sidebarBox  expanded">
+	<div class="header">
+		<div class="buttonsWrapper">
+            <a id="button69dfb1aa9ffe3"
+   	class="layoutButton buttonFramed withIcon round region green    "
+	title="Region overview||Girba"
+        			href="/region/27"
+	        	>
+					<svg viewBox="0 0 20 20" class="region"><g class="outline">
+  <path d="M16.29 2.23a4.4 4.4 0 0 0-.41-.31A9.9 9.9 0 0 0 10 0a10 10 0 1 0 6.29 2.23zm-.53 14a8.37 8.37 0 0 1-3.55 2 7.14 7.14 0 0 0 1.06-1.71 11.16 11.16 0 0 0 .56-1.54c1.27.38 1.93.9 1.93 1.24zm-11.52 0c0-.32.6-.81 1.76-1.19a11.83 11.83 0 0 0 .55 1.49 6.94 6.94 0 0 0 1 1.64 8.44 8.44 0 0 1-3.31-1.91zm7.92-.2c-.63 1.4-1.45 2.2-2.25 2.2s-1.62-.8-2.26-2.2a9.31 9.31 0 0 1-.47-1.29A14.26 14.26 0 0 1 10 14.4a14.52 14.52 0 0 1 2.65.23 9.76 9.76 0 0 1-.49 1.37zM10 12.8a16.35 16.35 0 0 0-3.14.29 16.28 16.28 0 0 1-.3-2.7h6.7a16.15 16.15 0 0 1-.3 2.67A16.72 16.72 0 0 0 10 12.8zM6.56 9.39a17.66 17.66 0 0 1 .32-2.7A16.52 16.52 0 0 0 10 7a17.16 17.16 0 0 0 3-.27 17 17 0 0 1 .31 2.66zM10 5.52a15 15 0 0 1-2.8-.25 9.36 9.36 0 0 1 .45-1.2c.64-1.41 1.46-2.21 2.26-2.21s1.62.8 2.25 2.21a9.84 9.84 0 0 1 .47 1.23 14.44 14.44 0 0 1-2.63.22zM6 5c-1.1-.39-1.71-.86-1.76-1.18A8.42 8.42 0 0 1 7.57 1.9a7 7 0 0 0-1 1.67A12 12 0 0 0 6 5zm7.25-1.4a7.23 7.23 0 0 0-1.05-1.76 8.4 8.4 0 0 1 3.56 2c-.06.34-.72.83-1.95 1.2a13.66 13.66 0 0 0-.54-1.47zM5.7 6.4a16.77 16.77 0 0 0-.35 3H1.58A8.48 8.48 0 0 1 3.3 5a4.86 4.86 0 0 0 2.4 1.4zm-.36 4a18.84 18.84 0 0 0 .34 3l-.46.16a4.21 4.21 0 0 0-1.95 1.28 8.51 8.51 0 0 1-1.7-4.44zm8.81 2.95a19.57 19.57 0 0 0 .33-2.95h3.95a8.51 8.51 0 0 1-1.7 4.44 4.92 4.92 0 0 0-2.58-1.5zm.32-3.95a18.21 18.21 0 0 0-.34-2.94l.65-.21A4.24 4.24 0 0 0 16.7 5a8.4 8.4 0 0 1 1.72 4.4z"></path>
+</g><g class="icon">
+  <path d="M16.29 2.23a4.4 4.4 0 0 0-.41-.31A9.9 9.9 0 0 0 10 0a10 10 0 1 0 6.29 2.23zm-.53 14a8.37 8.37 0 0 1-3.55 2 7.14 7.14 0 0 0 1.06-1.71 11.16 11.16 0 0 0 .56-1.54c1.27.38 1.93.9 1.93 1.24zm-11.52 0c0-.32.6-.81 1.76-1.19a11.83 11.83 0 0 0 .55 1.49 6.94 6.94 0 0 0 1 1.64 8.44 8.44 0 0 1-3.31-1.91zm7.92-.2c-.63 1.4-1.45 2.2-2.25 2.2s-1.62-.8-2.26-2.2a9.31 9.31 0 0 1-.47-1.29A14.26 14.26 0 0 1 10 14.4a14.52 14.52 0 0 1 2.65.23 9.76 9.76 0 0 1-.49 1.37zM10 12.8a16.35 16.35 0 0 0-3.14.29 16.28 16.28 0 0 1-.3-2.7h6.7a16.15 16.15 0 0 1-.3 2.67A16.72 16.72 0 0 0 10 12.8zM6.56 9.39a17.66 17.66 0 0 1 .32-2.7A16.52 16.52 0 0 0 10 7a17.16 17.16 0 0 0 3-.27 17 17 0 0 1 .31 2.66zM10 5.52a15 15 0 0 1-2.8-.25 9.36 9.36 0 0 1 .45-1.2c.64-1.41 1.46-2.21 2.26-2.21s1.62.8 2.25 2.21a9.84 9.84 0 0 1 .47 1.23 14.44 14.44 0 0 1-2.63.22zM6 5c-1.1-.39-1.71-.86-1.76-1.18A8.42 8.42 0 0 1 7.57 1.9a7 7 0 0 0-1 1.67A12 12 0 0 0 6 5zm7.25-1.4a7.23 7.23 0 0 0-1.05-1.76 8.4 8.4 0 0 1 3.56 2c-.06.34-.72.83-1.95 1.2a13.66 13.66 0 0 0-.54-1.47zM5.7 6.4a16.77 16.77 0 0 0-.35 3H1.58A8.48 8.48 0 0 1 3.3 5a4.86 4.86 0 0 0 2.4 1.4zm-.36 4a18.84 18.84 0 0 0 .34 3l-.46.16a4.21 4.21 0 0 0-1.95 1.28 8.51 8.51 0 0 1-1.7-4.44zm8.81 2.95a19.57 19.57 0 0 0 .33-2.95h3.95a8.51 8.51 0 0 1-1.7 4.44 4.92 4.92 0 0 0-2.58-1.5zm.32-3.95a18.21 18.21 0 0 0-.34-2.94l.65-.21A4.24 4.24 0 0 0 16.7 5a8.4 8.4 0 0 1 1.72 4.4z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aa9ffe3').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"","id":"button69dfb1aa9ffe3","redirectUrl":"\/region\/27","redirectUrlExternal":"","svg":"sideBar\/region.svg","content":""}]);
+	});
+</script>
+        <a id="button69dfb1aaa00aa"
+   	class="layoutButton buttonFramed withIcon round alliance green disabled   "
+	title="Alliance Page||No alliance"
+        	            onclick="event.preventDefault();"
+        	>
+					<svg viewBox="0 0 20 14.2" class="alliance"><g class="outline">
+  <path d="M4.42 1.17L2 6.62a.51.51 0 0 1-.66.26L.3 6.41a.51.51 0 0 1-.3-.66L2.43.3a.51.51 0 0 1 .66-.3l1.08.51a.49.49 0 0 1 .25.66zM20 5.61L17.68.53A.51.51 0 0 0 17 .28l-.82.37a.5.5 0 0 0-.25.66l2.28 5.08a.49.49 0 0 0 .66.25l.82-.37a.5.5 0 0 0 .31-.66zM4.85 1.11L4.49 2l3.09.22 1.06-.9zM2.69 5.86l-.46.87 1.11 1.61.52-.82zm2.16 1.66a.84.84 0 0 0-1.1.48l-.63 1.39a.84.84 0 1 0 1.53.67l.63-1.43a.84.84 0 0 0-.43-1.11zm1.44 1.35a.84.84 0 0 0-1.1.43l-.63 1.44a.84.84 0 0 0 .44 1.1.85.85 0 0 0 1.11-.43L6.72 10a.84.84 0 0 0-.43-1.13zM17 10.29a1.18 1.18 0 0 1-.76.48 1.14 1.14 0 0 1-.2.87 1.19 1.19 0 0 1-1 .51H15a1.18 1.18 0 0 1-1.2 1.14 1.12 1.12 0 0 1-.67-.22L13 13a1.21 1.21 0 0 1-.22.7 1.19 1.19 0 0 1-1 .51 1.12 1.12 0 0 1-.67-.22l-1.93-1.34a.81.81 0 0 1-.77 0 .84.84 0 0 1-.49-.93l-.16.37a.84.84 0 1 1-1.53-.67L6.85 10A.86.86 0 0 1 8 9.6a.85.85 0 0 1 .48.94l.16-.37a.84.84 0 0 1 1.11-.43.81.81 0 0 1 .45.49l3.24 2.24a.5.5 0 0 0 .69-.13.49.49 0 0 0 0-.58l-3.25-2.24a6.61 6.61 0 0 0 .39-.52l3.17 2.19a.77.77 0 0 1 .19.17l.1.06a.51.51 0 0 0 .7-.12.49.49 0 0 0 .09-.28.47.47 0 0 0-.12-.32l-.09-.06-3.64-2.58V8a4 4 0 0 0 .15-.7l3.91 2.7a.48.48 0 0 0 .55-.19.47.47 0 0 0 .09-.28.49.49 0 0 0-.21-.41l-4.34-3a3.82 3.82 0 0 0-.15-.67l-.62-.38a2.88 2.88 0 0 1-.83-.76s-.94.58-1.1.65a3.08 3.08 0 0 1-1.55.43 1.69 1.69 0 0 1-1.68-1.18A1.32 1.32 0 0 1 7 2.67a5.82 5.82 0 0 0 1.17-.17A7.59 7.59 0 0 0 10.08 1a1.1 1.1 0 0 1 .69-.37c1 0 1.46 1.21 2.74 1.21a4.32 4.32 0 0 0 1.93-.44l2.23 4.86a4.54 4.54 0 0 1-.62 1.19c-.25.23-.66.18-1 .18a3 3 0 0 1-1.29-.3l1.93 1.33a1.19 1.19 0 0 1 .31 1.63zm-4.88 2.6a.49.49 0 0 0-.22-.41L10 11.17l-.4.93 1.72 1.19a.51.51 0 0 0 .7-.12.51.51 0 0 0 .08-.28z"></path>
+</g><g class="icon">
+  <path d="M4.42 1.17L2 6.62a.51.51 0 0 1-.66.26L.3 6.41a.51.51 0 0 1-.3-.66L2.43.3a.51.51 0 0 1 .66-.3l1.08.51a.49.49 0 0 1 .25.66zM20 5.61L17.68.53A.51.51 0 0 0 17 .28l-.82.37a.5.5 0 0 0-.25.66l2.28 5.08a.49.49 0 0 0 .66.25l.82-.37a.5.5 0 0 0 .31-.66zM4.85 1.11L4.49 2l3.09.22 1.06-.9zM2.69 5.86l-.46.87 1.11 1.61.52-.82zm2.16 1.66a.84.84 0 0 0-1.1.48l-.63 1.39a.84.84 0 1 0 1.53.67l.63-1.43a.84.84 0 0 0-.43-1.11zm1.44 1.35a.84.84 0 0 0-1.1.43l-.63 1.44a.84.84 0 0 0 .44 1.1.85.85 0 0 0 1.11-.43L6.72 10a.84.84 0 0 0-.43-1.13zM17 10.29a1.18 1.18 0 0 1-.76.48 1.14 1.14 0 0 1-.2.87 1.19 1.19 0 0 1-1 .51H15a1.18 1.18 0 0 1-1.2 1.14 1.12 1.12 0 0 1-.67-.22L13 13a1.21 1.21 0 0 1-.22.7 1.19 1.19 0 0 1-1 .51 1.12 1.12 0 0 1-.67-.22l-1.93-1.34a.81.81 0 0 1-.77 0 .84.84 0 0 1-.49-.93l-.16.37a.84.84 0 1 1-1.53-.67L6.85 10A.86.86 0 0 1 8 9.6a.85.85 0 0 1 .48.94l.16-.37a.84.84 0 0 1 1.11-.43.81.81 0 0 1 .45.49l3.24 2.24a.5.5 0 0 0 .69-.13.49.49 0 0 0 0-.58l-3.25-2.24a6.61 6.61 0 0 0 .39-.52l3.17 2.19a.77.77 0 0 1 .19.17l.1.06a.51.51 0 0 0 .7-.12.49.49 0 0 0 .09-.28.47.47 0 0 0-.12-.32l-.09-.06-3.64-2.58V8a4 4 0 0 0 .15-.7l3.91 2.7a.48.48 0 0 0 .55-.19.47.47 0 0 0 .09-.28.49.49 0 0 0-.21-.41l-4.34-3a3.82 3.82 0 0 0-.15-.67l-.62-.38a2.88 2.88 0 0 1-.83-.76s-.94.58-1.1.65a3.08 3.08 0 0 1-1.55.43 1.69 1.69 0 0 1-1.68-1.18A1.32 1.32 0 0 1 7 2.67a5.82 5.82 0 0 0 1.17-.17A7.59 7.59 0 0 0 10.08 1a1.1 1.1 0 0 1 .69-.37c1 0 1.46 1.21 2.74 1.21a4.32 4.32 0 0 0 1.93-.44l2.23 4.86a4.54 4.54 0 0 1-.62 1.19c-.25.23-.66.18-1 .18a3 3 0 0 1-1.29-.3l1.93 1.33a1.19 1.19 0 0 1 .31 1.63zm-4.88 2.6a.49.49 0 0 0-.22-.41L10 11.17l-.4.93 1.72 1.19a.51.51 0 0 0 .7-.12.51.51 0 0 0 .08-.28z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aaa00aa').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":null,"boxId":"","disabled":true,"attention":false,"colorBlind":false,"class":"","id":"button69dfb1aaa00aa","redirectUrl":"","redirectUrlExternal":"","svg":"sideBar\/alliance.svg","content":"","onclick":"event.preventDefault();"}]);
+	});
+</script>
+    <a id="button69dfb1aaa017a"
+   	class="layoutButton buttonFramed withIcon round forum green disabled   "
+	title="Alliance forum||No alliance"
+        	            onclick="event.preventDefault();"
+        	>
+					<svg viewBox="0 0 20 18.54" class="forum"><g class="outline">
+  <path d="M3.31 4.7h8.5l-1.3 1.37h-7.2zm0 4.85h3.91l1.3-1.37H3.31zm0 3.47h3.45l.06-1.37H3.31zM17.16 1.29l-.94 1-1.43 1.5L13 5.66l-.49.51-2 2.11-1.26 1.37-.81.86-.06 1.24-.07 1.37v.51l3-.44 3.25-3.43.16-.17L20 4zm-.59 12l-.19-3.44L15 11.26a.61.61 0 0 0-.16.45l.07 1a.57.57 0 0 1-.15.43l-3.26 3.58a.57.57 0 0 1-.43.19H2.54a.58.58 0 0 1-.54-.58V2.53a.58.58 0 0 1 .58-.59h11a.59.59 0 0 0 .42-.17L15.7 0H.58A.58.58 0 0 0 0 .58V18a.58.58 0 0 0 .58.58H11.8a.57.57 0 0 0 .43-.19l4.19-4.66a.53.53 0 0 0 .15-.46z"></path>
+</g><g class="icon">
+  <path d="M3.31 4.7h8.5l-1.3 1.37h-7.2zm0 4.85h3.91l1.3-1.37H3.31zm0 3.47h3.45l.06-1.37H3.31zM17.16 1.29l-.94 1-1.43 1.5L13 5.66l-.49.51-2 2.11-1.26 1.37-.81.86-.06 1.24-.07 1.37v.51l3-.44 3.25-3.43.16-.17L20 4zm-.59 12l-.19-3.44L15 11.26a.61.61 0 0 0-.16.45l.07 1a.57.57 0 0 1-.15.43l-3.26 3.58a.57.57 0 0 1-.43.19H2.54a.58.58 0 0 1-.54-.58V2.53a.58.58 0 0 1 .58-.59h11a.59.59 0 0 0 .42-.17L15.7 0H.58A.58.58 0 0 0 0 .58V18a.58.58 0 0 0 .58.58H11.8a.57.57 0 0 0 .43-.19l4.19-4.66a.53.53 0 0 0 .15-.46z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aaa017a').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":null,"boxId":"","disabled":true,"attention":false,"colorBlind":false,"class":"","id":"button69dfb1aaa017a","redirectUrl":"","redirectUrlExternal":"","svg":"general\/forum.svg","content":"","onclick":"event.preventDefault();"}]);
+	});
+</script>
+    <a id="button69dfb1aaa01e1"
+   	class="layoutButton buttonFramed withIcon round embassy green    "
+	title="Embassy||Tooltip loading...&lt;br /&gt;Current invitations: 0&lt;br /&gt;Highest embassy level: 1"
+    data-load-tooltip="layoutButton"    data-load-tooltip-data="{&quot;boxId&quot;:&quot;alliance&quot;,&quot;buttonId&quot;:&quot;embassy&quot;}"			href="/build.php?gid=18&newdid=31894"
+	        	>
+					<svg viewBox="0 0 17.63 20" class="embassy"><g class="outline">
+  <path d="M16.15 2.21l-.23 1.66h-1.45v-.4A2.28 2.28 0 0 0 11 2.15l-.34.28h-.05a2.77 2.77 0 0 1-1.82.45 2.78 2.78 0 0 1-2.06-1.22c-.06-.13-.12-.25-.19-.37V1.2A2.68 2.68 0 0 0 3 .31c-.48.25-1.86 1.11-1.86 1.11.53-.31 3.46-.2 3.63 1.33C1 .92 0 4.37 0 4.37s2.42-1.48 4.19 1.48A3 3 0 0 0 .88 8c.55-.34 1.79-.07 2.48 0a3 3 0 0 1 2.39 1.62A2.5 2.5 0 0 0 9.63 11a1.67 1.67 0 0 1 .23-.23 1.56 1.56 0 0 1 .2-.16 2.46 2.46 0 0 1 1.65-.43c.32 0 .39.29.41.55a.89.89 0 0 0 1.59.55v-.31H15l-1.27 8.83 1.48.2 2.42-17.58zM13.6 10a17.28 17.28 0 0 1-.06-2.72 10.63 10.63 0 0 1 .54-1.81h1.62L15.08 10z"></path>
+</g><g class="icon">
+  <path d="M16.15 2.21l-.23 1.66h-1.45v-.4A2.28 2.28 0 0 0 11 2.15l-.34.28h-.05a2.77 2.77 0 0 1-1.82.45 2.78 2.78 0 0 1-2.06-1.22c-.06-.13-.12-.25-.19-.37V1.2A2.68 2.68 0 0 0 3 .31c-.48.25-1.86 1.11-1.86 1.11.53-.31 3.46-.2 3.63 1.33C1 .92 0 4.37 0 4.37s2.42-1.48 4.19 1.48A3 3 0 0 0 .88 8c.55-.34 1.79-.07 2.48 0a3 3 0 0 1 2.39 1.62A2.5 2.5 0 0 0 9.63 11a1.67 1.67 0 0 1 .23-.23 1.56 1.56 0 0 1 .2-.16 2.46 2.46 0 0 1 1.65-.43c.32 0 .39.29.41.55a.89.89 0 0 0 1.59.55v-.31H15l-1.27 8.83 1.48.2 2.42-17.58zM13.6 10a17.28 17.28 0 0 1-.06-2.72 10.63 10.63 0 0 1 .54-1.81h1.62L15.08 10z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aaa01e1').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":"layoutButton","boxId":"alliance","disabled":false,"attention":false,"colorBlind":false,"class":"","id":"button69dfb1aaa01e1","redirectUrl":"\/build.php?gid=18&newdid=31894","redirectUrlExternal":"","svg":"sideBar\/embassy.svg","content":""}]);
+	});
+</script>
+</div>
+	</div>
+	<div class="content">
+		<div class="boxTitle ">
+    	<div class="name">No alliance</div>
+</div>
+
+	</div>
+	</div>
+<div id="sidebarBoxInfobox" class="sidebarBox toggleable expanded">
+	<div class="header">
+			</div>
+	<div class="content">
+		<div class="boxTitle">Info box</div>
+
+<div class="inlineIcon messageShortInfo" title="Total messages: 4&lt;br /&gt;New messages: 4"><svg viewBox="0 0 20 14.28" class="messageNew">
+  <path d="M.72.93A1.69 1.69 0 0 1 .33.21L.54 0h19a1.56 1.56 0 0 1 .16.2 1.73 1.73 0 0 1-.39.73l-7.2 7.78a2.79 2.79 0 0 1-4.18 0zm13.59 7.89l3.55 2.5-4.92-1.06a4.31 4.31 0 0 1-5.84 0l-4.89 1.06 3.53-2.49L0 2.62v10.06a1.54 1.54 0 0 0 1.47 1.6h17.06a1.54 1.54 0 0 0 1.47-1.6v-10z"></path>
+</svg>
+<span class="value ">&#x202d;&#x202d;4&#x202c;&times;&#x202c;</span></div>
+<ul>
+        <li id=infoID_216101 class="infoType_11 firstElement active unreaded">
+                <p>
+	<a class ="infoboxDeleteButton" href="#" data-id="216101">
+<img src="/img/x.gif" class="del" alt="del">
+</a>
+	Lumber production bonus ends in <span  class="timer" counting="down" value="393">0:06:33</span></p>
+<button type="button" value="Extend" id="button69dfb1aaa0af4" class="textButtonV1 gold " coins="5" version="textButtonV1">
+	Extend<i class="goldIcon"></i><span class="goldValue">5</span></button>
+<script type="text/javascript" id="button69dfb1aaa0af4_script">
+	jQuery(function() {
+        jQuery('button#button69dfb1aaa0af4').click(function () {
+            jQuery(window).trigger('buttonClicked', [this, {"type":"button","value":"Extend","name":"","id":"button69dfb1aaa0af4","class":"textButtonV1 gold ","title":"","confirm":"","onclick":"","coins":5,"wayOfPayment":{"featureKey":"productionboostLumber","context":"infobox"},"version":"textButtonV1"}]);
+        });
+	});
+</script>
+        </li>
+                <li id=infoID_214652 class="infoType_21 unreaded active">
+            <a class ="infoboxDeleteButton" href="#" data-id="214652">
+<img src="/img/x.gif" class="del" alt="del">
+</a>
+Find out all about the content of the upcoming Quality of Life update <span style="font-weight:bold;"><span style="text-decoration:underline;"><a href="https://www.travian.com/international/news/2026/04/14/quality-of-life-release-2026/" target="_blank">in this detailed post.</a></span></span>        </li>
+                <li id=infoID_210093 class="infoType_23 unreaded active">
+            You still have <span  class="timer" counting="down" value="1815">0:30:15</span> hours of beginner&#39;s protection left.        </li>
+                <li id=infoID_211241 class="infoType_47 unreaded active">
+            <p>
+	<a class ="infoboxDeleteButton" href="#" data-id="211241">
+<img src="/img/x.gif" class="del" alt="del">
+</a>
+	<br/>
+	Increase the resource production in all your villages for Gold (+25%) or by watching a video (+15%)</p>
+<button type="button" value="Open shop" id="button69dfb1aaa0bd0" class="textButtonV1 green " onclick="jQuery(window).trigger('startPaymentWizard', {data:{activeTab: Travian.Constants.SHOP_TABS.advantages}}); return false;" version="textButtonV1">
+	Open shop</button>
+<script type="text/javascript" id="button69dfb1aaa0bd0_script">
+	jQuery(function() {
+        jQuery('button#button69dfb1aaa0bd0').click(function () {
+            jQuery(window).trigger('buttonClicked', [this, {"type":"button","value":"Open shop","name":"","id":"button69dfb1aaa0bd0","class":"textButtonV1 green ","title":"","confirm":"","onclick":"jQuery(window).trigger(\u0027startPaymentWizard\u0027, {data:{activeTab: Travian.Constants.SHOP_TABS.advantages}}); return false;","version":"textButtonV1"}]);
+        });
+	});
+</script>
+        </li>
+        </ul>
+
+
+<script type="text/javascript">
+	jQuery(function() {
+		Travian.Game.Layout.setupInfoboxItemsDeletionWithMessage('Delete this message permanently?', 'Confirm');
+	});
+</script>
+
+	</div>
+				<div class="toggle">
+		<button type="button" class="toggleBox" onclick="" title="Collapse box | Mark all messages as read">
+			<svg class="toggleArrow" viewBox="0 0 18 11">
+				<filter id="insetShadow">
+					<feFlood flood-color="#a2e25e"/>
+					<feComposite in2="SourceAlpha" operator="out"/>
+					<feGaussianBlur stdDeviation="2" result="blur"/>
+					<feComposite operator="atop" in2="SourceGraphic"/>
+				</filter>
+				<path class="caret" d="M1 10H17L9 1z" />
+				<path class="glow" d="M1 10H17L9 1z" />
+			</svg>
+		</button>
+	</div>
+
+	<script type="text/javascript">
+		jQuery(function() {
+			Travian.Translation.add({
+				'infobox_collapsed': 'Expand box',
+				'infobox_expanded': 'Collapse box | Mark all messages as read'
+			});
+
+			var box = jQuery('#sidebarBoxInfobox');
+			box.find('button.toggleBox').click(function(e) {
+				Travian.Game.Layout.toggleBox(box, 'travian_toggle', 'infobox');
+			});
+		});
+	</script>
+	</div>
+<div id="sidebarBoxLinklist" class="sidebarBox  expanded">
+	<div class="header">
+		<div class="buttonsWrapper">
+    <a id="button69dfb1aaa0d9b"
+   	class="layoutButton buttonFramed withIcon round edit green    "
+	title="Edit link list"
+        			href="/linklist.php"
+	        	>
+					<svg viewBox="0 0 15.59 20" class="edit"><g class="outline">
+  <path d="M15.59 18.55V20H0v-1.45zM11.52 0L1.05 13.47.92 17.4l3.65-1.21L15 2.73zm.25 7L8.16 4.33 9 3.2l3.6 2.62z"></path>
+</g><g class="icon">
+  <path d="M15.59 18.55V20H0v-1.45zM11.52 0L1.05 13.47.92 17.4l3.65-1.21L15 2.73zm.25 7L8.16 4.33 9 3.2l3.6 2.62z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aaa0d9b').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"","id":"button69dfb1aaa0d9b","redirectUrl":"\/linklist.php","redirectUrlExternal":"","svg":"sideBar\/editUnderlined.svg","content":"","title":"Edit link list"}]);
+	});
+</script>
+</div>
+	</div>
+	<div class="content">
+		<div class="boxTitle">Link list</div>
+
+	<div class="linklistNotice">Edit link list and add links.</div>
+	</div>
+	</div>
+                    </div>
+				</div>
+
+				<div id="contentOuterContainer" class=" contentPage">
+                                            <div class="contentTitle buttonCount0">
+                            	<a id="closeContentButton" class="contentTitleButton buttonFramed green withIcon rectangle" href="/dorf1.php" title="Close window">
+        <svg viewBox="0 0 20 20"><g class="outline">
+  <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
+</g><g class="icon">
+  <path d="M0 17.01L7.01 10 .14 3.13 3.13.14 10 7.01 17.01 0 20 2.99 12.99 10l6.87 6.87-2.99 2.99L10 12.99 2.99 20 0 17.01z"></path>
+</g></svg>
+    </a>
+<a id="knowledgeBaseButton" class="contentTitleButton buttonFramed withIcon rectangle green" href="" target="_blank" title="Knowledge Base">&nbsp;</a>
+                        </div>
+                        <div class="contentContainer">
+                            <div id="content" class="build buildRallyPointFarmList">
+                                <h1 class="titleInHeader">Rally Point <span
+		class="level">Level 1</span></h1>
+<a type="button" id="tabFavorButton" class="icon contentTitleButton  buttonFramed green withIcon rectangle" title="Set tab "Farm List" as favourite" onclick="Travian.api('favourite-tab', {data: {name: 'buildingRallyPoint',key: '99'},success: function(data) {jQuery('.subNavi .favor').removeClass('favorActive');jQuery('.favor.favorKey99').addClass('favorActive');}});return false;" useIcon=""><img src="/img/x.gif" class="&nbsp" alt="" /></a>    <div class="contentNavi subNavi ">
+        <button type="button" class="scrollFrom" disabled="disabled"></button>
+        <div class="scrollingContainer">
+                            <div class="content  favor  favorKey0">
+                    <a
+                        id="button69dfb1aa8683b"                        title="Management"
+                        class="tabItem  normal "
+                                                href="/build.php?id=39&gid=16&tt=0"                                            >
+                        Management                    </a>
+                </div>
+
+                                    <script type="text/javascript">
+                        jQuery(function() {
+                            if (jQuery('#button69dfb1aa8683b').length > 0) {
+                                jQuery('#button69dfb1aa8683b').on('click', function () {
+                                    jQuery(window).trigger('tabClicked', [this, {"class":" normal","title":"Management","target":false,"id":"button69dfb1aa8683b","href":"\/build.php?id=39&gid=16&tt=0","onclick":false,"enabled":true,"text":"Management","dialog":false,"plusDialog":false,"goldclubDialog":false,"containerId":"","buttonIdentifier":"button69dfb1aa8683b"}]);
+                                });
+                            }
+                        });
+                    </script>
+                
+                            <div class="content overviewRallyPoint favor  favorKey1">
+                    <a
+                        id="button69dfb1aa8683f"                        title="Overview"
+                        class="tabItem  normal "
+                                                href="/build.php?id=39&gid=16&tt=1"                                            >
+                        Overview                    </a>
+                </div>
+
+                                    <script type="text/javascript">
+                        jQuery(function() {
+                            if (jQuery('#button69dfb1aa8683f').length > 0) {
+                                jQuery('#button69dfb1aa8683f').on('click', function () {
+                                    jQuery(window).trigger('tabClicked', [this, {"class":" normal","title":"Overview","target":false,"id":"button69dfb1aa8683f","href":"\/build.php?id=39&gid=16&tt=1","onclick":false,"enabled":true,"text":"Overview","dialog":false,"plusDialog":false,"goldclubDialog":false,"containerId":"overviewRallyPoint","buttonIdentifier":"button69dfb1aa8683f"}]);
+                                });
+                            }
+                        });
+                    </script>
+                
+                            <div class="content  favor  favorKey2">
+                    <a
+                        id="button69dfb1aa86841"                        title="Send troops"
+                        class="tabItem  normal "
+                                                href="/build.php?id=39&gid=16&tt=2"                                            >
+                        Send troops                    </a>
+                </div>
+
+                                    <script type="text/javascript">
+                        jQuery(function() {
+                            if (jQuery('#button69dfb1aa86841').length > 0) {
+                                jQuery('#button69dfb1aa86841').on('click', function () {
+                                    jQuery(window).trigger('tabClicked', [this, {"class":" normal","title":"Send troops","target":false,"id":"button69dfb1aa86841","href":"\/build.php?id=39&gid=16&tt=2","onclick":false,"enabled":true,"text":"Send troops","dialog":false,"plusDialog":false,"goldclubDialog":false,"containerId":"","buttonIdentifier":"button69dfb1aa86841"}]);
+                                });
+                            }
+                        });
+                    </script>
+                
+                            <div class="content  favor  favorKey3">
+                    <a
+                        id="button69dfb1aa86842"                        title="Simulators"
+                        class="tabItem  normal "
+                                                href="/build.php?id=39&gid=16&tt=3"                                            >
+                        Simulators                    </a>
+                </div>
+
+                                    <script type="text/javascript">
+                        jQuery(function() {
+                            if (jQuery('#button69dfb1aa86842').length > 0) {
+                                jQuery('#button69dfb1aa86842').on('click', function () {
+                                    jQuery(window).trigger('tabClicked', [this, {"class":" normal","title":"Simulators","target":false,"id":"button69dfb1aa86842","href":"\/build.php?id=39&gid=16&tt=3","onclick":false,"enabled":true,"text":"Simulators","dialog":false,"plusDialog":false,"goldclubDialog":false,"containerId":"","buttonIdentifier":"button69dfb1aa86842"}]);
+                                });
+                            }
+                        });
+                    </script>
+                
+                            <div class="content  favor  favorKey99">
+                    <a
+                        id="button69dfb1aa86843"                        title="Farm List"
+                        class="tabItem  active "
+                                                href="/build.php?id=39&gid=16&tt=99"                                            >
+                        Farm List                    </a>
+                </div>
+
+                                    <script type="text/javascript">
+                        jQuery(function() {
+                            if (jQuery('#button69dfb1aa86843').length > 0) {
+                                jQuery('#button69dfb1aa86843').on('click', function () {
+                                    jQuery(window).trigger('tabClicked', [this, {"class":" active","title":"Farm List","target":false,"id":"button69dfb1aa86843","href":"\/build.php?id=39&gid=16&tt=99","onclick":false,"enabled":true,"text":"Farm List","dialog":false,"plusDialog":false,"goldclubDialog":false,"containerId":"","buttonIdentifier":"button69dfb1aa86843"}]);
+                                });
+                            }
+                        });
+                    </script>
+                
+                                </div>
+        <button type="button" class="scrollTo" disabled="disabled"></button>
+    </div>
+
+        <div class="navigationSpacer"></div>
+
+    <script type="text/javascript">
+        jQuery(function() {
+            Travian.Game.TabScrollNavigation();
+        });
+    </script>
+<div id="build" class="gid16 level1">
+	    	<div id="rallyPointFarmList" class="contentV2"></div>
+<script type='text/javascript'>
+    jQuery(function() {
+        window.Travian.React.FarmList.render(
+            {gql: "query($onlyExpanded: Boolean){bootstrapData{timestamp}weekendWarrior{isNightTruce}ownPlayer{isSitter isInVacationMode beginnersProtection accessRights{sendRaids}banInfo{type}village{id tribeId}villages{id name hasRallyPoint hasHarbour tribeId}abandonedFarmLists{id name slotsAmount runningRaidsAmount isExpanded sortIndex lastStartedTime sortField sortDirection useShip onlyLosses ownerVillage{id}defaultTroop{t1 t2 t3 t4 t5 t6 t7 t8 t9 t10}slotsStates: slots{id isActive}slots(onlyExpanded: $onlyExpanded){id target{id mapId x y name type population}troop{t1 t2 t3 t4 t5 t6 t7 t8 t9 t10}distance isActive isRunning isSpying runningAttacks nextAttackAt lastRaid{reportObjectId authKey time raidedResources{lumber clay iron crop}bootyMax icon}totalBooty{booty raids}}}farmLists{id name slotsAmount runningRaidsAmount isExpanded sortIndex lastStartedTime sortField sortDirection useShip onlyLosses ownerVillage{id troops{ownTroopsAtTown{units{t1 t2 t3 t4 t5 t6 t7 t8 t9 t10}}}} defaultTroop{t1 t2 t3 t4 t5 t6 t7 t8 t9 t10}slotsStates: slots{id isActive}slots(onlyExpanded: $onlyExpanded){id target{id mapId x y name type population}troop{t1 t2 t3 t4 t5 t6 t7 t8 t9 t10}distance isActive isRunning isSpying runningAttacks nextAttackAt lastRaid{reportObjectId authKey time raidedResources{lumber clay iron crop}bootyMax icon}totalBooty{booty raids}}}deactivatedFarmListTargets{id mapId x y name type}} }", viewData: {"bootstrapData":{"timestamp":1776267690},"weekendWarrior":{"isNightTruce":false},"ownPlayer":{"isSitter":false,"isInVacationMode":false,"beginnersProtection":1776269505,"accessRights":{"sendRaids":true},"banInfo":null,"village":{"id":31894,"tribeId":9},"villages":[{"id":31894,"name":"baderWarrior`s village","hasRallyPoint":true,"hasHarbour":false,"tribeId":9}],"abandonedFarmLists":[],"farmLists":[{"id":2661,"name":"oasis","slotsAmount":9,"runningRaidsAmount":2,"isExpanded":true,"sortIndex":1,"lastStartedTime":1776267020,"sortField":"distance","sortDirection":"asc","useShip":false,"onlyLosses":true,"ownerVillage":{"id":31894,"troops":{"ownTroopsAtTown":{"units":{"t1":528,"t2":0,"t3":0,"t4":170,"t5":33,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0}}}},"defaultTroop":{"t1":20,"t2":0,"t3":0,"t4":0,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"slotsStates":[{"id":106988,"isActive":false},{"id":106978,"isActive":true},{"id":106984,"isActive":false},{"id":126312,"isActive":true},{"id":126255,"isActive":true},{"id":126257,"isActive":true},{"id":126259,"isActive":true},{"id":126256,"isActive":true},{"id":126260,"isActive":true}],"slots":[{"id":106988,"target":{"id":6338,"mapId":138111,"x":-34,"y":-144,"name":"","type":2,"population":0},"troop":{"t1":20,"t2":0,"t3":0,"t4":0,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":8.24621,"isActive":false,"isRunning":false,"isSpying":false,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":106978,"target":{"id":781,"mapId":131292,"x":-36,"y":-127,"name":"","type":3,"population":0},"troop":{"t1":20,"t2":0,"t3":0,"t4":0,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":9.84886,"isActive":true,"isRunning":false,"isSpying":false,"runningAttacks":0,"nextAttackAt":null,"lastRaid":{"reportObjectId":"42307666","authKey":"|413b7d3d","time":1776266768,"raidedResources":{"lumber":32,"clay":8,"iron":8,"crop":8},"bootyMax":1100,"icon":1},"totalBooty":{"booty":1708,"raids":4}},{"id":106984,"target":{"id":6348,"mapId":138914,"x":-33,"y":-146,"name":"","type":2,"population":0},"troop":{"t1":20,"t2":0,"t3":0,"t4":0,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":10.0499,"isActive":false,"isRunning":false,"isSpying":false,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":126312,"target":{"id":5433,"mapId":135721,"x":-18,"y":-138,"name":"","type":3,"population":0},"troop":{"t1":20,"t2":0,"t3":0,"t4":0,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":14.1421,"isActive":true,"isRunning":false,"isSpying":false,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":126255,"target":{"id":5405,"mapId":128492,"x":-29,"y":-120,"name":"","type":3,"population":0},"troop":{"t1":20,"t2":0,"t3":0,"t4":0,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":16.2788,"isActive":true,"isRunning":false,"isSpying":false,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":126257,"target":{"id":5406,"mapId":128494,"x":-27,"y":-120,"name":"","type":3,"population":0},"troop":{"t1":20,"t2":0,"t3":0,"t4":0,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":16.7631,"isActive":true,"isRunning":false,"isSpying":false,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":126259,"target":{"id":2424,"mapId":128484,"x":-37,"y":-120,"name":"","type":3,"population":0},"troop":{"t1":20,"t2":0,"t3":0,"t4":0,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":16.7631,"isActive":true,"isRunning":false,"isSpying":false,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":126256,"target":{"id":5401,"mapId":128090,"x":-30,"y":-119,"name":"","type":3,"population":0},"troop":{"t1":20,"t2":0,"t3":0,"t4":0,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":17.1172,"isActive":true,"isRunning":true,"isSpying":false,"runningAttacks":1,"nextAttackAt":1776269221,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":126260,"target":{"id":2423,"mapId":128084,"x":-36,"y":-119,"name":"","type":3,"population":0},"troop":{"t1":20,"t2":0,"t3":0,"t4":0,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":17.4643,"isActive":true,"isRunning":true,"isSpying":false,"runningAttacks":1,"nextAttackAt":1776269265,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}}]},{"id":2907,"name":"SCOUT","slotsAmount":66,"runningRaidsAmount":0,"isExpanded":true,"sortIndex":2,"lastStartedTime":1776258625,"sortField":"ew","sortDirection":"desc","useShip":false,"onlyLosses":false,"ownerVillage":{"id":31894,"troops":{"ownTroopsAtTown":{"units":{"t1":528,"t2":0,"t3":0,"t4":170,"t5":33,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0}}}},"defaultTroop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"slotsStates":[{"id":122609,"isActive":true},{"id":122642,"isActive":true},{"id":122562,"isActive":true},{"id":122623,"isActive":true},{"id":122628,"isActive":true},{"id":122646,"isActive":true},{"id":122587,"isActive":true},{"id":122605,"isActive":true},{"id":122583,"isActive":true},{"id":122653,"isActive":true},{"id":122596,"isActive":true},{"id":122557,"isActive":true},{"id":125979,"isActive":true},{"id":122624,"isActive":true},{"id":122634,"isActive":true},{"id":122552,"isActive":true},{"id":122627,"isActive":true},{"id":122637,"isActive":true},{"id":122589,"isActive":true},{"id":122621,"isActive":true},{"id":122591,"isActive":true},{"id":122647,"isActive":true},{"id":122611,"isActive":true},{"id":122594,"isActive":true},{"id":122632,"isActive":true},{"id":122657,"isActive":true},{"id":122575,"isActive":true},{"id":122636,"isActive":true},{"id":122602,"isActive":true},{"id":122635,"isActive":true},{"id":125981,"isActive":true},{"id":122651,"isActive":true},{"id":125975,"isActive":true},{"id":122654,"isActive":true},{"id":122600,"isActive":true},{"id":125976,"isActive":true},{"id":122618,"isActive":true},{"id":122580,"isActive":true},{"id":122639,"isActive":true},{"id":122586,"isActive":true},{"id":122601,"isActive":true},{"id":122599,"isActive":true},{"id":122567,"isActive":true},{"id":125977,"isActive":true},{"id":125985,"isActive":true},{"id":122648,"isActive":true},{"id":122614,"isActive":true},{"id":122590,"isActive":true},{"id":122570,"isActive":true},{"id":122555,"isActive":true},{"id":125971,"isActive":true},{"id":122615,"isActive":true},{"id":125984,"isActive":true},{"id":122652,"isActive":true},{"id":122641,"isActive":true},{"id":122638,"isActive":true},{"id":122629,"isActive":true},{"id":122625,"isActive":true},{"id":122613,"isActive":true},{"id":122610,"isActive":true},{"id":122606,"isActive":true},{"id":122604,"isActive":true},{"id":122603,"isActive":true},{"id":122592,"isActive":true},{"id":122568,"isActive":true},{"id":122566,"isActive":true}],"slots":[{"id":122609,"target":{"id":32095,"mapId":141337,"x":-16,"y":-152,"name":"Crisis`s village","type":1,"population":295},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":22.6274,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122642,"target":{"id":31992,"mapId":127683,"x":-36,"y":-118,"name":"Thebes","type":1,"population":263},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":18.4391,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122562,"target":{"id":31740,"mapId":135711,"x":-28,"y":-138,"name":"\u0414\u0435\u0440\u0435\u0432\u043d\u044f \u0421\u0435\u0440\u0433\u0435\u0439","type":1,"population":249},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":4.47214,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122623,"target":{"id":31878,"mapId":132496,"x":-35,"y":-130,"name":"Aldeia","type":1,"population":247},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":6.7082,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122628,"target":{"id":31938,"mapId":130489,"x":-37,"y":-125,"name":"Village de asterix2026","type":1,"population":236},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":12.083,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122646,"target":{"id":23658,"mapId":125683,"x":-31,"y":-113,"name":"01.","type":0,"population":230},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":23.0217,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122587,"target":{"id":31794,"mapId":137724,"x":-20,"y":-143,"name":"ananasmole","type":1,"population":225},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":13.8924,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122605,"target":{"id":26319,"mapId":142146,"x":-9,"y":-154,"name":"flamengo2","type":0,"population":214},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":29.2062,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122583,"target":{"id":31783,"mapId":136922,"x":-20,"y":-141,"name":"Asensio`s village","type":1,"population":191},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":13,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122653,"target":{"id":29430,"mapId":127303,"x":-15,"y":-117,"name":"V1","type":1,"population":187},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":25.4951,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122596,"target":{"id":32050,"mapId":140129,"x":-21,"y":-149,"name":"Serro","type":1,"population":187},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":17.0294,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122557,"target":{"id":34531,"mapId":136110,"x":-30,"y":-139,"name":"Yeni K\u00f6y","type":0,"population":187},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":3.60555,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":125979,"target":{"id":31709,"mapId":126088,"x":-27,"y":-114,"name":"Gabhj`s village","type":1,"population":166},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":22.561,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122624,"target":{"id":31731,"mapId":132499,"x":-32,"y":-130,"name":"\u0642\u0631\u064a\u0629 \u0647\u0631\u0647\u0631\u062c\u0631\u062c\u0631","type":1,"population":161},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":6,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122634,"target":{"id":30026,"mapId":131303,"x":-25,"y":-127,"name":"esko02`s village","type":1,"population":153},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":11.4017,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122552,"target":{"id":31949,"mapId":136108,"x":-32,"y":-139,"name":"AMHOS-00","type":1,"population":136},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":3,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122627,"target":{"id":31965,"mapId":130891,"x":-36,"y":-126,"name":"Village de Popup","type":1,"population":134},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":10.7703,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122637,"target":{"id":29790,"mapId":129702,"x":-22,"y":-123,"name":"\u0642\u0631\u064a\u0629 mohamad","type":1,"population":113},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":16.4012,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122589,"target":{"id":31910,"mapId":138126,"x":-19,"y":-144,"name":"Nightwish`s village","type":1,"population":105},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":15.2643,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122621,"target":{"id":34886,"mapId":134098,"x":-37,"y":-134,"name":"Nowa osada","type":0,"population":104},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":5.38516,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122591,"target":{"id":31980,"mapId":139331,"x":-17,"y":-147,"name":"jochem11\u00b4s Dorp","type":1,"population":101},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":18.6011,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122647,"target":{"id":31442,"mapId":126090,"x":-25,"y":-114,"name":"Vesnice: pperkoo","type":1,"population":84},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":23.0868,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122611,"target":{"id":32079,"mapId":141334,"x":-19,"y":-152,"name":"FireSword K\u00f6y\u00fc","type":1,"population":65},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":20.6155,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122594,"target":{"id":31966,"mapId":139328,"x":-20,"y":-147,"name":"K 1","type":1,"population":65},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":16.2788,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122632,"target":{"id":31200,"mapId":130898,"x":-29,"y":-126,"name":"Villaggio di Romanshrimp","type":1,"population":57},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":10.4403,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122657,"target":{"id":30942,"mapId":124896,"x":-16,"y":-111,"name":"Vesnice: BullShark","type":1,"population":49},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":29.6816,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122575,"target":{"id":31767,"mapId":136518,"x":-23,"y":-140,"name":"\u0642\u0631\u064a\u0629 Frax Younes Z","type":1,"population":43},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":9.84886,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122636,"target":{"id":31124,"mapId":130099,"x":-26,"y":-124,"name":"\u0642\u0631\u064a\u0629 KLAN","type":1,"population":41},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":13.4164,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122602,"target":{"id":32058,"mapId":139741,"x":-8,"y":-148,"name":"Aldeia do Acetisp","type":1,"population":40},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":26.8328,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122635,"target":{"id":29993,"mapId":130501,"x":-25,"y":-125,"name":"LOK`s village","type":1,"population":23},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":13.0384,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":125981,"target":{"id":30966,"mapId":126894,"x":-23,"y":-116,"name":"Aldea de SPQR","type":1,"population":21},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":21.9317,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122651,"target":{"id":30490,"mapId":126897,"x":-20,"y":-116,"name":"Holako`s village","type":1,"population":20},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":23.3238,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":125975,"target":{"id":31873,"mapId":129290,"x":-33,"y":-122,"name":"Aldea de Jonny","type":1,"population":19},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":14.0357,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122654,"target":{"id":30441,"mapId":125697,"x":-17,"y":-113,"name":"Aldeia do xispirito","type":1,"population":19},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":27.4591,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122600,"target":{"id":32057,"mapId":139739,"x":-10,"y":-148,"name":"Xyren`s village","type":1,"population":18},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":25.0599,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":125976,"target":{"id":31865,"mapId":128488,"x":-33,"y":-120,"name":"\u0414\u0435\u0440\u0435\u0432\u043d\u044f Inkvizitor","type":1,"population":15},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":16.0312,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122618,"target":{"id":31946,"mapId":134501,"x":-35,"y":-135,"name":"Georgia`s village","type":1,"population":15},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":3.16228,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122580,"target":{"id":31778,"mapId":137322,"x":-21,"y":-142,"name":"DAO`s village","type":1,"population":14},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":12.53,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122639,"target":{"id":31454,"mapId":129294,"x":-29,"y":-122,"name":"Aldeia do KingBryan","type":1,"population":13},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":14.3178,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122586,"target":{"id":31798,"mapId":137324,"x":-19,"y":-142,"name":"\u0642\u0631\u064a\u0629 Falcon","type":1,"population":13},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":14.3178,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122601,"target":{"id":31988,"mapId":139339,"x":-9,"y":-147,"name":"WoodHunter`s village","type":1,"population":12},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":25.4951,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122599,"target":{"id":31982,"mapId":138933,"x":-14,"y":-146,"name":"FairWarrior`s village","type":1,"population":12},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":20.5913,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122567,"target":{"id":32010,"mapId":137312,"x":-31,"y":-142,"name":"Dirtyh.Hun.\u0130mp. K\u00f6y\u00fc","type":1,"population":12},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":6.08276,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":125977,"target":{"id":31449,"mapId":127291,"x":-27,"y":-117,"name":"Villaggio di Antonio","type":1,"population":11},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":19.6469,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":125985,"target":{"id":29050,"mapId":123690,"x":-19,"y":-108,"name":"Aldea de DalaiBata","type":1,"population":10},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":30.8707,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122648,"target":{"id":31445,"mapId":126490,"x":-26,"y":-115,"name":"Villaggio di zeus","type":1,"population":10},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":21.8403,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122614,"target":{"id":32062,"mapId":139725,"x":-24,"y":-148,"name":"ToastyToast`s village","type":1,"population":10},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":14.4222,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122590,"target":{"id":31979,"mapId":138929,"x":-18,"y":-146,"name":"Kovovver12 faluja","type":1,"population":10},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":17.2047,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122570,"target":{"id":32032,"mapId":138116,"x":-29,"y":-144,"name":"Villaggio di Antopes","type":1,"population":10},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":8.544,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122555,"target":{"id":31903,"mapId":135307,"x":-31,"y":-137,"name":"Aldea de shake","type":1,"population":10},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":1.41421,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":125971,"target":{"id":31612,"mapId":131297,"x":-31,"y":-127,"name":"Dorf von zzero","type":1,"population":9},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":9.05539,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122615,"target":{"id":32038,"mapId":139323,"x":-25,"y":-147,"name":"Villaggio di MaestroDOOM","type":1,"population":9},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":13.0384,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":125984,"target":{"id":30955,"mapId":125694,"x":-20,"y":-113,"name":"\u05d4\u05db\u05e4\u05e8 \u05e9\u05dc Cfcfuyy","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":25.9422,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122652,"target":{"id":29736,"mapId":127300,"x":-18,"y":-117,"name":"Aldea de Jads","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":23.6008,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122641,"target":{"id":31933,"mapId":127685,"x":-34,"y":-118,"name":"senin`s village","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":18.1108,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122638,"target":{"id":30569,"mapId":129299,"x":-24,"y":-122,"name":"nyanyokman`s village","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":16.1245,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122629,"target":{"id":31725,"mapId":130493,"x":-33,"y":-125,"name":"CAPITAL K\u00f6y\u00fc","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":11.0454,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122625,"target":{"id":31729,"mapId":132097,"x":-33,"y":-129,"name":"\u0642\u0631\u064a\u0629 Danger","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":7.07107,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122613,"target":{"id":32068,"mapId":140529,"x":-22,"y":-150,"name":"totok`s village","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":17.2047,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122610,"target":{"id":32069,"mapId":140934,"x":-18,"y":-151,"name":"tiktok`s village","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":20.5183,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122606,"target":{"id":32106,"mapId":141339,"x":-14,"y":-152,"name":"Metin4736 K\u00f6y\u00fc","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":24.0832,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122604,"target":{"id":32070,"mapId":140941,"x":-11,"y":-151,"name":"Aldeia do RikiKing","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":25.807,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122603,"target":{"id":32107,"mapId":141343,"x":-10,"y":-152,"name":"raynald`s village","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":27.2029,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122592,"target":{"id":32043,"mapId":139731,"x":-18,"y":-148,"name":"ClayDefender K\u00f6y\u00fc","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":18.4391,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122568,"target":{"id":32014,"mapId":137714,"x":-30,"y":-143,"name":"Josh`s village","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":7.28011,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}},{"id":122566,"target":{"id":31950,"mapId":136912,"x":-30,"y":-141,"name":"Osada: DirtyWarlord","type":1,"population":8},"troop":{"t1":0,"t2":0,"t3":0,"t4":5,"t5":0,"t6":0,"t7":0,"t8":0,"t9":0,"t10":0},"distance":5.38516,"isActive":true,"isRunning":false,"isSpying":true,"runningAttacks":0,"nextAttackAt":null,"lastRaid":null,"totalBooty":{"booty":0,"raids":0}}]}],"deactivatedFarmListTargets":[{"id":6348,"mapId":138914,"x":-33,"y":-146,"name":"","type":2},{"id":6338,"mapId":138111,"x":-34,"y":-144,"name":"","type":2}]}}},
+            ["allgemein","a2b","raidList","spieler","truppen","karte","berichte"]        );
+    });
+</script>
+	</div>
+                            </div>
+                        </div>
+                    				</div>
+
+				<div id="sidebarAfterContent" class="sidebar afterContent">
+                    <div class="sidebarBoxWrapper">
+                        <div id="villageBoxes" class="contentV2">
+    <div id="sidebarBoxActiveVillage" class="sidebarBox  expanded">
+	<div class="header">
+		<div class="buttonsWrapper quickLinks">
+            <div class="quickLinkSlot">
+                            <div class="slot"></div>
+                    </div>
+            <div class="quickLinkSlot">
+                                            <a id="button69dfb1aaa5b3d"
+   	class="layoutButton buttonFramed withIcon round activeVillageMarketplaceSendResources green  quickLink MarketplaceSendResources  "
+	title=""
+        	        	>
+					<svg viewBox="0 0 250 213" class="activeVillageMarketplaceSendResources"><g class="outline">
+    <path d="M23.5 108.2c-1.7.5-8.5-.3-5.1-7.2-1-3.6 1.2-6.6 4.3-6.1 1.4-6 1.1-10.5 11.5-9.1.8-2.2 8.9-4.3 13.9-.3h2.4c-.8-1-14.3-22.6-24.1-17-2.6 4.2-5.3.1-8.8-.4 0 0-1.1 10.7-7.7 5.2-9.2.9-14.2-4.4-5-10.7 0 0-2.8-7.9 6.7-5.6.5-12.1 4.5-17.9 16.8-11.8 7.4-13.8 46.5 28.9 49.9 31.2-3.4-5.4-18.4-30.6-27.4-34.1-3.9-1-17.4-4.1-10.6-10.7-1.4-1.7-1.4-3.1 1.1-2.6 2.5.4 5.1 3.1 5.1 3.1l13.3 8.3-9.7-12.9s-3.5-1.5-4.5-1.9c-1-.4-1.6-3.9 2.4-4.5 4-.6 10.8 2.2 10.8 2.2s-3.9-6.7-4.5-6.7-4.5-5.3 2-5.5c-.9-14.7 11.4 3 11.4 3.6 0 0-1.6-9.2.8-11.4C77.6-8.4 85 14.3 86 18.8c4.7 3 5.7 10.9 6.3 14.9l5.3 8.1-2.8-15.5c-8.4-14.6-6.4-36 12.1-15.1.3-6.3 6.6-4.4 8.6-1.2l2.8 8.9s1.8-8.5 4.3-9.8 4.9-.8 5.3 3.3c4.5-2 7.3-2.2 8.7 1.2 14.1 6.3.6 18.2-2.5 26.9-.8 1.8-3.3 12.4-3.3 12.4L146 35.7s-.8-6.3 7.5-5.3c3.1-5.3 8.1-13.8 15.3-7.9 6.5-3.3 12.8-5.3 14.8 1.4 7.1.4 12.2.2 12.4 10.4 7.1 8.3 6.1 16-3 11.2-3.1 2-5.3 1.8-6.7-.8-1.8 4.5-8.5 12.8-13.4 5.5-2 1.4-27.5 17.3-31.1 35.1 15.9-14.2 27.9-28.3 41.4-25.9 7.3-4.2 11.2-6.7 16.5-1.2 4.3-.2 5.9 4.1 5.7 5.9 5.9-1 10.4-1 10.8 4.1.8 8.6-1.3 17.2-7.7 9.8 0 0-7.9 4.5-9.2-2.8-4.7 3.1-11.4 6.3-14.6 1.6-2.6 1.8-8.1 6.1-11 12.6-26.8 7.5-105.6 30.9-105.6 30.9l-5.6-5s-4.2 8-9.9 0c-1.7 0-3.8 0-5.1 3.2-12.9.9.6-12.3 4.2-11 0 0-1.8-4.3 4.7-4.2-12-13.9-24.7-2.2-32.9 4.9Zm151.6 5.7c7.6-1.3 35.5 21.8 42 25.1l10.8-2.5c-14.6-7.6-24.2-35.1-17.3-49.7-13.9 3.6-97.8 25.5-98.4 25.7l39.8 11.4v13.8h6.1c-1.5-11.5 4.5-23.7 16.9-23.7ZM37.2 138.2l86.6 25.3c-.2-4.4-.1-21.4-.1-26.1h20.5v-8.2l-42.9-9.1s-63.1 18.1-64 18.1Zm-7.9 11v29.9c10.9 4 70.7 27.2 80.6 29.6l13.8-10.1v-28.9s-88.1-25.4-90.2-26.8l-4.2 6.4Zm194.4-66.9c-19.3 6.8-1.1 56.8 18.1 49.6 19.2-6.9 1-56.7-18.1-49.6Zm-1.1 81.8c-7.1-4.8-16.3-11.2-23.5-15.9-22.2-13.6-27.1-26.6-25.7 9.5h-28.6v32h28.6v18.8c0 3.6 3.4 5.8 6.1 4 12.7-8.6 38.4-26.1 51.2-34.7 6.7-5.6-4.4-10.9-8.2-13.6Z"></path>
+</g><g class="icon">
+    <path d="M23.5 108.2c-1.7.5-8.5-.3-5.1-7.2-1-3.6 1.2-6.6 4.3-6.1 1.4-6 1.1-10.5 11.5-9.1.8-2.2 8.9-4.3 13.9-.3h2.4c-.8-1-14.3-22.6-24.1-17-2.6 4.2-5.3.1-8.8-.4 0 0-1.1 10.7-7.7 5.2-9.2.9-14.2-4.4-5-10.7 0 0-2.8-7.9 6.7-5.6.5-12.1 4.5-17.9 16.8-11.8 7.4-13.8 46.5 28.9 49.9 31.2-3.4-5.4-18.4-30.6-27.4-34.1-3.9-1-17.4-4.1-10.6-10.7-1.4-1.7-1.4-3.1 1.1-2.6 2.5.4 5.1 3.1 5.1 3.1l13.3 8.3-9.7-12.9s-3.5-1.5-4.5-1.9c-1-.4-1.6-3.9 2.4-4.5 4-.6 10.8 2.2 10.8 2.2s-3.9-6.7-4.5-6.7-4.5-5.3 2-5.5c-.9-14.7 11.4 3 11.4 3.6 0 0-1.6-9.2.8-11.4C77.6-8.4 85 14.3 86 18.8c4.7 3 5.7 10.9 6.3 14.9l5.3 8.1-2.8-15.5c-8.4-14.6-6.4-36 12.1-15.1.3-6.3 6.6-4.4 8.6-1.2l2.8 8.9s1.8-8.5 4.3-9.8 4.9-.8 5.3 3.3c4.5-2 7.3-2.2 8.7 1.2 14.1 6.3.6 18.2-2.5 26.9-.8 1.8-3.3 12.4-3.3 12.4L146 35.7s-.8-6.3 7.5-5.3c3.1-5.3 8.1-13.8 15.3-7.9 6.5-3.3 12.8-5.3 14.8 1.4 7.1.4 12.2.2 12.4 10.4 7.1 8.3 6.1 16-3 11.2-3.1 2-5.3 1.8-6.7-.8-1.8 4.5-8.5 12.8-13.4 5.5-2 1.4-27.5 17.3-31.1 35.1 15.9-14.2 27.9-28.3 41.4-25.9 7.3-4.2 11.2-6.7 16.5-1.2 4.3-.2 5.9 4.1 5.7 5.9 5.9-1 10.4-1 10.8 4.1.8 8.6-1.3 17.2-7.7 9.8 0 0-7.9 4.5-9.2-2.8-4.7 3.1-11.4 6.3-14.6 1.6-2.6 1.8-8.1 6.1-11 12.6-26.8 7.5-105.6 30.9-105.6 30.9l-5.6-5s-4.2 8-9.9 0c-1.7 0-3.8 0-5.1 3.2-12.9.9.6-12.3 4.2-11 0 0-1.8-4.3 4.7-4.2-12-13.9-24.7-2.2-32.9 4.9Zm151.6 5.7c7.6-1.3 35.5 21.8 42 25.1l10.8-2.5c-14.6-7.6-24.2-35.1-17.3-49.7-13.9 3.6-97.8 25.5-98.4 25.7l39.8 11.4v13.8h6.1c-1.5-11.5 4.5-23.7 16.9-23.7ZM37.2 138.2l86.6 25.3c-.2-4.4-.1-21.4-.1-26.1h20.5v-8.2l-42.9-9.1s-63.1 18.1-64 18.1Zm-7.9 11v29.9c10.9 4 70.7 27.2 80.6 29.6l13.8-10.1v-28.9s-88.1-25.4-90.2-26.8l-4.2 6.4Zm194.4-66.9c-19.3 6.8-1.1 56.8 18.1 49.6 19.2-6.9 1-56.7-18.1-49.6Zm-1.1 81.8c-7.1-4.8-16.3-11.2-23.5-15.9-22.2-13.6-27.1-26.6-25.7 9.5h-28.6v32h28.6v18.8c0 3.6 3.4 5.8 6.1 4 12.7-8.6 38.4-26.1 51.2-34.7 6.7-5.6-4.4-10.9-8.2-13.6Z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aaa5b3d').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"quickLink MarketplaceSendResources","id":"button69dfb1aaa5b3d","redirectUrl":"","redirectUrlExternal":"","svg":"sideBar\/quickLinks\/quickLinkMarketplaceSendResources.svg","content":""}]);
+	});
+</script>
+                    </div>
+            <div class="quickLinkSlot">
+                                            <a id="button69dfb1aaa5c30"
+   	class="layoutButton buttonFramed withIcon round activeVillageBarracksManagement green  quickLink BarracksManagement  "
+	title=""
+        	        	>
+					<svg viewBox="0 0 184.6 200" class="activeVillageBarracksManagement"><g class="outline">
+    <path d="m138.6 172.6 3.8 3.2s-12.3 8.4-20.5 7c-8.1-1.5-16.2-23-16.2-23.3-.5-7.8-7-13.8-14.8-13.8s-14.8 6.6-14.8 14.8 1.1 6.5 3 9c2.6 3.5 6.7 5.7 11.3 5.9-34.5 25.8-75.6 24.7-75.6 24.7l28.4-65.6 8.8 5.2 30-25.1-18.8-13.9s-14.8 2.7-28.2 12.4c-2.1 4.8-9.6 27.4-9.6 27.4L12 146.9l11-40.6 1.6-5.9c7-20.9 26.7-36.1 50-36.1s52.7 23.6 52.7 52.7-.8 11.3-2.6 16.4c-1.6 11.4-1.5 29.8 13.9 39.2Zm18-63.1 27.3-3.4c-2-19.5-8.2-37.8-18-53.6l-36.8 14.9 28.3-27C146.1 26.5 131.8 15.3 115 8.3L94.5 42.5l8-38.6c-.6-.2-1.3-.4-1.9-.5C87.5 0 74.2-.8 61.4.8l4.2 30.8L51 2.5c-16.9-.4-33.3 4.2-51 9l39.3 45.1c10.4-1.4 35-10.3 45.6-7.6 46.3 12.1 64.7 54.6 54.1 105.1 13.7 11.7 0 0 31.2 31.5 8.8-26.3 4.8-11.8 10-31.5 2.8-11 4.3-22 4.4-32.8l-28-11.7Z"></path>
+</g><g class="icon">
+    <path d="m138.6 172.6 3.8 3.2s-12.3 8.4-20.5 7c-8.1-1.5-16.2-23-16.2-23.3-.5-7.8-7-13.8-14.8-13.8s-14.8 6.6-14.8 14.8 1.1 6.5 3 9c2.6 3.5 6.7 5.7 11.3 5.9-34.5 25.8-75.6 24.7-75.6 24.7l28.4-65.6 8.8 5.2 30-25.1-18.8-13.9s-14.8 2.7-28.2 12.4c-2.1 4.8-9.6 27.4-9.6 27.4L12 146.9l11-40.6 1.6-5.9c7-20.9 26.7-36.1 50-36.1s52.7 23.6 52.7 52.7-.8 11.3-2.6 16.4c-1.6 11.4-1.5 29.8 13.9 39.2Zm18-63.1 27.3-3.4c-2-19.5-8.2-37.8-18-53.6l-36.8 14.9 28.3-27C146.1 26.5 131.8 15.3 115 8.3L94.5 42.5l8-38.6c-.6-.2-1.3-.4-1.9-.5C87.5 0 74.2-.8 61.4.8l4.2 30.8L51 2.5c-16.9-.4-33.3 4.2-51 9l39.3 45.1c10.4-1.4 35-10.3 45.6-7.6 46.3 12.1 64.7 54.6 54.1 105.1 13.7 11.7 0 0 31.2 31.5 8.8-26.3 4.8-11.8 10-31.5 2.8-11 4.3-22 4.4-32.8l-28-11.7Z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aaa5c30').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"quickLink BarracksManagement","id":"button69dfb1aaa5c30","redirectUrl":"","redirectUrlExternal":"","svg":"sideBar\/quickLinks\/quickLinkBarracksManagement.svg","content":""}]);
+	});
+</script>
+                    </div>
+            <div class="quickLinkSlot">
+                                            <a id="button69dfb1aaa5cc5"
+   	class="layoutButton buttonFramed withIcon round activeVillageStableManagement green disabled quickLink StableManagement  "
+	title=""
+        	            onclick="event.preventDefault();"
+        	>
+					<svg viewBox="0 0 237.1 250" class="activeVillageStableManagement"><g class="outline">
+    <path d="M218.3 128.8c7.5 2.5 13.7 6.2 18.7 10-12.5-19.8-38.6-60.7-65-68.7 3.7 0 17.5-1.2 20 0-11.2-6.2-13.7-11.2-70-31.2q-8.7-2.5-18.7-6.2C102.2 28 86.5-2.1 69.7.1c1.6 5.7 3 37.8 3.7 41.2 0 0-1.2 0-2.5 1.2-4.6-.8-22.1-12.5-26.2-15 0 0 1.2 23.7 10 31.2-5 5-8.7 10-11.2 8.7-17.6 6.4-11.1 19.4-11.2 32.5-8.9 17.5-13.7 40.2-25 56.2-8.2 2.3-10 13.8-2.5 18.7 2.7 14.1 15 22.5 28.7 21.2 11.2-1.2 18.7-10 21.2-21.2 40.4-10.2 83.1-45.4 35-73.7 79.9 8.7-5 136.2-6.2 141.2 17.5 10 28.7 8.7 63.7 3.7 18.7-7.5 45-30 60-37.5 10.9-24.1 21.2-53.4 11.2-79.9Zm-158.6-30c-2.5 1.2-5 2.5-6.2 2.5-6.2 0-10 3.7-10-1.2s2.5-17.5 8.7-17.5c14.4-2.2 18.5 6.7 7.5 16.2Zm139.9 102.4c-6.2-94.9-81.2-138.7-86.2-141.2 6.2 1.2 103.7 28.7 86.2 141.2Z"></path>
+</g><g class="icon">
+    <path d="M218.3 128.8c7.5 2.5 13.7 6.2 18.7 10-12.5-19.8-38.6-60.7-65-68.7 3.7 0 17.5-1.2 20 0-11.2-6.2-13.7-11.2-70-31.2q-8.7-2.5-18.7-6.2C102.2 28 86.5-2.1 69.7.1c1.6 5.7 3 37.8 3.7 41.2 0 0-1.2 0-2.5 1.2-4.6-.8-22.1-12.5-26.2-15 0 0 1.2 23.7 10 31.2-5 5-8.7 10-11.2 8.7-17.6 6.4-11.1 19.4-11.2 32.5-8.9 17.5-13.7 40.2-25 56.2-8.2 2.3-10 13.8-2.5 18.7 2.7 14.1 15 22.5 28.7 21.2 11.2-1.2 18.7-10 21.2-21.2 40.4-10.2 83.1-45.4 35-73.7 79.9 8.7-5 136.2-6.2 141.2 17.5 10 28.7 8.7 63.7 3.7 18.7-7.5 45-30 60-37.5 10.9-24.1 21.2-53.4 11.2-79.9Zm-158.6-30c-2.5 1.2-5 2.5-6.2 2.5-6.2 0-10 3.7-10-1.2s2.5-17.5 8.7-17.5c14.4-2.2 18.5 6.7 7.5 16.2Zm139.9 102.4c-6.2-94.9-81.2-138.7-86.2-141.2 6.2 1.2 103.7 28.7 86.2 141.2Z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aaa5cc5').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":null,"boxId":"","disabled":true,"attention":false,"colorBlind":false,"class":"quickLink StableManagement","id":"button69dfb1aaa5cc5","redirectUrl":"","redirectUrlExternal":"","svg":"sideBar\/quickLinks\/quickLinkStableManagement.svg","content":"","onclick":"event.preventDefault();"}]);
+	});
+</script>
+                    </div>
+            <div class="quickLinkSlot">
+                                            <a id="button69dfb1aaa5d47"
+   	class="layoutButton buttonFramed withIcon round activeVillageRallyPointOverview green  quickLink RallyPointOverview  "
+	title=""
+        	        	>
+					<svg viewBox="0 0 199 250" class="activeVillageRallyPointOverview"><g class="outline">
+    <path d="M149.6 85.8h20.7v150.5l-70.6-39.6-71.1 39.6V85.8h21.2v115.5l50.1-31.4 49.7 31.4V85.8Zm-13.1.7h-74v88.9L99.6 151l36.8 24.4V86.5Zm50.3-35.2c-3.5 0-6.6 1.4-8.8 3.7H21.1C14 47.2-.4 52.8 0 63.6c-.4 10.8 14 16.5 21.1 8.6H178c17.9 15.1 32.2-18.6 8.8-20.9ZM87.4 219.8V250h24v-30.2c-14-3.7-10.1-3.7-24 0ZM96.6 39c7.6 2.7 19.5-5 22-8.5 1.6-2 1.7-4.8.2-6.7L100.6-.1h-.2L81.9 23.8c-4 7.5 5.6 11.9 14.7 15.2Z"></path>
+</g><g class="icon">
+    <path d="M149.6 85.8h20.7v150.5l-70.6-39.6-71.1 39.6V85.8h21.2v115.5l50.1-31.4 49.7 31.4V85.8Zm-13.1.7h-74v88.9L99.6 151l36.8 24.4V86.5Zm50.3-35.2c-3.5 0-6.6 1.4-8.8 3.7H21.1C14 47.2-.4 52.8 0 63.6c-.4 10.8 14 16.5 21.1 8.6H178c17.9 15.1 32.2-18.6 8.8-20.9ZM87.4 219.8V250h24v-30.2c-14-3.7-10.1-3.7-24 0ZM96.6 39c7.6 2.7 19.5-5 22-8.5 1.6-2 1.7-4.8.2-6.7L100.6-.1h-.2L81.9 23.8c-4 7.5 5.6 11.9 14.7 15.2Z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aaa5d47').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"quickLink RallyPointOverview","id":"button69dfb1aaa5d47","redirectUrl":"","redirectUrlExternal":"","svg":"sideBar\/quickLinks\/quickLinkRallyPointOverview.svg","content":""}]);
+	});
+</script>
+                    </div>
+    
+    <a id="button69dfb1aaa5daf"
+   	class="layoutButton buttonFramed withIcon round activeVillageQuickLinksSettings grey  settings  "
+	title=""
+        	        	>
+					<svg viewBox="0 0 13 3" class="activeVillageQuickLinksSettings"><g class="outline">
+    <path d="M3 1.5C3 2.33 2.33 3 1.5 3S0 2.33 0 1.5.67 0 1.5 0 3 .67 3 1.5ZM8 1.5C8 2.33 7.33 3 6.5 3S5 2.33 5 1.5 5.67 0 6.5 0 8 .67 8 1.5ZM13 1.5c0 .83-.67 1.5-1.5 1.5S10 2.33 10 1.5 10.67 0 11.5 0 13 .67 13 1.5Z"></path>
+</g><g class="icon">
+    <path d="M3 1.5C3 2.33 2.33 3 1.5 3S0 2.33 0 1.5.67 0 1.5 0 3 .67 3 1.5ZM8 1.5C8 2.33 7.33 3 6.5 3S5 2.33 5 1.5 5.67 0 6.5 0 8 .67 8 1.5ZM13 1.5c0 .83-.67 1.5-1.5 1.5S10 2.33 10 1.5 10.67 0 11.5 0 13 .67 13 1.5Z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aaa5daf').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"grey","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"settings","id":"button69dfb1aaa5daf","redirectUrl":"","redirectUrlExternal":"","svg":"misc\/threeDots.svg","content":"","title":"Open quick links settings"}]);
+	});
+</script>
+</div>
+	</div>
+	<div class="content">
+		<div class="playerName">baderWarrior</div>
+<div id="villageName"
+	 class="boxTitle editable"
+	 title="Click to change village name">
+
+			<form>
+			<input class="villageInput" type="text" maxlength="20" name="villageName" data-did=31894 value="baderWarrior`s village"/>
+			<svg viewBox="0 0 12.8 18.8" class="rename">
+    <path d="M5.5 16.6.8 18.8 0 13.6c0-.1.1-.1.1-.1l5.4 2.9c.1.1.1.2 0 .2zm6.7-14.4L8.4.1C7.9-.1 7.3 0 7 .5L1.2 11.2c-.3.5-.1 1.1.3 1.4h.1l3.9 2.1c.5.3 1.1.1 1.4-.4l5.8-10.7c.3-.4.1-1.1-.5-1.4.1 0 .1 0 0 0z"></path>
+</svg>
+		</form>
+	</div>
+
+<div class="population">
+	Population: <span>&#x202d;230&#x202c;</span>
+</div>
+
+<div class="loyalty medium">
+	Loyalty: <span>&#x202d;&#x202d;100&#x202c;&#37;&#x202c;</span>
+</div>
+
+<script type="text/javascript">
+	function saveChanges(newVillageName) {
+		Travian.api('village/change-names', {
+			data: {
+                data: [
+                    {villageId: 31894, name: newVillageName}
+                ]
+			},
+			success: function(data) {
+                Travian.Game.VillageList.updateVillageNames();
+            },
+            error: function(body) {
+                var errorDialog = new Travian.Dialog.Dialog({
+                    buttonOk: true,
+                    buttonCloseOnClickOk: true,
+                    preventFormSubmit: true
+                });
+                errorDialog.setContent(body.message);
+                errorDialog.show();
+            }
+		}, 'PUT');
+	}
+
+	jQuery(function() {
+		var villageNameForm = jQuery('#villageName form');
+		var villageNameInput = jQuery('#villageName input');
+
+		villageNameInput.on('focusout', function () {
+		    saveChanges(villageNameInput.val())
+		});
+
+		villageNameForm.on('submit', function (event) {
+		    event.preventDefault();
+            villageNameInput.blur();
+		});
+	})
+</script>
+	</div>
+	</div>
+    <div id="sidebarBoxVillageList" class="sidebarBox  expanded">
+	<div class="header">
+		<div class="buttonsWrapper quickLinks">
+            <div class="quickLinkSlot">
+                            <div class="slot"></div>
+                    </div>
+            <div class="quickLinkSlot">
+                            <div class="slot"></div>
+                    </div>
+            <div class="quickLinkSlot">
+                            <div class="slot"></div>
+                    </div>
+            <div class="quickLinkSlot">
+                            <div class="slot"></div>
+                    </div>
+        <a id="button69dfb1aaa60b9"
+   	class="layoutButton buttonFramed withIcon round overview green  villageStatistics  "
+	title="Village statistics"
+        			href="/village/statistics"
+	                accesskey="9"
+    	>
+					<svg viewBox="0 0 20 14.92" class="overview"><g class="outline">
+  <path d="M10 1.41c4.61 0 8.34 6.05 8.34 6.05s-3.73 6.05-8.34 6.05-8.34-6-8.34-6 3.73-6 8.34-6M10 0C7.7 0 5.38 1.16 3.1 3.44A20.17 20.17 0 0 0 .46 6.72L0 7.46l.46.74a20.17 20.17 0 0 0 2.64 3.28c2.28 2.28 4.6 3.44 6.9 3.44s4.62-1.16 6.9-3.44a20.17 20.17 0 0 0 2.64-3.28l.46-.74-.46-.74a20.17 20.17 0 0 0-2.64-3.28C14.62 1.16 12.3 0 10 0zm.08 11.64a4.5 4.5 0 1 1 4.49-4.49 4.5 4.5 0 0 1-4.49 4.49zm0-7.88a3.39 3.39 0 1 0 3.38 3.39 3.39 3.39 0 0 0-3.38-3.39zm0 5.92a2.53 2.53 0 1 1 2.52-2.53 2.53 2.53 0 0 1-2.52 2.53z"></path>
+</g><g class="icon">
+  <path d="M10 1.41c4.61 0 8.34 6.05 8.34 6.05s-3.73 6.05-8.34 6.05-8.34-6-8.34-6 3.73-6 8.34-6M10 0C7.7 0 5.38 1.16 3.1 3.44A20.17 20.17 0 0 0 .46 6.72L0 7.46l.46.74a20.17 20.17 0 0 0 2.64 3.28c2.28 2.28 4.6 3.44 6.9 3.44s4.62-1.16 6.9-3.44a20.17 20.17 0 0 0 2.64-3.28l.46-.74-.46-.74a20.17 20.17 0 0 0-2.64-3.28C14.62 1.16 12.3 0 10 0zm.08 11.64a4.5 4.5 0 1 1 4.49-4.49 4.5 4.5 0 0 1-4.49 4.49zm0-7.88a3.39 3.39 0 1 0 3.38 3.39 3.39 3.39 0 0 0-3.38-3.39zm0 5.92a2.53 2.53 0 1 1 2.52-2.53 2.53 2.53 0 0 1-2.52 2.53z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aaa60b9').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"green","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"villageStatistics","id":"button69dfb1aaa60b9","redirectUrl":"\/village\/statistics","redirectUrlExternal":"","svg":"sideBar\/overview.svg","content":"","accesskey":9}]);
+	});
+</script>
+    <a id="button69dfb1aaa61a5"
+   	class="layoutButton buttonFramed withIcon round villageListQuickLinksSettings grey  settings  "
+	title=""
+        	        	>
+					<svg viewBox="0 0 13 3" class="villageListQuickLinksSettings"><g class="outline">
+    <path d="M3 1.5C3 2.33 2.33 3 1.5 3S0 2.33 0 1.5.67 0 1.5 0 3 .67 3 1.5ZM8 1.5C8 2.33 7.33 3 6.5 3S5 2.33 5 1.5 5.67 0 6.5 0 8 .67 8 1.5ZM13 1.5c0 .83-.67 1.5-1.5 1.5S10 2.33 10 1.5 10.67 0 11.5 0 13 .67 13 1.5Z"></path>
+</g><g class="icon">
+    <path d="M3 1.5C3 2.33 2.33 3 1.5 3S0 2.33 0 1.5.67 0 1.5 0 3 .67 3 1.5ZM8 1.5C8 2.33 7.33 3 6.5 3S5 2.33 5 1.5 5.67 0 6.5 0 8 .67 8 1.5ZM13 1.5c0 .83-.67 1.5-1.5 1.5S10 2.33 10 1.5 10.67 0 11.5 0 13 .67 13 1.5Z"></path>
+</g></svg>
+		</a>
+
+<script type="text/javascript">
+	jQuery('#button69dfb1aaa61a5').click(function (event) {
+		jQuery(window).trigger('buttonClicked', [event.delegateTarget, {"type":"grey","loadTooltip":null,"boxId":"","disabled":false,"attention":false,"colorBlind":false,"class":"settings","id":"button69dfb1aaa61a5","redirectUrl":"","redirectUrlExternal":"","svg":"misc\/threeDots.svg","content":"","title":"Open quick links settings"}]);
+	});
+</script>
+</div>
+	</div>
+	<div class="content">
+		
+<div class="expansionSlotInfo">
+	<div class="boxTitle">
+		Villages		<span class="slots">&#x202d;&#x202d;1&#x202c;/&#x202d;2&#x202c;&#x202c;</span>
+	</div>
+	<div class="barWrapper">
+		<div class="bar" style="width:9.6666666666667%">&nbsp;</div>
+	</div>
+</div>
+
+	<div class="villageList">
+        <div class="groupsHeader">
+            <span>Village groups</span>
+            <span>(&#x202d;&#x202d;0&#x202c;/&#x202d;20&#x202c;&#x202c;)</span>
+            <button type="button" class="secondaryIconButton"
+                                        title="">
+                <svg viewBox="0 0 20 16" class="addGroup">
+    <path d="M12 12h2v-2h2V8h-2V6h-2v2h-2v2h2v2ZM2 16c-.55 0-1.02-.2-1.41-.59C.2 15.02 0 14.55 0 14V2C0 1.45.2.98.59.59.98.2 1.45 0 2 0h6l2 2h8c.55 0 1.02.2 1.41.59.39.39.59.86.59 1.41v10c0 .55-.2 1.02-.59 1.41-.39.39-.86.59-1.41.59H2Zm0-2h16V4H9.18l-2-2H2v12Z"></path>
+</svg>
+            </button>
+        </div>
+		            <div class="dropContainer">
+    <div class="listEntry village active" data-did="31894">
+                <a href="?newdid=31894&amp;id=39&amp;tt=99&amp;gid=16"  class="active">
+                    <span class="iconAndNameWrapper">
+                <span class="incomingTroops" data-id="31894">
+                    <svg viewBox="0 0 20 19.06" class="attack">
+  <path d="M16.22 13.08l2.14-2.14-1.37-1.36-1.63 1.63-2.15-2.15 4.74-4.73L19.06 0l-4.32 1.11L10 5.85 5.26 1.11.94 0l1.11 4.33 4.74 4.73-2.15 2.15-1.63-1.63-1.37 1.36 2.14 2.14L0 16.86l2.21 2.2 3.78-3.77 2.13 2.13 1.37-1.37-1.63-1.63L10 12.28l2.14 2.14-1.63 1.63 1.37 1.37 2.14-2.13 3.77 3.77 2.21-2.2-3.78-3.78z"></path>
+</svg>
+                </span>
+                <span class="name" data-did="31894">baderWarrior`s village</span>
+            </span>
+                </a>
+        <span class="coordinatesGrid">
+            &#x202d;<span class="coordinates coordinatesWrapper coordinatesAligned coordinatesltr"><span class="coordinateX">(&#x202d;&minus;&#x202d;32&#x202c;&#x202c;</span><span class="coordinatePipe">|</span><span class="coordinateY">&#x202d;&minus;&#x202d;136&#x202c;&#x202c;)</span></span>&#x202c;        </span>
+            </div>
+</div>
+            			</div>
+	</div>
+	</div>
+</div>
+
+<script type='text/javascript'>
+    jQuery(function() {
+        window.Travian.React.VillageBoxes.render(
+            {
+                gqlQuery: "query{bootstrapData{buildings{type validTribes}serverSupportedFeatures{keepVidOnConquer}} ownPlayer{name tribeId isSitter goldFeatures{travianPlus{isActive}goldClub}village{id tribeId name sortIndex population loyalty quickLinks{all{type buildingIsAvailable availableBuildingId}villageListSet{type buildingIsAvailable availableBuildingId}villageSet{type buildingIsAvailable availableBuildingId}} x y}isSitter culturalPointsOverview{usedSlots maxControllableVillages cpProducedForNextSlot cpNeededForNextSlot cpProductionTotal}profileBan{isActive tooltip}villageList{... on VillageListGroup{id name color villages{id name distance incomingAttacksAmount incomingAttacksSymbols{gray green red yellow}x y}} ... on VillageListVillage{id name distance incomingAttacksAmount incomingAttacksSymbols{gray green red yellow}x y}}}}",
+                viewData: {"bootstrapData":{"buildings":[{"type":1,"validTribes":[1,3,6,7,8,9]},{"type":2,"validTribes":[1,3,6,7,8,9]},{"type":3,"validTribes":[1,3,6,7,8,9]},{"type":4,"validTribes":[1,3,6,7,8,9]},{"type":5,"validTribes":[1,3,6,7,8,9]},{"type":6,"validTribes":[1,3,6,7,8,9]},{"type":7,"validTribes":[1,3,6,7,8,9]},{"type":8,"validTribes":[1,3,6,7,8,9]},{"type":9,"validTribes":[1,3,6,7,8,9]},{"type":10,"validTribes":[1,3,6,7,8,9]},{"type":11,"validTribes":[1,3,6,7,8,9]},{"type":13,"validTribes":[1,3,6,7,8,9]},{"type":14,"validTribes":[1,3,6,7,8,9]},{"type":15,"validTribes":[1,3,6,7,8,9]},{"type":16,"validTribes":[1,3,6,7,8,9]},{"type":17,"validTribes":[1,3,6,7,8,9]},{"type":18,"validTribes":[1,3,6,7,8,9]},{"type":19,"validTribes":[1,3,6,7,8,9]},{"type":20,"validTribes":[1,3,6,7,8,9]},{"type":21,"validTribes":[1,3,6,7,8,9]},{"type":22,"validTribes":[1,3,6,7,8,9]},{"type":23,"validTribes":[1,3,6,7,8,9]},{"type":24,"validTribes":[1,3,6,7,8,9]},{"type":25,"validTribes":[1,3,6,7,8,9]},{"type":26,"validTribes":[1,3,6,7,8,9]},{"type":27,"validTribes":[1,3,6,7,8,9]},{"type":28,"validTribes":[1,3,6,7,8,9]},{"type":29,"validTribes":[1,3,6,7,8,9]},{"type":30,"validTribes":[1,3,6,7,8,9]},{"type":31,"validTribes":[1]},{"type":33,"validTribes":[3]},{"type":34,"validTribes":[1,3,6,7,8,9]},{"type":36,"validTribes":[3]},{"type":37,"validTribes":[1,3,6,7,8,9]},{"type":38,"validTribes":[1,3,6,7,8,9]},{"type":39,"validTribes":[1,3,6,7,8,9]},{"type":41,"validTribes":[1]},{"type":42,"validTribes":[6]},{"type":43,"validTribes":[7]},{"type":44,"validTribes":[7]},{"type":45,"validTribes":[6]},{"type":46,"validTribes":[1,3,6,7,9]},{"type":47,"validTribes":[8]},{"type":48,"validTribes":[8]},{"type":49,"validTribes":[1,3,6,7,8,9]},{"type":50,"validTribes":[9]}],"serverSupportedFeatures":{"keepVidOnConquer":true}},"ownPlayer":{"name":"baderWarrior","tribeId":9,"isSitter":false,"goldFeatures":{"travianPlus":{"isActive":true},"goldClub":true},"village":{"id":31894,"tribeId":9,"name":"baderWarrior`s village","sortIndex":1,"population":230,"loyalty":100,"quickLinks":{"all":[{"type":"BlacksmithManagement","buildingIsAvailable":true,"availableBuildingId":13},{"type":"RallyPointOverview","buildingIsAvailable":true,"availableBuildingId":16},{"type":"RallyPointSendTroops","buildingIsAvailable":true,"availableBuildingId":16},{"type":"RallyPointFarmList","buildingIsAvailable":true,"availableBuildingId":16},{"type":"MarketplaceSendResources","buildingIsAvailable":true,"availableBuildingId":17},{"type":"MarketplaceTradeRoutes","buildingIsAvailable":true,"availableBuildingId":17},{"type":"MarketplaceBuy","buildingIsAvailable":true,"availableBuildingId":17},{"type":"BarracksManagement","buildingIsAvailable":true,"availableBuildingId":19},{"type":"GreatBarracksManagement","buildingIsAvailable":false,"availableBuildingId":null},{"type":"StableManagement","buildingIsAvailable":false,"availableBuildingId":null},{"type":"GreatStableManagement","buildingIsAvailable":false,"availableBuildingId":null},{"type":"WorkshopManagement","buildingIsAvailable":false,"availableBuildingId":null},{"type":"TownHallCelebration","buildingIsAvailable":false,"availableBuildingId":null},{"type":"TrapperManagement","buildingIsAvailable":false,"availableBuildingId":null},{"type":"HerosMansionManagement","buildingIsAvailable":false,"availableBuildingId":null},{"type":"HospitalManagement","buildingIsAvailable":false,"availableBuildingId":null},{"type":"ExpansionTrain","buildingIsAvailable":false,"availableBuildingId":null}],"villageListSet":[null,null,null,null],"villageSet":[null,{"type":"MarketplaceSendResources","buildingIsAvailable":true,"availableBuildingId":17},{"type":"BarracksManagement","buildingIsAvailable":true,"availableBuildingId":19},{"type":"StableManagement","buildingIsAvailable":false,"availableBuildingId":null},{"type":"RallyPointOverview","buildingIsAvailable":true,"availableBuildingId":16}]},"x":-32,"y":-136},"culturalPointsOverview":{"usedSlots":1,"maxControllableVillages":2,"cpProducedForNextSlot":58,"cpNeededForNextSlot":600,"cpProductionTotal":155},"profileBan":{"isActive":false,"tooltip":""},"villageList":[{"id":31894,"name":"baderWarrior`s village","distance":0,"incomingAttacksAmount":0,"incomingAttacksSymbols":{"gray":0,"green":0,"red":0,"yellow":0},"x":-32,"y":-136}]}},
+                knowledgeBaseLinkPlus: 'https://support.travian.com/support/solutions/articles/7000060367-travian-plus-membership'
+            },
+            ["layout","karte","allgemein","dorf1u2","spieler","api","quickLinks","gid16","gid17","gid24","gid25u26","plus"]        );
+    });
+</script>
+<div id="sidebarBoxQuestmaster" class="sidebarBox  expanded">
+	<div class="header">
+		<button id="questmasterButton"
+        title="Display task list"
+        class="vid_9 claimable"
+        type="button">
+
+            <svg width="144" height="125" viewBox="0 0 144 125">
+    <path fill="url(#mentor_gradient)" d="M1.85 125h142.14c.31-9.72-5.55-24.96-15.48-29.77-8.89-3.62-21.63-21.92-25.36-30.54-6.37-15.47-2.07-31.62-11.69-45.4C88.1 10.6 80.65 4.57 72.58.26 54.39-2.36 43.32 14.87 41.24 28.67c-6.29 21.4 3.39 45.2-16.25 59.74-6.49 5.56-12.47 11.74-18.25 17.73-7.29 5.71-8.23 12.8-4.89 18.86Z"></path>
+
+    <defs>
+        <linearGradient id="mentor_gradient" gradientTransform="rotate(90)">
+            <stop class="colorStop1" offset="0%"></stop>
+            <stop class="colorStop2" offset="30%"></stop>
+            <stop class="colorStop1" offset="60%"></stop>
+            <stop class="colorStop3" offset="95%"></stop>
+            <stop class="colorStop4" offset="100%"></stop>
+        </linearGradient>
+    </defs>
+</svg>
+    	<img class="mentor" alt="" src="/img/x.gif" />
+    <div class="bigSpeechBubble newQuestSpeechBubble" title="">
+	<img src="/img/x.gif" alt="" />
+</div></button>
+
+<script type="text/javascript">
+    jQuery(function() {
+        jQuery('button#questmasterButton').click(function() {
+            window.location = '/tasks';
+        });
+            });
+</script>
+	</div>
+	<div class="content">
+		<a href="/tasks" title="Display task list" class="progressiveTasksTitle">
+    <div class="boxTitle">Task overview</div>
+</a>
+	</div>
+	</div>
+                    </div>
+                </div>
+			</div>
+
+			<div id="footer">
+				<div id="pageLinks">
+					<a href="https://www.travian.com/international" target="_blank">Homepage</a>
+					<a href="https://discord.gg/travianlegends" target="_blank">Discord</a>
+					<a href="https://www.travian.com/international/news" target="_blank">News</a>
+					<a href="/help.php?page=support" onclick="return Travian.Game.Freshdesk.homePage()">Support</a>
+					<a href="https://www.travian.com/international/gamerules" target="_blank">Game rules</a>
+					<a href="https://agb.traviangames.com/terms-en.pdf" target="_blank">Terms</a>
+					<a href="https://www.travian.com/international/imprint" target="_blank">Imprint</a>
+					<div class="clear"></div>
+				</div>
+				<p class="copyright">© 2004 - 2026 Travian Games GmbH</p>
+			</div>
+
+			<div id="ce"></div>
+		</div>
+
+        <div id="toastStack"></div>
+        <script type='text/javascript'>
+            jQuery(function() {
+                window.Travian.React.ToastStack.render({}, []);
+            });
+        </script>
+
+		<script type="application/javascript">
+                            Travian.Game.contextHelpData = {"groupName":"","steps":[],"restartableGroup":null};
+                Travian.Game.ContextualHelp.initialize();
+            
+            
+                            Travian.Game.Layout.MobileOptimizations.init();
+                Travian.Game.Layout.updateContentTitleClass();
+            		</script>
+        	</body>
+</html>

@@ -1,0 +1,1705 @@
+{
+  "generated_at": "2026-04-20T23:13:42",
+  "server_url": "https://rof.x10.international.travian.com/",
+  "strategy_file_version": 1,
+  "villages": [
+    {
+      "village_id": 31894,
+      "village_name": "1",
+      "coordinates": {
+        "x": -32,
+        "y": -136
+      },
+      "eco": {
+        "current_resources": {
+          "lumber": 8160,
+          "clay": 7466,
+          "iron": 7738,
+          "crop": 4142
+        },
+        "production_per_hour": {
+          "lumber": 22791,
+          "clay": 20898,
+          "iron": 18521,
+          "crop": 5115
+        },
+        "storage": {
+          "warehouse_capacity": 9600,
+          "granary_capacity": 5000,
+          "free_crop": 15726
+        },
+        "resource_meta": {
+          "lumber": {
+            "production_per_hour_from_title": 22791,
+            "full_in": "0:03:47"
+          },
+          "clay": {
+            "production_per_hour_from_title": 20898,
+            "full_in": "0:06:08"
+          },
+          "iron": {
+            "production_per_hour_from_title": 18521,
+            "full_in": "0:06:02"
+          },
+          "crop": {
+            "production_per_hour_from_title": 25606,
+            "full_in": "0:10:04"
+          }
+        }
+      },
+      "build_queue": {
+        "queue_count": 1,
+        "items": [
+          {
+            "slot_id": null,
+            "timer": "0:03:48",
+            "done_at": "22:17",
+            "text": "Cropland Level 6 0:03:48 hrs. done at 22:17"
+          }
+        ]
+      },
+      "troops": {
+        "uhero": 1,
+        "u81": 19,
+        "u84": 800
+      },
+      "troops_detailed": [
+        {
+          "unit_code": "uhero",
+          "unit_name": "Hero",
+          "count": 1
+        },
+        {
+          "unit_code": "u81",
+          "unit_name": "Thralls",
+          "count": 19
+        },
+        {
+          "unit_code": "u84",
+          "unit_name": "Heimdall's Eyes",
+          "count": 800
+        }
+      ],
+      "top_troops": [
+        {
+          "unit": "u84",
+          "count": 800
+        },
+        {
+          "unit": "u81",
+          "count": 19
+        },
+        {
+          "unit": "uhero",
+          "count": 1
+        }
+      ],
+      "hero_context": {
+        "is_on_mission": false,
+        "hero_health": 90.92711481481481,
+        "hero_current_village": null
+      },
+      "buildings": [
+        {
+          "slot_id": 1,
+          "level": 0,
+          "name": "woodcutter",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 2,
+          "level": 10,
+          "name": "cropland",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 3,
+          "level": 11,
+          "name": "woodcutter",
+          "raw_level": 11,
+          "queued": 0,
+          "effective_level": 11
+        },
+        {
+          "slot_id": 4,
+          "level": 1,
+          "name": "iron mine",
+          "raw_level": 1,
+          "queued": 0,
+          "effective_level": 1
+        },
+        {
+          "slot_id": 5,
+          "level": 1,
+          "name": "clay pit",
+          "raw_level": 1,
+          "queued": 0,
+          "effective_level": 1
+        },
+        {
+          "slot_id": 6,
+          "level": 10,
+          "name": "clay pit",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 7,
+          "level": 10,
+          "name": "iron mine",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 8,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 1,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 9,
+          "level": 9,
+          "name": "cropland",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 10,
+          "level": 10,
+          "name": "iron mine",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 11,
+          "level": 9,
+          "name": "iron mine",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 12,
+          "level": 10,
+          "name": "cropland",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 13,
+          "level": 9,
+          "name": "cropland",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 14,
+          "level": 10,
+          "name": "woodcutter",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 15,
+          "level": 10,
+          "name": "cropland",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 16,
+          "level": 1,
+          "name": "clay pit",
+          "raw_level": 1,
+          "queued": 0,
+          "effective_level": 1
+        },
+        {
+          "slot_id": 17,
+          "level": 11,
+          "name": "woodcutter",
+          "raw_level": 11,
+          "queued": 0,
+          "effective_level": 11
+        },
+        {
+          "slot_id": 18,
+          "level": 12,
+          "name": "clay pit",
+          "raw_level": 12,
+          "queued": 0,
+          "effective_level": 12
+        },
+        {
+          "slot_id": 19,
+          "level": 8,
+          "name": "barracks",
+          "raw_level": 8,
+          "queued": 0,
+          "effective_level": 8
+        },
+        {
+          "slot_id": 20,
+          "level": 8,
+          "name": "stable",
+          "raw_level": 8,
+          "queued": 0,
+          "effective_level": 8
+        },
+        {
+          "slot_id": 21,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 22,
+          "level": 9,
+          "name": "tournament square",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 23,
+          "level": 5,
+          "name": "palace",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 24,
+          "level": 8,
+          "name": "academy",
+          "raw_level": 8,
+          "queued": 0,
+          "effective_level": 8
+        },
+        {
+          "slot_id": 25,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 26,
+          "level": 18,
+          "name": "main building",
+          "raw_level": 18,
+          "queued": 0,
+          "effective_level": 18
+        },
+        {
+          "slot_id": 27,
+          "level": 5,
+          "name": "sawmill",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 28,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 29,
+          "level": 10,
+          "name": "stonemason's lodge",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 30,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 31,
+          "level": 6,
+          "name": "granary",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 32,
+          "level": 5,
+          "name": "brickyard",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 33,
+          "level": 5,
+          "name": "iron foundry",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 34,
+          "level": 10,
+          "name": "workshop",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 35,
+          "level": 5,
+          "name": "grain mill",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 36,
+          "level": 9,
+          "name": "warehouse",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 37,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 38,
+          "level": 9,
+          "name": "cranny",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 39,
+          "level": 15,
+          "name": "rally point",
+          "raw_level": 15,
+          "queued": 0,
+          "effective_level": 15
+        },
+        {
+          "slot_id": 40,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        }
+      ],
+      "palace_or_residence": [
+        {
+          "slot_id": 23,
+          "name": "palace",
+          "level": 5,
+          "ready_for_settlers_level_10": false
+        }
+      ],
+      "strategy_next_candidate": {
+        "phase": "phase_1_off_economy_stabilize",
+        "target": {
+          "slot_id": 1,
+          "current": 0,
+          "target": 10
+        },
+        "blocked_slots": [
+          8
+        ]
+      }
+    },
+    {
+      "village_id": 37713,
+      "village_name": "2",
+      "coordinates": {
+        "x": null,
+        "y": null
+      },
+      "eco": {
+        "current_resources": {
+          "lumber": 2645,
+          "clay": 17437,
+          "iron": 10184,
+          "crop": 40477
+        },
+        "production_per_hour": {
+          "lumber": 12981,
+          "clay": 18266,
+          "iron": 10529,
+          "crop": 11653
+        },
+        "storage": {
+          "warehouse_capacity": 37900,
+          "granary_capacity": 45700,
+          "free_crop": 12080
+        },
+        "resource_meta": {
+          "lumber": {
+            "production_per_hour_from_title": 12981,
+            "full_in": "2:42:57"
+          },
+          "clay": {
+            "production_per_hour_from_title": 18266,
+            "full_in": "1:07:13"
+          },
+          "iron": {
+            "production_per_hour_from_title": 10529,
+            "full_in": "2:37:56"
+          },
+          "crop": {
+            "production_per_hour_from_title": 13962,
+            "full_in": "0:26:54"
+          }
+        }
+      },
+      "build_queue": {
+        "queue_count": 1,
+        "items": [
+          {
+            "slot_id": null,
+            "timer": "0:10:35",
+            "done_at": "22:24",
+            "text": "Woodcutter Level 9 0:10:35 hrs. done at 22:24"
+          }
+        ]
+      },
+      "troops": {
+        "u21": 2311
+      },
+      "troops_detailed": [
+        {
+          "unit_code": "u21",
+          "unit_name": "Phalanxes",
+          "count": 2311
+        }
+      ],
+      "top_troops": [
+        {
+          "unit": "u21",
+          "count": 2311
+        }
+      ],
+      "hero_context": {
+        "is_on_mission": false,
+        "hero_health": 90.94216111111112,
+        "hero_current_village": null
+      },
+      "buildings": [
+        {
+          "slot_id": 1,
+          "level": 9,
+          "name": "woodcutter",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 2,
+          "level": 9,
+          "name": "cropland",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 3,
+          "level": 8,
+          "name": "woodcutter",
+          "raw_level": 8,
+          "queued": 1,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 4,
+          "level": 10,
+          "name": "clay pit",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 5,
+          "level": 9,
+          "name": "clay pit",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 6,
+          "level": 9,
+          "name": "clay pit",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 7,
+          "level": 9,
+          "name": "iron mine",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 8,
+          "level": 9,
+          "name": "cropland",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 9,
+          "level": 9,
+          "name": "cropland",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 10,
+          "level": 10,
+          "name": "iron mine",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 11,
+          "level": 10,
+          "name": "iron mine",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 12,
+          "level": 9,
+          "name": "cropland",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 13,
+          "level": 8,
+          "name": "cropland",
+          "raw_level": 8,
+          "queued": 0,
+          "effective_level": 8
+        },
+        {
+          "slot_id": 14,
+          "level": 10,
+          "name": "woodcutter",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 15,
+          "level": 8,
+          "name": "cropland",
+          "raw_level": 8,
+          "queued": 0,
+          "effective_level": 8
+        },
+        {
+          "slot_id": 16,
+          "level": 10,
+          "name": "clay pit",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 17,
+          "level": 10,
+          "name": "woodcutter",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 18,
+          "level": 9,
+          "name": "clay pit",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 19,
+          "level": 15,
+          "name": "barracks",
+          "raw_level": 15,
+          "queued": 0,
+          "effective_level": 15
+        },
+        {
+          "slot_id": 20,
+          "level": 8,
+          "name": "academy",
+          "raw_level": 8,
+          "queued": 0,
+          "effective_level": 8
+        },
+        {
+          "slot_id": 21,
+          "level": 3,
+          "name": "grain mill",
+          "raw_level": 3,
+          "queued": 0,
+          "effective_level": 3
+        },
+        {
+          "slot_id": 22,
+          "level": 1,
+          "name": "embassy",
+          "raw_level": 1,
+          "queued": 0,
+          "effective_level": 1
+        },
+        {
+          "slot_id": 23,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 24,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 25,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 26,
+          "level": 15,
+          "name": "main building",
+          "raw_level": 15,
+          "queued": 0,
+          "effective_level": 15
+        },
+        {
+          "slot_id": 27,
+          "level": 8,
+          "name": "marketplace",
+          "raw_level": 8,
+          "queued": 0,
+          "effective_level": 8
+        },
+        {
+          "slot_id": 28,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 29,
+          "level": 10,
+          "name": "trapper",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 30,
+          "level": 16,
+          "name": "warehouse",
+          "raw_level": 16,
+          "queued": 0,
+          "effective_level": 16
+        },
+        {
+          "slot_id": 31,
+          "level": 17,
+          "name": "granary",
+          "raw_level": 17,
+          "queued": 0,
+          "effective_level": 17
+        },
+        {
+          "slot_id": 32,
+          "level": 5,
+          "name": "sawmill",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 33,
+          "level": 3,
+          "name": "cranny",
+          "raw_level": 3,
+          "queued": 0,
+          "effective_level": 3
+        },
+        {
+          "slot_id": 34,
+          "level": 5,
+          "name": "brickyard",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 35,
+          "level": 10,
+          "name": "residence",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 36,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 37,
+          "level": 4,
+          "name": "iron foundry",
+          "raw_level": 4,
+          "queued": 0,
+          "effective_level": 4
+        },
+        {
+          "slot_id": 38,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 39,
+          "level": 10,
+          "name": "rally point",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 40,
+          "level": 0,
+          "name": "palisade",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        }
+      ],
+      "palace_or_residence": [
+        {
+          "slot_id": 35,
+          "name": "residence",
+          "level": 10,
+          "ready_for_settlers_level_10": true
+        }
+      ],
+      "strategy_next_candidate": {
+        "phase": "phase_1_deff_stabilize",
+        "target": {
+          "slot_id": 23,
+          "current": 0,
+          "target": 15,
+          "name": "construct new building",
+          "build_patterns": [
+            "main building",
+            "bâtiment principal"
+          ]
+        },
+        "blocked_slots": [
+          3
+        ]
+      }
+    },
+    {
+      "village_id": 39770,
+      "village_name": "3",
+      "coordinates": {
+        "x": null,
+        "y": null
+      },
+      "eco": {
+        "current_resources": {
+          "lumber": 1081,
+          "clay": 1798,
+          "iron": 476,
+          "crop": 19015
+        },
+        "production_per_hour": {
+          "lumber": 1610,
+          "clay": 2538,
+          "iron": 1610,
+          "crop": 8759
+        },
+        "storage": {
+          "warehouse_capacity": 11800,
+          "granary_capacity": 25900,
+          "free_crop": 7782
+        },
+        "resource_meta": {
+          "lumber": {
+            "production_per_hour_from_title": 1610,
+            "full_in": "6:39:28"
+          },
+          "clay": {
+            "production_per_hour_from_title": 2538,
+            "full_in": "3:56:27"
+          },
+          "iron": {
+            "production_per_hour_from_title": 1610,
+            "full_in": "7:02:01"
+          },
+          "crop": {
+            "production_per_hour_from_title": 8975,
+            "full_in": "0:47:10"
+          }
+        }
+      },
+      "build_queue": {
+        "queue_count": 2,
+        "items": [
+          {
+            "slot_id": null,
+            "timer": "0:25:32",
+            "done_at": "22:39",
+            "text": "Clay Pit Level 10 0:25:32 hrs. done at 22:39"
+          },
+          {
+            "slot_id": null,
+            "timer": "0:50:22",
+            "done_at": "23:04",
+            "text": "Woodcutter Level 9 0:50:22 hrs. done at 23:04"
+          }
+        ]
+      },
+      "troops": {
+        "u51": 217
+      },
+      "troops_detailed": [
+        {
+          "unit_code": "u51",
+          "unit_name": "Slave Militia",
+          "count": 217
+        }
+      ],
+      "top_troops": [
+        {
+          "unit": "u51",
+          "count": 217
+        }
+      ],
+      "hero_context": {
+        "is_on_mission": false,
+        "hero_health": 90.95605,
+        "hero_current_village": null
+      },
+      "buildings": [
+        {
+          "slot_id": 1,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 2,
+          "level": 6,
+          "name": "cropland",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 3,
+          "level": 8,
+          "name": "woodcutter",
+          "raw_level": 8,
+          "queued": 1,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 4,
+          "level": 8,
+          "name": "iron mine",
+          "raw_level": 8,
+          "queued": 0,
+          "effective_level": 8
+        },
+        {
+          "slot_id": 5,
+          "level": 6,
+          "name": "cropland",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 6,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 7,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 8,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 9,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 10,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 11,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 12,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 13,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 14,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 15,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 16,
+          "level": 9,
+          "name": "clay pit",
+          "raw_level": 9,
+          "queued": 1,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 17,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 18,
+          "level": 4,
+          "name": "cropland",
+          "raw_level": 4,
+          "queued": 0,
+          "effective_level": 4
+        },
+        {
+          "slot_id": 19,
+          "level": 7,
+          "name": "barracks",
+          "raw_level": 7,
+          "queued": 0,
+          "effective_level": 7
+        },
+        {
+          "slot_id": 20,
+          "level": 7,
+          "name": "hero's mansion",
+          "raw_level": 7,
+          "queued": 0,
+          "effective_level": 7
+        },
+        {
+          "slot_id": 21,
+          "level": 11,
+          "name": "marketplace",
+          "raw_level": 11,
+          "queued": 0,
+          "effective_level": 11
+        },
+        {
+          "slot_id": 22,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 23,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 24,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 25,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 26,
+          "level": 12,
+          "name": "main building",
+          "raw_level": 12,
+          "queued": 0,
+          "effective_level": 12
+        },
+        {
+          "slot_id": 27,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 28,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 29,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 30,
+          "level": 10,
+          "name": "warehouse",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 31,
+          "level": 14,
+          "name": "granary",
+          "raw_level": 14,
+          "queued": 0,
+          "effective_level": 14
+        },
+        {
+          "slot_id": 32,
+          "level": 2,
+          "name": "grain mill",
+          "raw_level": 2,
+          "queued": 0,
+          "effective_level": 2
+        },
+        {
+          "slot_id": 33,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 34,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 35,
+          "level": 10,
+          "name": "residence",
+          "raw_level": 10,
+          "queued": 0,
+          "effective_level": 10
+        },
+        {
+          "slot_id": 36,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 37,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 38,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 39,
+          "level": 1,
+          "name": "rally point",
+          "raw_level": 1,
+          "queued": 0,
+          "effective_level": 1
+        },
+        {
+          "slot_id": 40,
+          "level": 0,
+          "name": "stone wall",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        }
+      ],
+      "palace_or_residence": [
+        {
+          "slot_id": 35,
+          "name": "residence",
+          "level": 10,
+          "ready_for_settlers_level_10": true
+        }
+      ],
+      "strategy_next_candidate": {
+        "phase": "phase_1_15c_support_bootstrap",
+        "target": {
+          "slot_id": 18,
+          "current": 4,
+          "target": 6
+        },
+        "blocked_slots": [
+          3,
+          16
+        ]
+      }
+    },
+    {
+      "village_id": 40219,
+      "village_name": "4",
+      "coordinates": {
+        "x": null,
+        "y": null
+      },
+      "eco": {
+        "current_resources": {
+          "lumber": 1651,
+          "clay": 6325,
+          "iron": 2123,
+          "crop": 11447
+        },
+        "production_per_hour": {
+          "lumber": 3542,
+          "clay": 4375,
+          "iron": 3542,
+          "crop": 4337
+        },
+        "storage": {
+          "warehouse_capacity": 9600,
+          "granary_capacity": 14400,
+          "free_crop": 3739
+        },
+        "resource_meta": {
+          "lumber": {
+            "production_per_hour_from_title": 3542,
+            "full_in": "2:14:39"
+          },
+          "clay": {
+            "production_per_hour_from_title": 4375,
+            "full_in": "0:44:55"
+          },
+          "iron": {
+            "production_per_hour_from_title": 3542,
+            "full_in": "2:06:39"
+          },
+          "crop": {
+            "production_per_hour_from_title": 4333,
+            "full_in": "0:40:51"
+          }
+        }
+      },
+      "build_queue": {
+        "queue_count": 2,
+        "items": [
+          {
+            "slot_id": null,
+            "timer": "0:03:41",
+            "done_at": "22:17",
+            "text": "Clay Pit Level 9 0:03:41 hrs. done at 22:17"
+          },
+          {
+            "slot_id": null,
+            "timer": "0:12:51",
+            "done_at": "22:27",
+            "text": "Woodcutter Level 7 0:12:51 hrs. done at 22:27"
+          }
+        ]
+      },
+      "troops": {},
+      "troops_detailed": [],
+      "top_troops": [],
+      "hero_context": {
+        "is_on_mission": false,
+        "hero_health": 90.96993888888889,
+        "hero_current_village": null
+      },
+      "buildings": [
+        {
+          "slot_id": 1,
+          "level": 6,
+          "name": "woodcutter",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 2,
+          "level": 6,
+          "name": "cropland",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 3,
+          "level": 6,
+          "name": "woodcutter",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 4,
+          "level": 6,
+          "name": "iron mine",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 5,
+          "level": 8,
+          "name": "clay pit",
+          "raw_level": 8,
+          "queued": 1,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 6,
+          "level": 6,
+          "name": "clay pit",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 7,
+          "level": 6,
+          "name": "iron mine",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 8,
+          "level": 6,
+          "name": "cropland",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 9,
+          "level": 6,
+          "name": "cropland",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 10,
+          "level": 6,
+          "name": "iron mine",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 11,
+          "level": 7,
+          "name": "iron mine",
+          "raw_level": 7,
+          "queued": 0,
+          "effective_level": 7
+        },
+        {
+          "slot_id": 12,
+          "level": 6,
+          "name": "cropland",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 13,
+          "level": 6,
+          "name": "cropland",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 14,
+          "level": 6,
+          "name": "woodcutter",
+          "raw_level": 6,
+          "queued": 1,
+          "effective_level": 7
+        },
+        {
+          "slot_id": 15,
+          "level": 5,
+          "name": "cropland",
+          "raw_level": 5,
+          "queued": 0,
+          "effective_level": 5
+        },
+        {
+          "slot_id": 16,
+          "level": 6,
+          "name": "clay pit",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 17,
+          "level": 7,
+          "name": "woodcutter",
+          "raw_level": 7,
+          "queued": 0,
+          "effective_level": 7
+        },
+        {
+          "slot_id": 18,
+          "level": 6,
+          "name": "clay pit",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 19,
+          "level": 2,
+          "name": "barracks",
+          "raw_level": 2,
+          "queued": 0,
+          "effective_level": 2
+        },
+        {
+          "slot_id": 20,
+          "level": 11,
+          "name": "marketplace",
+          "raw_level": 11,
+          "queued": 0,
+          "effective_level": 11
+        },
+        {
+          "slot_id": 21,
+          "level": 4,
+          "name": "residence",
+          "raw_level": 4,
+          "queued": 0,
+          "effective_level": 4
+        },
+        {
+          "slot_id": 22,
+          "level": 2,
+          "name": "hero's mansion",
+          "raw_level": 2,
+          "queued": 0,
+          "effective_level": 2
+        },
+        {
+          "slot_id": 23,
+          "level": 6,
+          "name": "cranny",
+          "raw_level": 6,
+          "queued": 0,
+          "effective_level": 6
+        },
+        {
+          "slot_id": 24,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 25,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 26,
+          "level": 13,
+          "name": "main building",
+          "raw_level": 13,
+          "queued": 0,
+          "effective_level": 13
+        },
+        {
+          "slot_id": 27,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 28,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 29,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 30,
+          "level": 9,
+          "name": "warehouse",
+          "raw_level": 9,
+          "queued": 0,
+          "effective_level": 9
+        },
+        {
+          "slot_id": 31,
+          "level": 11,
+          "name": "granary",
+          "raw_level": 11,
+          "queued": 0,
+          "effective_level": 11
+        },
+        {
+          "slot_id": 32,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 33,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 34,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 35,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 36,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 37,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 38,
+          "level": 0,
+          "name": "construct new building",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        },
+        {
+          "slot_id": 39,
+          "level": 1,
+          "name": "rally point",
+          "raw_level": 1,
+          "queued": 0,
+          "effective_level": 1
+        },
+        {
+          "slot_id": 40,
+          "level": 0,
+          "name": "city wall",
+          "raw_level": 0,
+          "queued": 0,
+          "effective_level": 0
+        }
+      ],
+      "palace_or_residence": [
+        {
+          "slot_id": 21,
+          "name": "residence",
+          "level": 4,
+          "ready_for_settlers_level_10": false
+        }
+      ],
+      "strategy_next_candidate": {
+        "phase": "phase_1_roman_support_bootstrap",
+        "target": {
+          "slot_id": 15,
+          "current": 5,
+          "target": 7
+        },
+        "blocked_slots": [
+          5,
+          14
+        ]
+      }
+    }
+  ]
+}

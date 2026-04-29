@@ -1,0 +1,14 @@
+Analyze my Travian villages from these files:
+- JSON: C:\Users\Sihem\Desktop\bader jma\travian_legends_bots\database\reports\village_intelligence_20260419_011420.json
+- Markdown summary: C:\Users\Sihem\Desktop\bader jma\travian_legends_bots\database\reports\village_intelligence_20260419_011420.md
+
+My objective:
+1) Upgrade palace (or residence if better) in village "1" to support founding a new village.
+2) The new village should be optimized for Teuton raiding.
+3) Provide the best coordinate criteria and exact short-term action plan from current state.
+
+Please return:
+- a strict prioritized checklist (next 10 actions),
+- resource and queue-sensitive logic,
+- where to delay military to avoid eco stall,
+- and a concrete recommendation for best next-village placement profile for raiding.
